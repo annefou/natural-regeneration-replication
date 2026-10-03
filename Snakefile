@@ -1,13 +1,14 @@
 # Snakefile — orchestrates the replication pipeline end-to-end.
 #
-# Replace the placeholder rules with your actual replication steps. The
-# canonical pattern is one rule per pipeline stage, and each rule wraps a
-# notebook executed via jupytext (so the notebook stays the source of truth
-# and the Snakefile just sequences them).
+# Each rule wraps a jupytext notebook (the .py file is the source of truth).
 #
 # Usage:
 #   snakemake --cores 1                  # run everything
 #   snakemake --cores 1 -n               # dry run
+#
+# Step 1 (reproduction from the authors' published map) is implemented.
+# Steps 2-3 (independent random-forest replication, robustness check) will use
+# 02_data_clean / 03_analysis / 04_figures and are not wired in yet.
 
 NOTEBOOKS = "notebooks"
 DATA = "data"
@@ -17,48 +18,34 @@ FIGURES = "figures"
 
 rule all:
     input:
-        # Replace with your actual final artefacts:
-        f"{FIGURES}/main_result.png",
-        f"{RESULTS}/summary.csv",
+        f"{RESULTS}/step1_reproduction_colombia.csv",
+        f"{RESULTS}/step1_authors_map_healpix_d8.nc",
 
 
 # ---------- 01: Data download ----------
-# Every replication MUST be self-contained: data is downloaded by the notebook,
-# never assumed to exist locally. See CLAUDE.md § Self-contained data.
+# Authors' 30 m tiles (Zenodo 10.5281/zenodo.7428804) + GADM 4.1 Colombia.
+# Every file is md5-checked; re-runs skip files already present.
 rule data_download:
     output:
-        f"{DATA}/raw/dataset.zip",
+        f"{DATA}/raw/sources.json",
+        f"{DATA}/raw/gadm/gadm41_COL.gpkg",
     log:
         f"{RESULTS}/logs/01_data_download.log",
     shell:
         f"cd {{NOTEBOOKS}} && jupytext --to notebook --execute 01_data_download.py 2>&1 | tee ../{{log}}"
 
 
-# ---------- 02: Data clean ----------
-rule data_clean:
+# ---------- 03a: Step 1 reproduction (area from the published map) ----------
+rule reproduction_area:
     input:
-        f"{DATA}/raw/dataset.zip",
+        f"{DATA}/raw/sources.json",
+        f"{DATA}/raw/gadm/gadm41_COL.gpkg",
     output:
-        f"{DATA}/clean/dataset.parquet",
+        f"{RESULTS}/step1_reproduction_colombia.csv",
+        f"{RESULTS}/step1_pct_histogram_colombia.csv",
+        f"{RESULTS}/step1_authors_map_healpix_d8.nc",
+        f"{FIGURES}/step1_authors_map_healpix.png",
+    log:
+        f"{RESULTS}/logs/03a_reproduction_area.log",
     shell:
-        f"cd {{NOTEBOOKS}} && jupytext --to notebook --execute 02_data_clean.py"
-
-
-# ---------- 03: Analysis ----------
-rule analysis:
-    input:
-        f"{DATA}/clean/dataset.parquet",
-    output:
-        f"{RESULTS}/summary.csv",
-    shell:
-        f"cd {{NOTEBOOKS}} && jupytext --to notebook --execute 03_analysis.py"
-
-
-# ---------- 04: Figures ----------
-rule figures:
-    input:
-        f"{RESULTS}/summary.csv",
-    output:
-        f"{FIGURES}/main_result.png",
-    shell:
-        f"cd {{NOTEBOOKS}} && jupytext --to notebook --execute 04_figures.py"
+        f"cd {{NOTEBOOKS}} && jupytext --to notebook --execute 03a_reproduction_area.py 2>&1 | tee ../{{log}}"

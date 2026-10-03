@@ -33,6 +33,16 @@ nbclient = "*"
 ipykernel = "*"
 # --- pipeline driver ---
 snakemake = "*"
+# --- geospatial stack (step 1 reproduction + data-access probe) ---
+rasterio = "*"             # raster I/O, windowed reads of the 30 m tiles
+geopandas = "*"            # GADM boundary I/O
+shapely = ">=2.0"
+pyproj = "*"               # WGS84 ellipsoid + Mollweide areas
+gdal = "*"                 # /vsicurl/ remote-window probes (osgeo.ogr / gdal)
+healpix-geo = ">=0.4"      # HEALPix NESTED, ellipsoid-aware (DOMAIN.md)
+netcdf4 = "*"              # NetCDF output (never .npz)
+requests = "*"
+python-docx = "*"          # read Supp. Table 1 (bioclim PCA) from the SI .docx
 # --- replace/extend with the deps your replication needs ---
 # Examples (uncomment as needed):
 # statsmodels = "*"          # GLM/GLMM regression

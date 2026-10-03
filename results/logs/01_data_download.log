@@ -1,0 +1,3 @@
+[jupytext] Reading 01_data_download.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 01_data_download.ipynb (destination file replaced [use --update to preserve cell outputs and ids])

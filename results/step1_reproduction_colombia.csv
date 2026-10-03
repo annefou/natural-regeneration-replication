@@ -1,0 +1,65 @@
+metric,area_model,value_mha,paper_value_mha,paper_source,diff_mha,diff_pct
+pnr_continuous_expected,ellipsoid_wgs84,10.5143,11.19,Supp. Table 3,-0.6757,-6.04
+pnr_continuous_expected,sphere_a_mollweide,10.5835,11.19,Supp. Table 3,-0.6065,-5.42
+pnr_continuous_expected,nominal_900m2,12.3736,11.19,Supp. Table 3,1.1836,10.58
+pnr_continuous_expected_lower_if_rounded,ellipsoid_wgs84,10.4203,11.19,Supp. Table 3,-0.7697,-6.88
+pnr_continuous_expected_lower_if_rounded,sphere_a_mollweide,10.4889,11.19,Supp. Table 3,-0.7011,-6.27
+pnr_continuous_expected_lower_if_rounded,nominal_900m2,12.263,11.19,Supp. Table 3,1.073,9.59
+pnr_continuous_expected_upper_if_rounded,ellipsoid_wgs84,10.6082,11.19,Supp. Table 3,-0.5818,-5.2
+pnr_continuous_expected_upper_if_rounded,sphere_a_mollweide,10.678,11.19,Supp. Table 3,-0.512,-4.58
+pnr_continuous_expected_upper_if_rounded,nominal_900m2,12.4841,11.19,Supp. Table 3,1.2941,11.57
+pnr_continuous_expected_upper_if_truncated,ellipsoid_wgs84,10.7021,11.19,Supp. Table 3,-0.4879,-4.36
+pnr_continuous_expected_upper_if_truncated,sphere_a_mollweide,10.7725,11.19,Supp. Table 3,-0.4175,-3.73
+pnr_continuous_expected_upper_if_truncated,nominal_900m2,12.5947,11.19,Supp. Table 3,1.4047,12.55
+pnr_continuous_expected_upper_if_rounded_incl_subpercent,ellipsoid_wgs84,11.0538,11.19,Supp. Table 3,-0.1362,-1.22
+pnr_continuous_expected_upper_if_rounded_incl_subpercent,sphere_a_mollweide,11.1265,11.19,Supp. Table 3,-0.0635,-0.57
+pnr_continuous_expected_upper_if_rounded_incl_subpercent,nominal_900m2,13.0069,11.19,Supp. Table 3,1.8169,16.24
+pnr_continuous_expected_upper_if_truncated_incl_subpercent,ellipsoid_wgs84,11.5933,11.19,Supp. Table 3,0.4033,3.6
+pnr_continuous_expected_upper_if_truncated_incl_subpercent,sphere_a_mollweide,11.6696,11.19,Supp. Table 3,0.4796,4.29
+pnr_continuous_expected_upper_if_truncated_incl_subpercent,nominal_900m2,13.6402,11.19,Supp. Table 3,2.4502,21.9
+pnr_binary_product,ellipsoid_wgs84,11.6418,13.7,Supp. Table 4,-2.0582,-15.02
+pnr_binary_product,sphere_a_mollweide,11.7184,13.7,Supp. Table 4,-1.9816,-14.46
+pnr_binary_product,nominal_900m2,13.6986,13.7,Supp. Table 4,-0.0014,-0.01
+pnr_binary_product_where_pct_valid,ellipsoid_wgs84,11.0394,13.7,Supp. Table 4,-2.6606,-19.42
+pnr_binary_product_where_pct_valid,sphere_a_mollweide,11.112,13.7,Supp. Table 4,-2.588,-18.89
+pnr_binary_product_where_pct_valid,nominal_900m2,12.9918,13.7,Supp. Table 4,-0.7082,-5.17
+pnr_continuous_thresholded_gt50,ellipsoid_wgs84,11.184,13.7,Supp. Table 4,-2.516,-18.36
+pnr_continuous_thresholded_gt50,sphere_a_mollweide,11.2576,13.7,Supp. Table 4,-2.4424,-17.83
+pnr_continuous_thresholded_gt50,nominal_900m2,13.1618,13.7,Supp. Table 4,-0.5382,-3.93
+pnr_continuous_thresholded_ge50,ellipsoid_wgs84,11.4639,13.7,Supp. Table 4,-2.2361,-16.32
+pnr_continuous_thresholded_ge50,sphere_a_mollweide,11.5393,13.7,Supp. Table 4,-2.1607,-15.77
+pnr_continuous_thresholded_ge50,nominal_900m2,13.4911,13.7,Supp. Table 4,-0.2089,-1.52
+available_candidate_pct_valid,ellipsoid_wgs84,18.7986,93.78,Supp. Tables 3-4,-74.9814,-79.95
+available_candidate_pct_valid,sphere_a_mollweide,18.9222,93.78,Supp. Tables 3-4,-74.8578,-79.82
+available_candidate_pct_valid,nominal_900m2,22.1242,93.78,Supp. Tables 3-4,-71.6558,-76.41
+available_candidate_bin_valid,ellipsoid_wgs84,108.5022,93.78,Supp. Tables 3-4,14.7222,15.7
+available_candidate_bin_valid,sphere_a_mollweide,109.2232,93.78,Supp. Tables 3-4,15.4432,16.47
+available_candidate_bin_valid,nominal_900m2,127.3736,93.78,Supp. Tables 3-4,33.5936,35.82
+available_candidate_pct_gt0,ellipsoid_wgs84,18.7985,93.78,Supp. Tables 3-4,-74.9815,-79.95
+available_candidate_pct_gt0,sphere_a_mollweide,18.9221,93.78,Supp. Tables 3-4,-74.8579,-79.82
+available_candidate_pct_gt0,nominal_900m2,22.1242,93.78,Supp. Tables 3-4,-71.6558,-76.41
+country_area_pixel_centres_in_gadm,ellipsoid_wgs84,113.7241,,,,
+country_area_pixel_centres_in_gadm,sphere_a_mollweide,114.4786,,,,
+country_area_pixel_centres_in_gadm,nominal_900m2,133.5579,,,,
+diag_bin1_where_pct_nodata,ellipsoid_wgs84,0.6024,,,,
+diag_bin1_where_pct_nodata,sphere_a_mollweide,0.6064,,,,
+diag_bin1_where_pct_nodata,nominal_900m2,0.7068,,,,
+diag_bin1_where_pct_le50,ellipsoid_wgs84,0.1102,,,,
+diag_bin1_where_pct_le50,sphere_a_mollweide,0.1109,,,,
+diag_bin1_where_pct_le50,nominal_900m2,0.1296,,,,
+diag_bin0_where_pct_gt50,ellipsoid_wgs84,0.2506,,,,
+diag_bin0_where_pct_gt50,sphere_a_mollweide,0.2522,,,,
+diag_bin0_where_pct_gt50,nominal_900m2,0.2946,,,,
+diag_pct_valid_where_bin_nodata,ellipsoid_wgs84,0.0124,,,,
+diag_pct_valid_where_bin_nodata,sphere_a_mollweide,0.0125,,,,
+diag_pct_valid_where_bin_nodata,nominal_900m2,0.0146,,,,
+diag_pct_nodata_where_bin0,ellipsoid_wgs84,89.1137,,,,
+diag_pct_nodata_where_bin0,sphere_a_mollweide,89.7071,,,,
+diag_pct_nodata_where_bin0,nominal_900m2,104.5571,,,,
+country_area_gadm_geodesic_polygon,ellipsoid_wgs84,113.7241,,,,
+proportion_continuous_of_available_pct_valid,ellipsoid_wgs84,0.5593,0.12,Supp. Table 3,0.4393,366.1
+proportion_binary_of_available_bin_valid,ellipsoid_wgs84,0.1073,0.15,Supp. Table 4,-0.0427,-28.47
+sphere_a_over_ellipsoid_minus1_expected,ratio,0.006577,,,,
+sphere_a_over_ellipsoid_minus1_bin_pnr,ratio,0.006581,,,,
+sphere_a_over_ellipsoid_minus1_pct_valid,ratio,0.006575,,,,
+sphere_a_over_ellipsoid_minus1_country_pixels,ratio,0.006634,,,,

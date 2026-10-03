@@ -1,0 +1,4 @@
+[jupytext] Reading 03a_reproduction_area.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03a_reproduction_area.ipynb (destination file replaced [use --update to preserve cell outputs and ids])

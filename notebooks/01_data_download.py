@@ -14,90 +14,184 @@
 # ---
 
 # %% [markdown]
-# # 01 — Data download
+# # 01 — Data download (step 1: reproduction from the authors' published map)
 #
-# This notebook fetches all input data needed by the replication pipeline.
-# Every dataset is downloaded from a citable source (Zenodo, GBIF, Copernicus,
-# etc.) and a record of the source is logged into `data/raw/sources.json`
-# alongside the data files.
+# Fetches every input for step 1 (Colombia reproduction of the natural-regeneration
+# potential area) into `data/raw/`. No credentials are needed.
 #
-# **Self-contained data:** The repository ships without input data. This
-# notebook is the only path that brings data into `data/raw/`. A user cloning
-# the repo and running this notebook should get a complete reproducible run.
+# | Input | Source | Licence |
+# |---|---|---|
+# | Continuous potential, 30 m, 10° tiles (`pnv_pct_30m_tile_*.tif`, integer %) | Williams et al. (2022), Zenodo [10.5281/zenodo.7428804](https://doi.org/10.5281/zenodo.7428804) | CC-BY-4.0 |
+# | Binary potential > 0.5, 30 m (`pnv_bin_30m.zip`) | same record | CC-BY-4.0 |
+# | Colombia boundary, level 0 | GADM 4.1 (`gadm41_COL.gpkg`), <https://gadm.org> | GADM licence (free for academic, non-commercial use; no redistribution) |
 #
-# **Credentials:** if your replication uses a credentialled API, document the
-# credential setup at the top of this notebook, including:
-#
-# - Where the user gets the credential (URL).
-# - Where it lives on disk (or which env var Claude expects).
-# - The corresponding GitHub Actions secret name(s) for CI.
+# Only tiles that intersect the GADM Colombia polygon are downloaded. Tile
+# selection is computed from the polygon, not hard-coded. Every file is checked
+# against the Zenodo md5 (authors' files) or a pinned md5 (GADM). Downloads are
+# idempotent: a file that already exists with the right checksum is not fetched
+# again.
 
 # %%
+import hashlib
 import json
+import shutil
+import zipfile
+from datetime import date
 from pathlib import Path
 
+import geopandas as gpd
+import rasterio
 import requests
+from shapely.geometry import box
 
 # %%
 RAW_DIR = Path("../data/raw")
-RAW_DIR.mkdir(parents=True, exist_ok=True)
+ZEN_DIR = RAW_DIR / "zenodo_7428804"
+BIN_DIR = ZEN_DIR / "pnv_bin_30m"
+GADM_DIR = RAW_DIR / "gadm"
+for d in (ZEN_DIR, BIN_DIR, GADM_DIR):
+    d.mkdir(parents=True, exist_ok=True)
+
+ZENODO_RECORD = "7428804"
+ZENODO_API = f"https://zenodo.org/api/records/{ZENODO_RECORD}"
+GADM_URL = "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_COL.gpkg"
+# GADM publishes no checksum; pinned from the first download (2026-10-03),
+# Last-Modified 2022-07-18, 64,114,688 bytes.
+GADM_MD5 = "d1ed49e54c2429fd9f5577bccd4a6851"
+
+
+# %%
+def md5sum(path: Path, chunk: int = 1 << 22) -> str:
+    h = hashlib.md5()
+    with open(path, "rb") as f:
+        while block := f.read(chunk):
+            h.update(block)
+    return h.hexdigest()
+
+
+def sha256sum(path: Path, chunk: int = 1 << 22) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        while block := f.read(chunk):
+            h.update(block)
+    return h.hexdigest()
+
+
+def download(url: str, out: Path, md5: str) -> Path:
+    """Download url to out unless it already exists with the expected md5."""
+    if out.exists() and md5sum(out) == md5:
+        print(f"ok (cached)  {out.name}")
+        return out
+    tmp = out.with_suffix(out.suffix + ".part")
+    with requests.get(url, stream=True, timeout=600) as r:
+        r.raise_for_status()
+        with open(tmp, "wb") as f:
+            shutil.copyfileobj(r.raw, f, length=1 << 22)
+    got = md5sum(tmp)
+    if got != md5:
+        tmp.unlink()
+        raise RuntimeError(f"md5 mismatch for {out.name}: {got} != {md5}")
+    tmp.rename(out)
+    print(f"downloaded   {out.name}")
+    return out
+
 
 # %% [markdown]
-# ## Source registry
+# ## Colombia boundary (GADM 4.1, level 0)
 #
-# Replace the placeholder source(s) below with your actual data sources. Each
-# entry should record: name, URL or DOI, license, accessed-on date, and SHA-256
-# of the downloaded file (computed and added after first download).
+# The paper used GADM (2022) for country sums; GADM 4.1 (July 2022) is that release.
+
+# %%
+gadm_path = download(GADM_URL, GADM_DIR / "gadm41_COL.gpkg", GADM_MD5)
+col = gpd.read_file(gadm_path, layer="ADM_ADM_0")
+col_geom = col.geometry.iloc[0]
+print(col[["GID_0", "COUNTRY"]].to_string(), "\nbounds:", col.total_bounds)
+
+# %% [markdown]
+# ## Authors' published map (Zenodo 10.5281/zenodo.7428804)
+#
+# File list and md5 checksums come from the Zenodo REST API. Continuous tiles are
+# named `pnv_pct_30m_tile_<xmin>_<xmax>_<ymin>_<ymax>.tif`; a tile is kept when
+# that rectangle intersects the Colombia polygon (islands included).
+
+# %%
+record = requests.get(ZENODO_API, timeout=60).json()
+files = {f["key"]: f for f in record["files"]}
+print(record["metadata"]["title"], "|", record["metadata"]["license"]["id"], "|", len(files), "files")
+
+
+def tile_box(key: str):
+    xmin, xmax, ymin, ymax = (float(v) for v in key.removesuffix(".tif").split("_")[-4:])
+    return box(xmin, ymin, xmax, ymax)
+
+
+pct_keys = sorted(
+    k for k in files if k.startswith("pnv_pct_30m_tile_") and tile_box(k).intersects(col_geom)
+)
+print("continuous tiles intersecting Colombia:", pct_keys)
+
+# %%
+for key in pct_keys + ["pnv_bin_30m.zip"]:
+    f = files[key]
+    download(f["links"]["self"], ZEN_DIR / key, f["checksum"].removeprefix("md5:"))
+
+# %% [markdown]
+# The binary product is a zip of 84 numbered tiles. Extract only the members whose
+# raster bounds (read from the header inside the zip) intersect Colombia.
+
+# %%
+zip_path = ZEN_DIR / "pnv_bin_30m.zip"
+bin_members = []
+with zipfile.ZipFile(zip_path) as zf:
+    for name in zf.namelist():
+        if not name.endswith(".tif"):
+            continue
+        with rasterio.open(f"/vsizip/{zip_path.resolve()}/{name}") as r:
+            if not box(*r.bounds).intersects(col_geom):
+                continue
+        out = BIN_DIR / Path(name).name
+        info = zf.getinfo(name)
+        if not (out.exists() and out.stat().st_size == info.file_size):
+            with zf.open(name) as src, open(out, "wb") as dst:
+                shutil.copyfileobj(src, dst, length=1 << 22)
+        bin_members.append(out.name)
+print("binary tiles intersecting Colombia:", sorted(bin_members))
+
+# %% [markdown]
+# ## Source log
 
 # %%
 SOURCES = [
     {
-        "name": "<dataset-name>",
-        "doi": "<10.x/y or null>",
-        "url": "<https://...>",
-        "license": "<CC-BY-4.0 / CC-BY-NC-4.0 / public-domain / ...>",
-        "accessed_on": "2026-10-03",
-        "sha256": None,  # filled after first download
+        "name": "Williams et al. natural regeneration potential, continuous 30 m tiles",
+        "doi": "10.5281/zenodo.7428804",
+        "url": ZENODO_API,
+        "license": record["metadata"]["license"]["id"],
+        "accessed_on": date.today().isoformat(),
+        "files": [
+            {"key": k, "md5": files[k]["checksum"].removeprefix("md5:"), "size": files[k]["size"]}
+            for k in pct_keys
+        ],
     },
-    # Add more sources here as needed.
+    {
+        "name": "Williams et al. natural regeneration potential, binary (>0.5) 30 m",
+        "doi": "10.5281/zenodo.7428804",
+        "url": files["pnv_bin_30m.zip"]["links"]["self"],
+        "license": record["metadata"]["license"]["id"],
+        "accessed_on": date.today().isoformat(),
+        "md5": files["pnv_bin_30m.zip"]["checksum"].removeprefix("md5:"),
+        "extracted_members": sorted(bin_members),
+    },
+    {
+        "name": "GADM 4.1 Colombia (level 0-2)",
+        "doi": None,
+        "url": GADM_URL,
+        "license": "GADM licence: free for academic and other non-commercial use; redistribution not allowed",
+        "accessed_on": date.today().isoformat(),
+        "md5": GADM_MD5,
+        "sha256": sha256sum(gadm_path),
+    },
 ]
-
-
-# %% [markdown]
-# ## Download
-
-# %%
-def download_source(source: dict) -> Path:
-    """Fetch a single source into data/raw/. Replace with your real implementation."""
-    # Example skeleton — adapt to your data source's API:
-    # response = requests.get(source["url"], stream=True, timeout=300)
-    # response.raise_for_status()
-    # out_path = RAW_DIR / Path(source["url"]).name
-    # with open(out_path, "wb") as f:
-    #     for chunk in response.iter_content(chunk_size=8192):
-    #         f.write(chunk)
-    # return out_path
-    raise NotImplementedError(
-        "Implement download for: " + source["name"] + ". "
-        "See data/README.md for common patterns."
-    )
-
-
-# %%
-# Uncomment when SOURCES is populated:
-# for source in SOURCES:
-#     print(f"Fetching {source['name']}...")
-#     path = download_source(source)
-#     print(f"  -> {path}")
-
-# %% [markdown]
-# ## Source log
-#
-# Persist the source registry to disk so that downstream notebooks can audit
-# what data was used and when.
-
-# %%
 with open(RAW_DIR / "sources.json", "w") as f:
     json.dump({"sources": SOURCES}, f, indent=2)
-
 print(f"Logged {len(SOURCES)} source(s) to {RAW_DIR / 'sources.json'}")
