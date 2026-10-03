@@ -1,0 +1,29 @@
+{
+  "title": "FORRT replication template",
+  "upload_type": "software",
+  "description": "<p>Self-contained scaffold for FORRT replication studies: paper PDF in, Zenodo-archived release and Science Live nanopublication chain out. AI-guided via CLAUDE.md / AGENTS.md, pixi-based, with release workflows that record the version DOI and Software Heritage ID, and skills that use the forrt-research and replication-radar MCP servers.</p><p>This record archives the template itself. Repositories created from the template replace this file with their own metadata when initialised.</p>",
+  "creators": [
+    {
+      "name": "Fouilloux, Anne",
+      "orcid": "0000-0002-1784-2920",
+      "affiliation": "LifeWatch ERIC"
+    }
+  ],
+  "keywords": [
+    "FORRT",
+    "replication",
+    "reproducibility",
+    "nanopublication",
+    "Science Live",
+    "research software template"
+  ],
+  "license": "mit",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/ScienceLiveHub/forrt-replication-template",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ]
+}
