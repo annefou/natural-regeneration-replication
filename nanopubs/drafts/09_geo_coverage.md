@@ -62,8 +62,10 @@ whole
 <!-- field: quotation -->
 **Quoted Text** (textarea, required) — the **verbatim** sentence from the paper naming *this* area. Character-for-character from the PDF; never paraphrase. Each location needs its own quote.
 
-```
+Source: Methods, "Study region", PDF page 8 of 12 (Methods pages carry no journal page number) (`paper/williams-2024.pdf`). "63" is the superscript reference marker (Dinerstein et al. 2017) as it appears in the extracted PDF text; keep it or switch to start/end mode if the form rejects it. `verify_quote` was unavailable; mechanical check against `pdftotext` output matches after whitespace normalisation only. 198 characters.
 
+```
+Our study area comprises all tropical and subtropical dry broadleaf forests, tropical and subtropical moist broadleaf forests, and tropical and subtropical coniferous forests63 within ±25° latitude.
 ```
 
 <!-- field: quotation-end -->
@@ -77,14 +79,14 @@ whole
 **Short ID for location** (text input, required) — slug for the URI suffix (lowercase, hyphenated), unique per location. E.g. `sado-estuary`, `westerschelde`, `amazon-basin`.
 
 ```
-
+pantropical-forest-biomes
 ```
 
 <!-- field: location-label -->
 **Area name** (text input, required) — human-readable name as the paper frames it. E.g. `Sado Estuary, Portugal`. Typing this into the form's **location search** geocodes it and fills the geometry.
 
 ```
-
+Tropical and subtropical forest biomes within ±25° latitude (pantropics)
 ```
 
 <!-- field: geometry -->
@@ -95,7 +97,7 @@ coverage
 ```
 
 <!-- field: wkt -->
-**Geometry as Well-known Text (WKT)** (map / text, resolved in the form) — **Do NOT hand-write coordinates.** The form geocodes the area name to a polygon, or you draw it on the map. Only paste explicit `POINT(...)` / `POLYGON((...))` if the paper **states coordinates verbatim** — copied exactly. A hallucinated bounding box is a fabricated datum; leave blank otherwise.
+**Geometry as Well-known Text (WKT)** (map / text, resolved in the form) — NOTE: a single pooled pantropical biome extent; a place-name geocoder will not resolve it. The paper states only "±25° latitude" and the three biomes (Dinerstein et al. 2017 ecoregions), no polygon. Draw/choose in the form; do not invent one here. — **Do NOT hand-write coordinates.** The form geocodes the area name to a polygon, or you draw it on the map. Only paste explicit `POINT(...)` / `POLYGON((...))` if the paper **states coordinates verbatim** — copied exactly. A hallucinated bounding box is a fabricated datum; leave blank otherwise.
 
 ```
 
@@ -105,10 +107,8 @@ coverage
 **Comment** (textarea, required) — one or two sentences on **how the quoted text supports** this being the coverage. Grounded in the paper, no new claims.
 
 ```
-
+The Methods define the study area as the three tropical and subtropical forest biomes (dry broadleaf, moist broadleaf, coniferous) within ±25° latitude; the 215 Mha estimate and all country summaries refer to this pantropical extent. This records the original paper's coverage; our replication subsets it to Colombia.
 ```
-
-### Location B *(duplicate the block above for each further distinct site; delete if only one location)*
 
 ## Publication note
 

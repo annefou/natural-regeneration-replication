@@ -32,13 +32,15 @@ Format: starts with `10.` — bare DOI, **NOT** `https://doi.org/...` form.
 
 Verbatim from the paper PDF in `paper/`. Character-for-character. ≤ 500 chars in whole-text mode.
 
-> _Read the PDF first. Don't paraphrase from memory. See `docs/verify-before-drafting.md`._
+Source: main text (Results), PDF p. 133 (`paper/williams-2024.pdf`). Chosen by Anne on 2026-10-03: the replication (Colombia) tests the model/accuracy claim, not the pantropical 215 Mha total. Copied from the PDF text; identical in the Europe PMC JATS XML.
+
+Verification: `verify_quote` (forrt-research MCP) was not available in the analysis session, so this quote is **unverified by that tool**. Mechanical check against the `pdftotext` extraction: matches after whitespace normalisation only (no character altered). Re-run `verify_quote(pdf_path="paper/williams-2024.pdf", quotation=...)` before publishing.
 
 ```
-
+The validation accuracy estimate of 87.9% was based on an independent set of 4.87 million random points (equally stratified with respect to the two levels of the dependent variable; further details are provided in Supplementary Information 1 and Extended Data Fig. 4).
 ```
 
-Character count: ___ / 500.
+Character count: 268 / 500.
 
 <!-- field: quotation-end -->
 ### End of quotation (optional - use when quoting beginning and end of a longer passage, max. 500 characters) (textarea, optional)
@@ -55,6 +57,8 @@ phrase here. Leave empty for a single short quote.
 ### Our interpretation and explanation of why this quotation is relevant (max. 800 characters) (textarea, required)
 
 Why this quote matters and what the replication tests. Connect the paper's claim to the work this repo does. Don't repeat the quote.
+
+<!-- TODO (Anne): write your own interpretation here (max. 800 characters). Left blank on purpose by the paper-analyst agent. Alternative quotes (215 Mha abstract headline; 52 % five countries) are listed in 00_paper_summary.md. -->
 
 ```
 
