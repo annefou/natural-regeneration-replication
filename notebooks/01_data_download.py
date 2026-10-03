@@ -23,7 +23,7 @@
 # |---|---|---|
 # | Continuous potential, 30 m, 10° tiles (`pnv_pct_30m_tile_*.tif`, integer %) | Williams et al. (2022), Zenodo [10.5281/zenodo.7428804](https://doi.org/10.5281/zenodo.7428804) | CC-BY-4.0 |
 # | Binary potential > 0.5, 30 m (`pnv_bin_30m.zip`) | same record | CC-BY-4.0 |
-# | Colombia boundary, level 0 | GADM 4.1 (`gadm41_COL.gpkg`), <https://gadm.org> | GADM licence (free for academic, non-commercial use; no redistribution) |
+# | Country boundaries, level 0 (`STEP1_COUNTRIES`: Colombia, plus Costa Rica as a second-country check) | GADM 4.1 (`gadm41_<ISO3>.gpkg`), <https://gadm.org> | GADM licence (free for academic, non-commercial use; no redistribution) |
 #
 # Only tiles that intersect the GADM Colombia polygon are downloaded. Tile
 # selection is computed from the polygon, not hard-coded. Every file is checked
@@ -40,6 +40,7 @@ from datetime import date
 from pathlib import Path
 
 import geopandas as gpd
+import pandas as pd
 import rasterio
 import requests
 from shapely.geometry import box
@@ -54,10 +55,13 @@ for d in (ZEN_DIR, BIN_DIR, GADM_DIR):
 
 ZENODO_RECORD = "7428804"
 ZENODO_API = f"https://zenodo.org/api/records/{ZENODO_RECORD}"
-GADM_URL = "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_COL.gpkg"
-# GADM publishes no checksum; pinned from the first download (2026-10-03),
-# Last-Modified 2022-07-18, 64,114,688 bytes.
-GADM_MD5 = "d1ed49e54c2429fd9f5577bccd4a6851"
+STEP1_COUNTRIES = ["COL", "CRI"]
+GADM_URL = "https://geodata.ucdavis.edu/gadm/gadm4.1/gpkg/gadm41_{iso3}.gpkg"
+# GADM publishes no checksum; pinned from the first download (2026-10-03).
+GADM_MD5 = {
+    "COL": "d1ed49e54c2429fd9f5577bccd4a6851",  # Last-Modified 2022-07-18, 64,114,688 bytes
+    "CRI": "083df869e4f97f7b48260a976087941f",  # Last-Modified 2022-07-18, 12,754,944 bytes
+}
 
 
 # %%
@@ -102,10 +106,11 @@ def download(url: str, out: Path, md5: str) -> Path:
 # The paper used GADM (2022) for country sums; GADM 4.1 (July 2022) is that release.
 
 # %%
-gadm_path = download(GADM_URL, GADM_DIR / "gadm41_COL.gpkg", GADM_MD5)
-col = gpd.read_file(gadm_path, layer="ADM_ADM_0")
-col_geom = col.geometry.iloc[0]
-print(col[["GID_0", "COUNTRY"]].to_string(), "\nbounds:", col.total_bounds)
+gadm_paths = {iso: download(GADM_URL.format(iso3=iso), GADM_DIR / f"gadm41_{iso}.gpkg", GADM_MD5[iso])
+              for iso in STEP1_COUNTRIES}
+countries = pd.concat([gpd.read_file(p, layer="ADM_ADM_0") for p in gadm_paths.values()], ignore_index=True)
+print(countries[["GID_0", "COUNTRY"]].to_string())
+col_geom = countries.geometry.union_all()  # union of all step-1 countries, used for tile selection
 
 # %% [markdown]
 # ## Authors' published map (Zenodo 10.5281/zenodo.7428804)
@@ -182,15 +187,17 @@ SOURCES = [
         "md5": files["pnv_bin_30m.zip"]["checksum"].removeprefix("md5:"),
         "extracted_members": sorted(bin_members),
     },
+] + [
     {
-        "name": "GADM 4.1 Colombia (level 0-2)",
+        "name": f"GADM 4.1 {iso} (level 0-2)",
         "doi": None,
-        "url": GADM_URL,
+        "url": GADM_URL.format(iso3=iso),
         "license": "GADM licence: free for academic and other non-commercial use; redistribution not allowed",
         "accessed_on": date.today().isoformat(),
-        "md5": GADM_MD5,
-        "sha256": sha256sum(gadm_path),
-    },
+        "md5": GADM_MD5[iso],
+        "sha256": sha256sum(path),
+    }
+    for iso, path in gadm_paths.items()
 ]
 with open(RAW_DIR / "sources.json", "w") as f:
     json.dump({"sources": SOURCES}, f, indent=2)

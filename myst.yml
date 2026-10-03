@@ -12,8 +12,11 @@ project:
     - file: index.md
     - file: notebooks/01_data_download.ipynb
     - file: notebooks/03a_reproduction_area.ipynb
+    - file: notebooks/01b_data_download_predictors.ipynb
     - file: notebooks/02_data_clean.ipynb
+    - file: notebooks/02b_feature_extraction.ipynb
     - file: notebooks/03_analysis.ipynb
+    - file: notebooks/03c_robustness.ipynb
     - file: notebooks/04_figures.ipynb
     - file: nanopubs/README.md
 site:

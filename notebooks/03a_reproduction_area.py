@@ -14,13 +14,18 @@
 # ---
 
 # %% [markdown]
-# # 03a — Step 1 reproduction: Colombia's natural-regeneration area from the published map
+# # 03a — Step 1 reproduction: a country's natural-regeneration area from the published map
 #
-# **Question.** Do the Colombia numbers in Williams et al. (2024) follow from the
+# **Question.** Do the country numbers in Williams et al. (2024) follow from the
 # authors' own published 30 m map (Zenodo
 # [10.5281/zenodo.7428804](https://doi.org/10.5281/zenodo.7428804))?
 #
-# | Paper value (Colombia, Neotropics) | Mha | Source |
+# The country is a parameter: environment variable `ISO3` (default `COL`).
+# Colombia is the replication's study country; Costa Rica (`ISO3=CRI`) is run as
+# a second-country check of the area-method finding. Paper values are read
+# directly from Supp. Tables 3 and 4 (`paper/supplementary/`, MOESM5 / MOESM6).
+#
+# | Paper value (Colombia, Neotropics; default run) | Mha | Source |
 # |---|---|---|
 # | Potential for natural regeneration, continuous (expected) area | 11.19 | Supp. Table 3 |
 # | Potential for natural regeneration, binary > 50 % | 13.70 | Supp. Table 4 |
@@ -72,6 +77,7 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+import docx
 import geopandas as gpd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -98,7 +104,9 @@ HEALPIX_DEPTH = 8  # ~25 km cells
 N_WORKERS = int(os.environ.get("N_WORKERS", min(14, os.cpu_count() or 1)))
 PCT_NODATA, BIN_NODATA = 255, 3
 
-PAPER = {"pnr_continuous": 11.19, "pnr_binary": 13.70, "available": 93.78}
+ISO3 = os.environ.get("ISO3", "COL").upper()
+TAG = "colombia" if ISO3 == "COL" else ISO3.lower()  # keeps the original Colombia file names
+SUPP_DIR = Path("../paper/supplementary")
 
 # %% [markdown]
 # ## Pixel-area models
@@ -156,10 +164,27 @@ assert np.allclose(checks.sphere_a, checks.mollweide_planar, rtol=1e-5)
 # ## Country polygon and tile pairs
 
 # %%
-col = gpd.read_file(RAW_DIR / "gadm" / "gadm41_COL.gpkg", layer="ADM_ADM_0")
+col = gpd.read_file(RAW_DIR / "gadm" / f"gadm41_{ISO3}.gpkg", layer="ADM_ADM_0")
+COUNTRY = col.COUNTRY.iloc[0]
 col_geom = shapely.make_valid(col.geometry.iloc[0])
 gadm_area_geodesic = abs(geod.geometry_area_perimeter(col_geom)[0])
-print(f"GADM 4.1 Colombia geodesic polygon area: {gadm_area_geodesic / 1e10:.4f} Mha")
+print(f"GADM 4.1 {COUNTRY} geodesic polygon area: {gadm_area_geodesic / 1e10:.4f} Mha")
+
+
+def supp_row(docx_name: str, country: str) -> list[str]:
+    for table in docx.Document(SUPP_DIR / docx_name).tables:
+        for row in table.rows:
+            cells = [c.text.strip() for c in row.cells]
+            if cells[0] == country:
+                return cells
+    raise KeyError(country)
+
+
+t3 = supp_row("41586_2024_8106_MOESM5_ESM.docx", COUNTRY)
+t4 = supp_row("41586_2024_8106_MOESM6_ESM.docx", COUNTRY)
+PAPER = {"pnr_continuous": float(t3[3]), "pnr_binary": float(t4[3]), "available": float(t3[2])}
+PAPER_PROP = {"continuous": float(t3[4]), "binary": float(t4[4])}
+print("Supp. Table 3:", t3, "\nSupp. Table 4:", t4)
 
 sources = json.loads((RAW_DIR / "sources.json").read_text())["sources"]
 pct_files = [ZEN_DIR / f["key"] for f in sources[0]["files"]]
@@ -419,8 +444,8 @@ rows.append(dict(metric="country_area_gadm_geodesic_polygon", area_model="ellips
                  value_mha=round(gadm_area_geodesic / MHA, 4), paper_value_mha=None, paper_source=None,
                  diff_mha=None, diff_pct=None))
 for metric, num, den, pv in [
-    ("proportion_continuous_of_available_pct_valid", "expected", "pct_valid", 0.12),
-    ("proportion_binary_of_available_bin_valid", "bin_pnr", "bin_valid", 0.15),
+    ("proportion_continuous_of_available_pct_valid", "expected", "pct_valid", PAPER_PROP["continuous"]),
+    ("proportion_binary_of_available_bin_valid", "bin_pnr", "bin_valid", PAPER_PROP["binary"]),
 ]:
     v = S["ellipsoid_wgs84"][num] / S["ellipsoid_wgs84"][den]
     rows.append(dict(metric=metric, area_model="ellipsoid_wgs84", value_mha=round(v, 4), paper_value_mha=pv,
@@ -431,7 +456,8 @@ for key in ["expected", "bin_pnr", "pct_valid", "country_pixels"]:
                      value_mha=round(S["sphere_a_mollweide"][key] / S["ellipsoid_wgs84"][key] - 1, 6),
                      paper_value_mha=None, paper_source=None, diff_mha=None, diff_pct=None))
 result = pd.DataFrame(rows)
-result.to_csv(RESULTS_DIR / "step1_reproduction_colombia.csv", index=False)
+result.insert(0, "iso3", ISO3)
+result.to_csv(RESULTS_DIR / f"step1_reproduction_{TAG}.csv", index=False)
 with pd.option_context("display.width", 200, "display.max_rows", 200):
     print(result.to_string(index=False))
 
@@ -443,7 +469,7 @@ print(key_rows.pivot(index="metric", columns="area_model", values="value_mha").a
                                  "available_candidate_bin_valid": PAPER["available"]})).to_string())
 
 # %% [markdown]
-# ## Reading the table
+# ## Reading the table (written for the Colombia run; see the CSV for other countries)
 #
 # - **Binary product.** Counting each 0.00025° pixel as a nominal 0.09 ha
 #   (`nominal_900m2`) reproduces Supp. Table 4 almost exactly; the ellipsoidal and
@@ -475,7 +501,7 @@ histo = pd.DataFrame({
     "area_mha_bin1": he[:, 1] / MHA, "area_mha_bin_nodata": he[:, BIN_NODATA] / MHA,
 })
 histo = histo[histo.area_mha_total > 0]
-histo.to_csv(RESULTS_DIR / "step1_pct_histogram_colombia.csv", index=False)
+histo.to_csv(RESULTS_DIR / f"step1_pct_histogram_{TAG}.csv", index=False)
 print(histo.head(5).to_string(index=False), "\n...\n", histo.tail(3).to_string(index=False))
 
 # %% [markdown]
@@ -500,8 +526,8 @@ ds = xr.Dataset(
         "latitude": ("cells", np.asarray(clat), {"units": "degrees_north", "note": "geodetic, WGS84"}),
     },
     attrs={
-        "title": "Williams et al. (2024) natural-regeneration potential, Colombia, aggregated to HEALPix depth 8",
-        "source": "Zenodo 10.5281/zenodo.7428804 (pnv_pct_30m, pnv_bin_30m), GADM 4.1 COL level 0",
+        "title": f"Williams et al. (2024) natural-regeneration potential, {COUNTRY}, aggregated to HEALPix depth 8",
+        "source": f"Zenodo 10.5281/zenodo.7428804 (pnv_pct_30m, pnv_bin_30m), GADM 4.1 {ISO3} level 0",
         "method": "30 m pixel centres in GADM polygon assigned to HEALPix NESTED cells with "
                   "healpix_geo.nested.lonlat_to_healpix(ellipsoid='WGS84'); exact WGS84 pixel areas summed; no resampling",
         "healpix_cell_area_m2": hp_cell_area,
@@ -510,7 +536,8 @@ ds = xr.Dataset(
                      "area_bin_valid: binary product 0 or 1; area_bin_pnr: binary product = 1",
     },
 )
-hp_path = RESULTS_DIR / f"step1_authors_map_healpix_d{HEALPIX_DEPTH}.nc"
+hp_path = RESULTS_DIR / (f"step1_authors_map_healpix_d{HEALPIX_DEPTH}.nc" if ISO3 == "COL"
+                         else f"step1_authors_map_healpix_d{HEALPIX_DEPTH}_{TAG}.nc")
 ds.to_netcdf(hp_path)
 print(ds)
 print("check: HEALPix total expected =", float(ds.expected_pnr.sum()) / MHA, "Mha")
@@ -526,6 +553,6 @@ for ax, (v, title) in zip(axes, [(frac, "Expected PNR area / cell area"),
     ax.set_aspect("equal")
     fig.colorbar(sc, ax=ax, shrink=0.7)
 axes[0].set_ylabel("latitude")
-fig.suptitle(f"Authors' map aggregated to HEALPix depth {HEALPIX_DEPTH} (WGS84), Colombia")
-fig.savefig(FIGURES_DIR / "step1_authors_map_healpix.png", dpi=150, bbox_inches="tight")
+fig.suptitle(f"Authors' map aggregated to HEALPix depth {HEALPIX_DEPTH} (WGS84), {COUNTRY}")
+fig.savefig(FIGURES_DIR / ("step1_authors_map_healpix.png" if ISO3 == "COL" else f"step1_authors_map_healpix_{TAG}.png"), dpi=150, bbox_inches="tight")
 plt.show()
