@@ -1,0 +1,24 @@
+{
+  "metadata": {
+    "upload_type": "dataset",
+    "title": "Natural-regeneration potential in Colombia on HEALPix (WGS84): Williams et al. (2024) map, an independent replication model, and regrowth labels",
+    "creators": [
+      {"name": "Fouilloux, Anne", "affiliation": "LifeWatch ERIC", "orcid": "0000-0002-1784-2920"}
+    ],
+    "description": "<p>Multiscale HEALPix NESTED (WGS84) dataset, Zarr v3 in the GRID4EARTH layout, of (1) the published natural-regeneration potential map of Williams et al. (2024, Nature), (2) an independent random-forest replication of that model for Colombia, predicted on every 30 m pixel, and (3) Fagan et al. (2022) and MapBiomas Colombia regrowth labels. All values are areas (m2) summed per cell, levels 15 (~200 m) to 8 (~25 km), with dggs convention and CF metadata. Parquet tables give the sample points and prediction grid with every predictor, label and prediction, so the models can be refitted without the ~21 GB of inputs. Derived from the replication software doi:10.5281/zenodo.23137989, which tests the paper's 87.9 % validation-accuracy claim (verdict: partially supported) following the robustness checks of The Unjournal's evaluation (doi:10.21428/d28e8e57.5411b150).</p>",
+    "access_right": "open",
+    "license": "cc-by-nc-4.0",
+    "keywords": ["natural regeneration", "tropical forest restoration", "Colombia", "HEALPix", "DGGS", "GRID4EARTH", "Zarr", "random forest", "replication", "FORRT"],
+    "version": "1.0.0",
+    "language": "eng",
+    "related_identifiers": [
+      {"identifier": "10.5281/zenodo.23137989", "relation": "isDerivedFrom", "resource_type": "software"},
+      {"identifier": "10.1038/s41586-024-08106-4", "relation": "references", "resource_type": "publication-article"},
+      {"identifier": "10.5281/zenodo.7428804", "relation": "isDerivedFrom", "resource_type": "dataset"},
+      {"identifier": "10.1038/s41893-022-00904-w", "relation": "references", "resource_type": "publication-article"},
+      {"identifier": "10.21428/d28e8e57.5411b150", "relation": "references", "resource_type": "publication-peerreview"},
+      {"identifier": "10.1126/science.1244693", "relation": "references", "resource_type": "publication-article"},
+      {"identifier": "10.3390/rs12172735", "relation": "references", "resource_type": "publication-article"}
+    ]
+  }
+}

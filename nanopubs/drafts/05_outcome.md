@@ -104,7 +104,7 @@ Replication, Fagan labels: validation accuracy 0.887, out-of-bag 0.884; random 5
 Robustness: land cover 1992 or 1999 instead of 2000: 0.887/0.887. Variable selection with or without NPP, burned area and road density: 0.897/0.893. Gradient boosting: 0.877.
 Transfer: Neotropical sample, random CV 0.892; blocked ~100/200/400 km 0.834/0.823/0.812. Trained without Colombia, tested on Colombia: 0.767.
 Independent labels (MapBiomas Colombia Collection 3): random 0.778, blocked ~100 km 0.750; forward 2012–2024: 0.717 (AUC 0.80). Adding land-use history 1985–1999: 0.834 (blocked 0.813).
-Area: authors' map 10.28 Mha in our prediction domain; our model 3.99 Mha as probability × area, 0.19 Mha calibrated to the regrowth prevalence. Forward test: probability × area predicted 7.37 Mha of 2012–2024 regrowth against 1.00 Mha observed; calibrated with the 2000–2012 prevalence, 0.98 Mha.
+Area (every 30 m pixel of the prediction domain): authors' map 10.28 Mha; our model 3.93 Mha as probability × area, 0.18 Mha calibrated to the regrowth prevalence. Forward test: probability × area predicted 7.37 Mha of 2012–2024 regrowth against 1.00 Mha observed; calibrated with the 2000–2012 prevalence, 0.98 Mha.
 Authors' map: scores > 0.5 on 52.6 % of Colombian non-regrowth validation points (Fagan labels) and 52.0 % (MapBiomas labels); our model 5.8 %. The spatial pattern agrees (HEALPix depth 8, r = 0.86).
 ```
 
@@ -115,9 +115,9 @@ Honest caveats. If the result is partial or contradicted, say so plainly. Don't 
 
 ```
 Colombia only: the pantropical figures (215 Mha, 23.4 Gt C) and the five-country share were not tested.
-Independent implementation: the authors' code is not public, so details the paper leaves open were chosen by us (tree-cover threshold 30 %, random-forest settings set to R defaults, 1 km-radius forest density, newer data versions such as Hansen GFC v1.13 instead of v1.6); all are listed in docs/deviations.md. Why the authors' map scores about 2.5 times higher than any of our models remains unexplained.
+Independent implementation: the authors' code is not public, so details the paper leaves open were chosen by us (tree-cover threshold 30 %, random-forest settings set to R defaults, 1 km-radius forest density, newer data versions such as Hansen GFC v1.13 instead of v1.6); all are listed in docs/deviations.md. Why the authors' map scores about 2.6 times higher than any of our models remains unexplained.
 Labels: Fagan and MapBiomas regrowth disagree strongly (1.25 Mha vs 0.25 Mha of 2000–2012 regrowth; only 16 % of Fagan regrowth area is MapBiomas regrowth). Both are satellite classifications; no independent reference sample was available (MapBiomas' interpreted validation points are not public), so absolute regrowth areas and on-the-ground accuracy remain uncertain.
-Predictors only used in the paper's model comparison could not all be obtained (WDPA August 2020, distance to water); they are not in the final model. Areas are estimated from a 1-in-100 systematic sample of 30 m pixels. The calibrated areas assume the label prevalence equals the true prevalence.
+Predictors only used in the paper's model comparison could not all be obtained (WDPA August 2020, distance to water); they are not in the final model. Our model's areas use every 30 m pixel; the 1-in-100 systematic sample used in step 2 over-estimated them by 0.7–1.5 % (cause not identified), which changes no conclusion. The calibrated areas assume the label prevalence equals the true prevalence.
 ```
 
 ## Publication note

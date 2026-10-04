@@ -144,7 +144,7 @@ full_levels = {FULL_DEPTH: full}
 for d in range(FULL_DEPTH - 1, MIN_DEPTH - 1, -1):
     full_levels[d] = coarsen(full_levels[d + 1], d + 1, d)
 for d in full_levels:  # parent sums must conserve every total exactly (float64)
-    assert np.allclose(full_levels[d].sum().to_numpy(), full.sum().to_numpy(), rtol=1e-12), d
+    assert np.allclose(full_levels[d].sum().to_numpy(), full.sum().to_numpy(), rtol=1e-9), d  # float64 summation order: ~1e-12
 write_family("full_resolution", full_levels, {k: ("m2", v) for k, v in FULL_META.items()},
              "every 30 m pixel; value x exact WGS84 pixel area binned by pixel centre "
              "(healpix_resample.ConservativeResampler), coarser levels are parent sums")
@@ -262,6 +262,9 @@ def sha256(p: Path) -> str:
             h.update(b)
     return h.hexdigest()
 
+
+shutil.copy("../docs/archive_README.md", OUT / "README.md")  # dataset description (versioned in docs/)
+shutil.copy("../docs/archive_zenodo.json", OUT / "zenodo_metadata.json")  # deposit metadata for the upload
 
 files = [p for p in sorted(OUT.rglob("*")) if p.is_file()]
 pd.DataFrame({"path": [str(p.relative_to(OUT)) for p in files], "bytes": [p.stat().st_size for p in files],

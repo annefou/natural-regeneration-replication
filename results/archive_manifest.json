@@ -1,0 +1,11 @@
+{
+  "tables": {
+    "samples_colombia.parquet": "Colombian training/validation sample points with every predictor (2000, 2015/2018, 1992/1999), Fagan label, authors' map values",
+    "samples_neotropics.parquet": "Neotropical sample (diagnostic 3), HEALPix depth-5 stratified",
+    "prediction_grid_features.parquet": "1-in-100 systematic grid over the study domain with every predictor and label",
+    "prediction_grid_step2.parquet": "Step-2 model predictions on the grid (uncalibrated, prior-shift, isotonic) and the authors' map",
+    "mapbiomas_labels_grid.parquet": "MapBiomas Colombia C3 regrowth labels (all windows), 2012 predictors and land-use history at the grid points"
+  },
+  "zarr": "natural_regeneration_colombia_healpix.zarr",
+  "bytes": 925513450
+}

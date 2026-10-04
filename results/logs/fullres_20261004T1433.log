@@ -1,0 +1,31 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+full_prediction        1
+total                  1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 14:33:01 2026]
+localrule full_prediction:
+    input: notebooks/05a_full_prediction.py, data/clean/samples.parquet, data/clean/tile_sums.csv, data/derived/step2_predictions_grid.parquet, results/step2_replication_colombia.csv
+    output: data/derived/fullres_healpix_d15.parquet, data/derived/fullres_healpix_d15.json, results/fullres_summary.csv
+    log: results/logs/05a_full_prediction.log
+    jobid: 0
+    reason: Missing output files: data/derived/fullres_healpix_d15.json, results/fullres_summary.csv, data/derived/fullres_healpix_d15.parquet
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 05a_full_prediction.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 05a_full_prediction.ipynb
+[Sun Oct  4 14:51:14 2026]
+Finished jobid: 0 (Rule: full_prediction)
+1 of 1 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T143301.527729.snakemake.log

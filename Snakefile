@@ -306,6 +306,7 @@ rule figures:
         f"{RESULTS}/diag3_transfer_curve.csv",
         f"{RESULTS}/mapbiomas_e2_forward.csv",
         f"{RESULTS}/mapbiomas_e3_history.csv",
+        f"{RESULTS}/fullres_summary.csv",
     output:
         f"{FIGURES}/main_result.png",
         f"{FIGURES}/step3_overview.png",
@@ -457,6 +458,8 @@ rule archive_dataset:
         f"{CLEAN}/pred_grid.parquet",
         f"{CLEAN}/mapbiomas_grid.parquet",
         f"{RESULTS}/aoa_healpix_d8.nc",
+        "docs/archive_README.md",
+        "docs/archive_zenodo.json",
     output:
         ARCHIVE_FINAL,
     log:

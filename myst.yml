@@ -26,6 +26,8 @@ project:
     - file: notebooks/02d_mapbiomas_labels.ipynb
     - file: notebooks/03f_mapbiomas_experiments.ipynb
     - file: notebooks/04_figures.ipynb
+    - file: notebooks/05a_full_prediction.ipynb
+    - file: notebooks/05b_archive_dataset.ipynb
     - file: nanopubs/README.md
 site:
   title: "natural-regeneration-replication"

@@ -1,0 +1,10 @@
+metric,full_resolution,reference,reference_source
+prediction_domain_area_mha,18.792248559612595,18.884651358818203,02b exact 30 m sum
+expected_area_uncalibrated_mha,3.9293790212527657,3.988743361426721,step 2: 1-in-100 sample
+expected_area_calibrated_mha,0.18463916556811052,0.1882506913604401,step 2: 1-in-100 sample
+area_p_gt05_mha,1.9818437932961575,2.025899161860933,step 2: 1-in-100 sample
+authors_expected_in_country_mha,10.514321222922671,10.5143,"step 1, exact (whole country)"
+study_domain_area_mha,93.24094711373262,93.2409471139134,02b exact 30 m sum
+country_area_mha,113.72414334724148,113.7241,"step 1, exact"
+fagan_regrowth_in_domain_mha,0.25170732044188926,,
+grid_check_max_abs_diff_p,2.95639037695139e-08,0.0,2456636 grid pixels

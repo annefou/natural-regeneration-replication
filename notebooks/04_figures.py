@@ -123,7 +123,7 @@ print(summary.to_string(index=False, float_format=lambda v: f"{v:.4f}"))
 #
 # A: accuracy of the claim under increasingly strict validation, by label source.
 # B: Colombia's area with potential, all values within our prediction domain except the
-#    paper's country total. C: forward test, predicted vs observed regrowth area.
+#    paper's country total; our model's areas from the full-resolution prediction (05a). C: forward test, predicted vs observed regrowth area.
 
 # %%
 GREY, BLUE, ORANGE, AQUA, INK, INK2 = "#52514e", "#2a78d6", "#eb6834", "#1baf7a", "#0b0b0b", "#52514e"
@@ -156,11 +156,12 @@ acc_main = [
     ("+ land-use history 1985–1999, random", e3v("validation_balanced_accuracy"), AQUA),
     ("+ land-use history 1985–1999, blocked ~100 km", e3v("cv_healpix_d6_balanced_accuracy"), AQUA),
 ]
+fr = pd.read_csv(RESULTS / "fullres_summary.csv").set_index("metric").full_resolution  # every 30 m pixel (05a)
 area_main = [
     ("Paper (Supp. Table 3, whole country)", 11.19, GREY),
     ("Authors' map, exact pixel areas", s2.loc["authors_expected_in_pred_exact_mha", "value"], BLUE),
-    ("Our model, probability × area", s2.loc["expected_area_uncalibrated_mha", "value"], ORANGE),
-    ("Our model, calibrated to regrowth prevalence", s2.loc["expected_area_prior_shift_mha", "value"], ORANGE),
+    ("Our model, probability × area", fr["expected_area_uncalibrated_mha"], ORANGE),
+    ("Our model, calibrated to regrowth prevalence", fr["expected_area_calibrated_mha"], ORANGE),
 ]
 fw_main = [
     ("Predicted, probability × area", e2v("period2_forward_all", "predicted_regrowth_area_uncalibrated_mha"), AQUA),
