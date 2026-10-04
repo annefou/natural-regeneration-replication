@@ -4,7 +4,7 @@
   "chain_shape": "paper-rooted",
   "source": {
     "repository": "https://github.com/annefou/natural-regeneration-replication",
-    "commit": "eee18915f51d5fe07a6978f416d1e1a0bb4f836d",
+    "commit": "528ca64808ff35b3d7d43b99cab458d1ef88f433",
     "figure": "figures/main_result.png"
   },
   "steps": [
@@ -192,6 +192,22 @@
           {
             "cites": "http://purl.org/spar/cito/citesAsDataSource",
             "cited": "https://doi.org/10.5281/zenodo.23138775"
+          },
+          {
+            "cites": "http://purl.org/spar/cito/citesAsDataSource",
+            "cited": "https://doi.org/10.5281/zenodo.7428804"
+          },
+          {
+            "cites": "http://purl.org/spar/cito/citesAsDataSource",
+            "cited": "https://data.globalforestwatch.org/content/pantropical-tree-plantation-expansion-2000-2012/about"
+          },
+          {
+            "cites": "http://purl.org/spar/cito/citesAsDataSource",
+            "cited": "https://colombia.mapbiomas.org/"
+          },
+          {
+            "cites": "http://purl.org/spar/cito/citesAsDataSource",
+            "cited": "https://doi.org/10.1126/science.1244693"
           }
         ]
       },

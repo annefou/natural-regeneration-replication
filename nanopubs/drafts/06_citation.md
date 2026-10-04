@@ -51,6 +51,10 @@ One line per further citation, in this exact form (each becomes a pre-filled row
 
 - Type: usesMethodIn → URL: https://doi.org/10.21428/d28e8e57.5411b150
 - Type: citesAsDataSource → URL: https://doi.org/10.5281/zenodo.23138775
+- Type: citesAsDataSource → URL: https://doi.org/10.5281/zenodo.7428804
+- Type: citesAsDataSource → URL: https://data.globalforestwatch.org/content/pantropical-tree-plantation-expansion-2000-2012/about
+- Type: citesAsDataSource → URL: https://colombia.mapbiomas.org/
+- Type: citesAsDataSource → URL: https://doi.org/10.1126/science.1244693
 
   (The Unjournal evaluation summary of the paper: its evaluators' suggested robustness checks — predictors from
   before the outcome period, forward prediction, label omission, other algorithms — shaped steps 3, diagnostics
@@ -58,6 +62,9 @@ One line per further citation, in this exact form (each becomes a pre-filled row
 
   (citesAsDataSource: the Outcome's evidence comes from the derived dataset; the Outcome template has no
   dataset field, so the typed link lives here. Anne, 2026-10-04.)
+
+  (Further citesAsDataSource rows: the authors' published maps (reproduction), Fagan et al. 2022 regrowth labels
+  (Global Forest Watch), MapBiomas Colombia Collection 3 (independent labels), Hansen Global Forest Change.)
 
 ## Publication note
 
