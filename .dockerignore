@@ -1,0 +1,7 @@
+data/
+.pixi/
+.snakemake/
+results/smoke/
+figures/smoke/
+notebooks/*_smoke*.ipynb
+.git/

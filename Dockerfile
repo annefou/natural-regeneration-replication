@@ -13,8 +13,12 @@ RUN pixi install --locked
 
 COPY . /app
 
-# Mount any required credentials at runtime, e.g.:
-#   docker run -v ~/.cdsapirc:/home/mambauser/.cdsapirc natural-regeneration-replication
-# See data/README.md for per-dataset credential setup.
+# The full run needs a NASA Earthdata login (SRTM slope; MODIS burned-area
+# fallback), tens of GB of disk and several hours. Mount the credentials and a
+# data directory at runtime, e.g.:
+#   docker run -v ~/.netrc:/root/.netrc:ro -v $PWD/data:/app/data \
+#     ghcr.io/annefou/natural-regeneration-replication:latest \
+#     pixi run snakemake --cores 12
+# Small end-to-end test: ... pixi run snakemake --cores 4 --config smoke=1
 
 CMD ["pixi", "run", "snakemake", "--cores", "1"]
