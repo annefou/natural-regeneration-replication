@@ -1,0 +1,57 @@
+experiment,metric,value,sd,n,note
+E4_fagan_model_on_mapbiomas_labels,accuracy,0.7343614755787594,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,balanced_accuracy,0.7343614755787593,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,auc,0.7817843643676595,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,recall_regrowth,0.9381328570447207,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,share_gt05_nonregrowth,0.46940990588720205,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,mean_p_nonregrowth,0.5236517414302397,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,n,145570.0,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_mapbiomas_labels,n_regrowth,72785.0,,145570.0,"step-2 model, MB balanced validation, 2000 inputs"
+E4_fagan_model_on_fagan_labels,accuracy,0.8866856901974772,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,balanced_accuracy,0.8866856901974772,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,auc,0.951267040904623,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,recall_regrowth,0.8530107980154998,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,share_gt05_nonregrowth,0.07963941762054541,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,mean_p_nonregrowth,0.18654693731962774,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,n,123356.0,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_fagan_model_on_fagan_labels,n_regrowth,61678.0,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,accuracy,0.7647378319660171,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,balanced_accuracy,0.7647378319660171,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,auc,0.8920377842360449,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,recall_regrowth,0.5763481306138332,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,share_gt05_nonregrowth,0.04687246668179902,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,mean_p_nonregrowth,0.13065222607736957,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,n,123356.0,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_fagan_labels,n_regrowth,61678.0,,123356.0,"step-2 validation set (Fagan labels), 2000 inputs"
+E4_mapbiomas_model_on_mapbiomas_labels,accuracy,0.7774197980353095,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,balanced_accuracy,0.7774197980353095,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,auc,0.857570238620004,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,recall_regrowth,0.8360101669299993,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,share_gt05_nonregrowth,0.28117057085938035,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,mean_p_nonregrowth,0.3048309616595784,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,n,145570.0,,145570.0,= E1 balanced validation
+E4_mapbiomas_model_on_mapbiomas_labels,n_regrowth,72785.0,,145570.0,= E1 balanced validation
+E4_authors_map,fagan_validation_nonregrowth_share_gt50,0.5262547568883009,,61227.0,"step-2 validation points, Fagan labels (reference: 52.6 %)"
+E4_authors_map,fagan_validation_nonregrowth_mean_score,0.5187959560324693,,61227.0,"step-2 validation points, Fagan labels (reference: 52.6 %)"
+E4_authors_map,fagan_validation_nonregrowth_share_nodata,0.007312169655306592,,61678.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,fagan_validation_regrowth_share_gt50,0.9638625592417062,,1688.0,"step-2 validation points, Fagan labels (reference: 52.6 %)"
+E4_authors_map,fagan_validation_regrowth_mean_score,0.8327132701421802,,1688.0,"step-2 validation points, Fagan labels (reference: 52.6 %)"
+E4_authors_map,fagan_validation_regrowth_share_nodata,0.9726320568111807,,61678.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,mb_validation_nonregrowth_share_gt50,0.546693194255972,,761974.0,all MB-labelled validation grid points (E1 labels)
+E4_authors_map,mb_validation_nonregrowth_mean_score,0.5301074314871635,,761974.0,all MB-labelled validation grid points (E1 labels)
+E4_authors_map,mb_validation_nonregrowth_share_nodata,0.39528128712659133,,1260047.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,mb_validation_regrowth_share_gt50,0.9008321775312067,,8652.0,all MB-labelled validation grid points (E1 labels)
+E4_authors_map,mb_validation_regrowth_mean_score,0.7429692556634305,,8652.0,all MB-labelled validation grid points (E1 labels)
+E4_authors_map,mb_validation_regrowth_share_nodata,0.8811293535755994,,72785.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,mb_within_fagan_class0_domain_nonregrowth_share_gt50,0.5200982992428953,,1576004.0,MB-labelled grid points inside the step-2 class-0 domain
+E4_authors_map,mb_within_fagan_class0_domain_nonregrowth_mean_score,0.514959835127322,,1576004.0,MB-labelled grid points inside the step-2 class-0 domain
+E4_authors_map,mb_within_fagan_class0_domain_nonregrowth_share_nodata,0.007210931235042846,,1587451.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,mb_within_fagan_class0_domain_regrowth_share_gt50,0.8665218440743423,,12429.0,MB-labelled grid points inside the step-2 class-0 domain
+E4_authors_map,mb_within_fagan_class0_domain_regrowth_mean_score,0.7172676804248129,,12429.0,MB-labelled grid points inside the step-2 class-0 domain
+E4_authors_map,mb_within_fagan_class0_domain_regrowth_share_nodata,0.0863044916562523,,13603.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,fagan_class0_validation_by_mb_nonregrowth_share_gt50,0.5116330422563485,,49815.0,"Fagan class-0 validation points, split by MB label (MB class 1 = label omission)"
+E4_authors_map,fagan_class0_validation_by_mb_nonregrowth_mean_score,0.511510789922714,,49815.0,"Fagan class-0 validation points, split by MB label (MB class 1 = label omission)"
+E4_authors_map,fagan_class0_validation_by_mb_nonregrowth_share_nodata,0.005648928100922193,,50098.0,authors' map NoData (pct > 100) at these points
+E4_authors_map,fagan_class0_validation_by_mb_regrowth_share_gt50,0.8619718309859155,,355.0,"Fagan class-0 validation points, split by MB label (MB class 1 = label omission)"
+E4_authors_map,fagan_class0_validation_by_mb_regrowth_mean_score,0.7155492957746479,,355.0,"Fagan class-0 validation points, split by MB label (MB class 1 = label omission)"
+E4_authors_map,fagan_class0_validation_by_mb_regrowth_share_nodata,0.09438775510204081,,392.0,authors' map NoData (pct > 100) at these points

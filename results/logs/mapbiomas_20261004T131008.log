@@ -1,0 +1,66 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                      count
+---------------------  -------
+mapbiomas_labels             1
+mapbiomas_experiments        1
+mapbiomas                    1
+total                        3
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 13:10:09 2026]
+localrule mapbiomas_labels:
+    input: notebooks/02d_mapbiomas_labels.py, data/raw/sources_mapbiomas.json, data/clean/samples.parquet, data/clean/pred_grid.parquet
+    output: data/clean/mapbiomas_grid.parquet, data/clean/mapbiomas_samples.parquet, data/clean/mapbiomas_codes.parquet, data/clean/mapbiomas_meta.json
+    log: results/logs/02d_mapbiomas_labels.log
+    jobid: 2
+    reason: Missing output files: data/clean/mapbiomas_grid.parquet, data/clean/mapbiomas_samples.parquet
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 02d_mapbiomas_labels.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 02d_mapbiomas_labels.ipynb (destination file replaced [use --update to preserve cell outputs and ids])
+[Sun Oct  4 13:13:27 2026]
+Finished jobid: 2 (Rule: mapbiomas_labels)
+1 of 3 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 13:13:27 2026]
+localrule mapbiomas_experiments:
+    input: notebooks/03f_mapbiomas_experiments.py, data/clean/mapbiomas_grid.parquet, data/clean/mapbiomas_samples.parquet, data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv
+    output: results/mapbiomas_e1_labels.csv, results/mapbiomas_e1_model.csv, results/mapbiomas_e1_persistence.csv, results/mapbiomas_e2_forward.csv, results/mapbiomas_e2_reliability.csv, results/mapbiomas_e3_history.csv, results/mapbiomas_e4_cross.csv, figures/mapbiomas_labels.png, figures/mapbiomas_forward_test.png, results/mapbiomas_meta.json
+    log: results/logs/03f_mapbiomas_experiments.log
+    jobid: 1
+    reason: Missing output files: figures/mapbiomas_forward_test.png, results/mapbiomas_e4_cross.csv, results/mapbiomas_e1_persistence.csv, results/mapbiomas_e2_reliability.csv, results/mapbiomas_e3_history.csv, results/mapbiomas_e2_forward.csv, figures/mapbiomas_labels.png, results/mapbiomas_e1_model.csv, results/mapbiomas_e1_labels.csv; Input files updated by another job: data/clean/mapbiomas_grid.parquet, data/clean/mapbiomas_samples.parquet
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03f_mapbiomas_experiments.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03f_mapbiomas_experiments.ipynb
+[Sun Oct  4 13:19:58 2026]
+Finished jobid: 1 (Rule: mapbiomas_experiments)
+2 of 3 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 13:19:58 2026]
+localrule mapbiomas:
+    input: results/mapbiomas_e1_labels.csv, results/mapbiomas_e1_model.csv, results/mapbiomas_e1_persistence.csv, results/mapbiomas_e2_forward.csv, results/mapbiomas_e2_reliability.csv, results/mapbiomas_e3_history.csv, results/mapbiomas_e4_cross.csv, figures/mapbiomas_labels.png, figures/mapbiomas_forward_test.png
+    jobid: 0
+    reason: Input files updated by another job: figures/mapbiomas_forward_test.png, results/mapbiomas_e4_cross.csv, results/mapbiomas_e1_persistence.csv, results/mapbiomas_e2_reliability.csv, results/mapbiomas_e3_history.csv, results/mapbiomas_e2_forward.csv, figures/mapbiomas_labels.png, results/mapbiomas_e1_model.csv, results/mapbiomas_e1_labels.csv
+    resources: tmpdir=/tmp
+[Sun Oct  4 13:19:58 2026]
+Finished jobid: 0 (Rule: mapbiomas)
+3 of 3 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T131009.673476.snakemake.log

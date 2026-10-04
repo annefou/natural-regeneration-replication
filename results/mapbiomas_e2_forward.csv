@@ -1,0 +1,43 @@
+scope,metric,value,n,note
+period1,prevalence_pi1,0.04654611992129629,3032523,
+period2,prevalence_pi2_oracle,0.04026652753672487,3260180,
+period1_random_holdout,accuracy,0.7777945859872611,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,balanced_accuracy,0.7777945859872611,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,auc,0.8583980969055538,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,recall_regrowth,0.840796178343949,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,share_gt05_nonregrowth,0.28520700636942675,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,mean_p_nonregrowth,0.3019832541486351,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,n,125600.0,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_random_holdout,n_regrowth,62800.0,125600,"within 2000-2012, random pixel hold-out, balanced"
+period1_cv,cv_random_accuracy,0.7747466771943677,151980,sd 0.0012; within 2000-2012
+period1_cv,cv_random_balanced_accuracy,0.7747466771943677,151980,sd 0.0012; within 2000-2012
+period1_cv,cv_healpix_d6_accuracy,0.7503354687307823,151980,sd 0.0137; within 2000-2012
+period1_cv,cv_healpix_d6_balanced_accuracy,0.7502378511531205,151980,sd 0.0139; within 2000-2012
+period1_cv,cv_healpix_d7_accuracy,0.7601855507303592,151980,sd 0.0150; within 2000-2012
+period1_cv,cv_healpix_d7_balanced_accuracy,0.7590608449631032,151980,sd 0.0161; within 2000-2012
+period2_forward_all,accuracy,0.7384717319372036,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,balanced_accuracy,0.7171428294299435,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,auc,0.7994815531528681,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,recall_regrowth,0.6939471896302969,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,share_gt05_nonregrowth,0.25966153077041004,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,mean_p_nonregrowth,0.283374731047792,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,n,3255476.0,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_all,n_regrowth,130997.0,3255476,"all MB-labelled 2012-2024 grid points, 2012 inputs (unweighted)"
+period2_forward_balanced,accuracy,0.7178026977717047,261994,all class 1 + equal random class 0
+period2_forward_balanced,balanced_accuracy,0.7178026977717047,261994,all class 1 + equal random class 0
+period2_forward_balanced,auc,0.8001964476840575,261994,all class 1 + equal random class 0
+period2_forward_balanced,recall_regrowth,0.6939471896302969,261994,all class 1 + equal random class 0
+period2_forward_balanced,share_gt05_nonregrowth,0.2583417940868875,261994,all class 1 + equal random class 0
+period2_forward_balanced,mean_p_nonregrowth,0.28258483392385014,261994,all class 1 + equal random class 0
+period2_forward_balanced,n,261994.0,261994,all class 1 + equal random class 0
+period2_forward_balanced,n_regrowth,130997.0,261994,all class 1 + equal random class 0
+period2_forward_all,brier_uncalibrated,0.15532167912964218,3255476,area-weighted
+period2_forward_all,predicted_regrowth_area_uncalibrated_mha,7.367136438015068,3255476,
+period2_forward_all,brier_prior_shift_pi1,0.036662306388803745,3255476,area-weighted
+period2_forward_all,predicted_regrowth_area_prior_shift_pi1_mha,0.9781824127436352,3255476,
+period2_forward_all,brier_prior_shift_pi2_oracle,0.036545085525675,3255476,area-weighted
+period2_forward_all,predicted_regrowth_area_prior_shift_pi2_oracle_mha,0.859369671946134,3255476,
+period2_forward_all,observed_regrowth_area_mha,1.0025874755897537,3255476,
+period2_forward_all,area_p_gt05_uncalibrated_mha,6.902476233050209,3255476,
+period2_forward_all,labelled_area_mha,24.90135770024776,3255476,
+period2_forward_all,brier_climatology_pi1,0.03868078973132622,3255476,constant forecast pi1 (skill reference)

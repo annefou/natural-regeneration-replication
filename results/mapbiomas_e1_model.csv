@@ -1,0 +1,32 @@
+experiment,metric,value,sd,n,note
+E1_mapbiomas_model,validation_balanced_accuracy,0.7774197980353095,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_balanced_accuracy,0.7774197980353095,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_auc,0.857570238620004,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_recall_regrowth,0.8360101669299993,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_share_gt05_nonregrowth,0.28117057085938035,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_mean_p_nonregrowth,0.3048309616595784,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_n,145570.0,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,validation_balanced_n_regrowth,72785.0,,145570.0,"MB labels, balanced validation, 2000 inputs"
+E1_mapbiomas_model,oob_accuracy,0.7714943575729973,,39522.0,
+E1_mapbiomas_model,brier_natural_prevalence_uncalibrated,0.16756885032643032,,1332832.0,"all MB-labelled validation points, area-weighted"
+E1_mapbiomas_model,brier_natural_prevalence_prior_shift,0.044941253795604125,,1332832.0,"all MB-labelled validation points, area-weighted"
+E1_mapbiomas_model,prevalence_mapbiomas,0.05462740142397074,,,
+E1_mapbiomas_model,cv_random_accuracy,0.7749638110277669,0.0013587353949597871,151980.0,0.7771 0.7751 0.7743 0.7735 0.7748
+E1_mapbiomas_model,cv_random_balanced_accuracy,0.7749638110277669,0.0013587353949597906,151980.0,
+E1_mapbiomas_model,cv_healpix_d6_accuracy,0.7491182095724107,0.014798476966782135,151980.0,0.7435 0.7550 0.7272 0.7668 0.7531
+E1_mapbiomas_model,cv_healpix_d6_balanced_accuracy,0.7475894134135069,0.017644146757115956,151980.0,
+E1_mapbiomas_model,cv_healpix_d7_accuracy,0.7594486116594288,0.009574317720896194,151980.0,0.7646 0.7489 0.7710 0.7625 0.7502
+E1_mapbiomas_model,cv_healpix_d7_balanced_accuracy,0.7594793437202603,0.00920630308699348,151980.0,
+E1_mapbiomas_model,expected_area_uncalibrated_mha,2.7366108433385965,,2456636.0,"prediction domain, 2018 inputs"
+E1_mapbiomas_model,expected_area_prior_shift_mha,0.2837674023208125,,2456636.0,prior shift with prevalence 0.05463 (MapBiomas)
+E1_mapbiomas_model,area_p_gt05_uncalibrated_mha,1.0518880640658734,,2456636.0,
+E1_mapbiomas_model,pixel_pearson_vs_authors_pct,0.5010878647513751,,2405222.0,
+E1_mapbiomas_model,healpix_d8_pearson_vs_authors,0.7694750216224356,,1451.0,
+step2_fagan_model,expected_area_uncalibrated_mha,3.9887433614267205,,2456636.0,"prediction domain, 2018 inputs"
+step2_fagan_model,expected_area_prior_shift_mha,0.18825069136044015,,2456636.0,prior shift with prevalence 0.01644 (Fagan)
+step2_fagan_model,area_p_gt05_uncalibrated_mha,2.025899161860933,,2456636.0,
+step2_fagan_model,pixel_pearson_vs_authors_pct,0.6782314470002485,,2405222.0,
+step2_fagan_model,healpix_d8_pearson_vs_authors,0.8599614888590791,,1451.0,
+authors_map,expected_area_mha,10.350510727675973,,2456636.0,same grid points; NoData = 0
+authors_map,area_pct_gt50_mha,11.084587737855053,,2456636.0,
+step2_fagan_model,prevalence_fagan,0.016444001176786186,,,

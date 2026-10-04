@@ -1,0 +1,18 @@
+experiment,metric,value,sd,n,note
+E3_mapbiomas_model_with_history,validation_balanced_accuracy,0.834416431957134,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_balanced_accuracy,0.8344164319571341,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_auc,0.9162210064885817,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_recall_regrowth,0.8498866524696023,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_share_gt05_nonregrowth,0.18105378855533422,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_mean_p_nonregrowth,0.23969711341263628,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_n,145570.0,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,validation_balanced_n_regrowth,72785.0,,145570.0,E1 + years since forest (1985-1999) + anthropic years 1985-1999
+E3_mapbiomas_model_with_history,oob_accuracy,0.831233237184353,,39522.0,
+E3_mapbiomas_model_with_history,gini_importance_mb_years_since_forest,0.17205545360018487,,,rank 1 of 12
+E3_mapbiomas_model_with_history,gini_importance_mb_years_anthropic_8599,0.09605696220232246,,,rank 4 of 12
+E3_mapbiomas_model_with_history,cv_random_accuracy,0.8321423871562048,0.001915420785130898,151980.0,0.8341 0.8319 0.8294 0.8316 0.8338
+E3_mapbiomas_model_with_history,cv_random_balanced_accuracy,0.8321423871562048,0.0019154207851309383,151980.0,
+E3_mapbiomas_model_with_history,cv_healpix_d6_accuracy,0.8140216649648917,0.015263706130840675,151980.0,0.8057 0.8345 0.7953 0.8232 0.8114
+E3_mapbiomas_model_with_history,cv_healpix_d6_balanced_accuracy,0.8130504727864855,0.01641229380427185,151980.0,
+E3_mapbiomas_model_with_history,cv_healpix_d7_accuracy,0.8213975523095144,0.009947150971763078,151980.0,0.8269 0.8157 0.8362 0.8164 0.8119
+E3_mapbiomas_model_with_history,cv_healpix_d7_balanced_accuracy,0.8213592457857711,0.009829125292604164,151980.0,

@@ -1,0 +1,43 @@
+experiment,metric,value,sd,n,note
+E1_persistence_2y,prevalence_mapbiomas,0.06178381364645697,,3040695.0,
+E1_persistence_2y,mb_regrowth_area_mha,1.4370456090404773,,187825.0,
+E1_persistence_2y,share_of_mb_regrowth_area_in_fagan_class0,0.0875986287315295,,,
+E1_persistence_2y,validation_balanced_accuracy,0.7695676004146461,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_balanced_accuracy,0.7695676004146461,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_auc,0.8497509435585351,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_recall_regrowth,0.8302095869029037,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_share_gt05_nonregrowth,0.2910743860736116,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_mean_p_nonregrowth,0.3115182814251979,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_n,167854.0,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,validation_balanced_n_regrowth,83927.0,,167854.0,"balanced validation, 2000 inputs"
+E1_persistence_2y,expected_area_uncalibrated_mha,2.7296235303939493,,2456636.0,"prediction domain, 2018 inputs"
+E1_persistence_2y,expected_area_prior_shift_mha,0.30967455636973085,,2456636.0,
+E1_persistence_2y,healpix_d8_pearson_vs_authors,0.7810643118778103,,1451.0,
+E1_persistence_4y,prevalence_mapbiomas,0.05462740142397074,,2982114.0,
+E1_persistence_4y,mb_regrowth_area_mha,1.2461108889475232,,162869.0,
+E1_persistence_4y,share_of_mb_regrowth_area_in_fagan_class0,0.08323585160395332,,,
+E1_persistence_4y,validation_balanced_accuracy,0.7774197980353095,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_balanced_accuracy,0.7774197980353095,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_auc,0.857570238620004,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_recall_regrowth,0.8360101669299993,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_share_gt05_nonregrowth,0.28117057085938035,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_mean_p_nonregrowth,0.3048309616595784,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_n,145570.0,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,validation_balanced_n_regrowth,72785.0,,145570.0,"balanced validation, 2000 inputs"
+E1_persistence_4y,expected_area_uncalibrated_mha,2.7366108433385965,,2456636.0,"prediction domain, 2018 inputs"
+E1_persistence_4y,expected_area_prior_shift_mha,0.2837674023208125,,2456636.0,
+E1_persistence_4y,healpix_d8_pearson_vs_authors,0.7694750216224356,,1451.0,
+E1_persistence_6y,prevalence_mapbiomas,0.04903017456251611,,2933311.0,
+E1_persistence_6y,mb_regrowth_area_mha,1.1001247573069883,,143790.0,
+E1_persistence_6y,share_of_mb_regrowth_area_in_fagan_class0,0.08143078411918146,,,
+E1_persistence_6y,validation_balanced_accuracy,0.779763479343344,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_balanced_accuracy,0.779763479343344,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_auc,0.8615484307835136,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_recall_regrowth,0.8389481055006613,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_share_gt05_nonregrowth,0.2794211468139734,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_mean_p_nonregrowth,0.30209627017252577,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_n,128530.0,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,validation_balanced_n_regrowth,64265.0,,128530.0,"balanced validation, 2000 inputs"
+E1_persistence_6y,expected_area_uncalibrated_mha,2.5866529231752753,,2456636.0,"prediction domain, 2018 inputs"
+E1_persistence_6y,expected_area_prior_shift_mha,0.24316189056260185,,2456636.0,
+E1_persistence_6y,healpix_d8_pearson_vs_authors,0.7551743424604725,,1451.0,

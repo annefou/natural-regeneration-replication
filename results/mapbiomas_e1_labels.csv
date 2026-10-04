@@ -1,0 +1,41 @@
+metric,value,n,note
+prevalence_mapbiomas,0.05462740142397074,2982114.0,"MB class-1 area / (class-0 + class-1) area, grid, exact WGS84 areas"
+prevalence_fagan,0.016444001176786186,,"Fagan regrowth / sampling domain, exact 30 m sums (02b)"
+mb_regrowth_area_mha,1.2461108889475232,162869.0,
+mb_labelled_area_mha,22.81109583222321,2982114.0,
+fagan_regrowth_area_exact_mha,0.251707320441891,,
+fagan_class0_area_exact_mha,15.055231528311259,,
+domain_area_exact_mha,93.24094711391339,,
+grid_fagan_regrowth_area_share_mb_regrowth,0.15933843978138584,30426.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_regrowth_area_share_mb_nonregrowth,0.4296160127518902,30426.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_regrowth_area_share_mb_excluded,0.4110455474667239,30426.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_regrowth_area_share_mb_any_regen_2001_2012,0.2863514929115105,30426.0,any MapBiomas regeneration event (to forest or non-forest natural)
+grid_fagan_regrowth_area_share_mb_forest_2000,0.19875570593486624,30426.0,
+grid_fagan_class0_area_share_mb_regrowth,0.006885823715938938,1970477.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_class0_area_share_mb_nonregrowth,0.8056903230057038,1970477.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_class0_area_share_mb_excluded,0.18742385327835712,1970477.0,"area-weighted, grid points of the 02b class masks"
+grid_fagan_class0_area_share_mb_any_regen_2001_2012,0.0338432821692386,1970477.0,any MapBiomas regeneration event (to forest or non-forest natural)
+grid_fagan_class0_area_share_mb_forest_2000,0.04959722399905806,1970477.0,
+mb_regrowth_area_inside_fagan_class0_mha,0.1037211010345064,,regrowth by MapBiomas inside the domain that step 2 treats as class 0 (label omission)
+share_of_mb_regrowth_area_in_fagan_class0,0.08323585160395332,,
+share_of_mb_regrowth_area_in_fagan_regrowth,0.029801414249816856,,
+points_validation_fagan_regrowth_share_mb_regrowth,0.15430137163980673,61678.0,step-2 sample points (validation)
+points_validation_fagan_regrowth_share_mb_nonregrowth,0.429358928629333,61678.0,step-2 sample points (validation)
+points_validation_fagan_regrowth_share_mb_excluded,0.41633969973086027,61678.0,step-2 sample points (validation)
+points_validation_fagan_regrowth_share_mb_any_regen_2001_2012,0.28044035150296703,61678.0,
+points_validation_fagan_regrowth_share_mb_regrowth_among_mb_labelled,0.26436845467929665,35999.0,
+points_validation_fagan_class0_share_mb_regrowth,0.006355588702616816,61678.0,step-2 sample points (validation)
+points_validation_fagan_class0_share_mb_nonregrowth,0.8122507214890237,61678.0,step-2 sample points (validation)
+points_validation_fagan_class0_share_mb_excluded,0.18139368980835954,61678.0,step-2 sample points (validation)
+points_validation_fagan_class0_share_mb_any_regen_2001_2012,0.03396673043873018,61678.0,
+points_validation_fagan_class0_share_mb_regrowth_among_mb_labelled,0.007763913646266587,50490.0,
+points_all_fagan_regrowth_share_mb_regrowth,0.15395734666008076,137668.0,step-2 sample points (all)
+points_all_fagan_regrowth_share_mb_nonregrowth,0.42921376064154343,137668.0,step-2 sample points (all)
+points_all_fagan_regrowth_share_mb_excluded,0.4168288926983758,137668.0,step-2 sample points (all)
+points_all_fagan_regrowth_share_mb_any_regen_2001_2012,0.2807696777755179,137668.0,
+points_all_fagan_regrowth_share_mb_regrowth_among_mb_labelled,0.26400029893876736,80284.0,
+points_all_fagan_class0_share_mb_regrowth,0.006740854810122905,137668.0,step-2 sample points (all)
+points_all_fagan_class0_share_mb_nonregrowth,0.8118589650463434,137668.0,step-2 sample points (all)
+points_all_fagan_class0_share_mb_excluded,0.1814001801435337,137668.0,step-2 sample points (all)
+points_all_fagan_class0_share_mb_any_regen_2001_2012,0.034263590667402734,137668.0,
+points_all_fagan_class0_share_mb_regrowth_among_mb_labelled,0.008234615555259771,112695.0,
