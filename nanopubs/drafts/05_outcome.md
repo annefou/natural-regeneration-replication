@@ -52,7 +52,7 @@ bare branch URL, and not the concept DOI.
 > the one described as *"Version DOI"*.
 
 ```
-https://doi.org/10.5281/zenodo.23137989
+https://doi.org/10.5281/zenodo.23139080
 ```
 
 <!-- field: date -->
