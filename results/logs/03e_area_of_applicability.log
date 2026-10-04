@@ -1,0 +1,4 @@
+[jupytext] Reading 03e_area_of_applicability.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03e_area_of_applicability.ipynb (destination file replaced [use --update to preserve cell outputs and ids])

@@ -126,3 +126,22 @@ If 02c is OOM-killed in the tile stage, rerun with `N_WORKERS=6` in front of
 `pixi run`. Leftover temporary Hansen tiles in `data/raw/hansen_tmp_neotropics/`
 are safe to delete. The tile cache and `neotropics_soil_points.parquet` can be
 deleted once `neotropics_samples.parquet` exists; they only speed up reruns.
+
+---
+
+# Area of applicability (AOA) — `03e_area_of_applicability.py`
+
+- **Rule:** `aoa` (part of `all`; runs after `transfer_test`). Inputs: `samples`, `pred_grid`, `tile_sums`,
+  `neotropics_samples`, `results/diag3_transfer_colombia.csv`.
+- **Outputs:** `results/aoa_summary.csv`, `results/aoa_di_accuracy.csv`, `results/aoa_healpix_d8.nc`,
+  `figures/aoa_colombia.png`.
+- **Smoke test:** passed on 2026-10-04 (`SMOKE=1`, run directly with jupytext because the smoke DAG would also
+  re-run smoke 02c/03d, whose notebooks changed after their smoke run).
+- **Full run:** started 2026-10-04 12:22 UTC with
+  `setsid nohup pixi run snakemake aoa --cores 12 --rerun-triggers mtime > results/logs/aoa_20261004T1222.log 2>&1 < /dev/null &`.
+  The dry run showed only `aoa`. Expected time: ~10–20 min (3 + 15 forest fits, permutation importance,
+  KD-tree DI for 2.47 M grid points × 3 models). Notebook log: `results/logs/03e_area_of_applicability.log`.
+- **Finished** 12:25 UTC (3.5 min). Rerun at 12:33 UTC (`results/logs/aoa_20261004T1233.log`) after adding
+  per-class and balanced accuracy. Both runs completed. The refitted models reproduce the 03/03d validation accuracies
+  (0.8867 / 0.7671 / 0.7835).
+- Method choices: `docs/deviations.md` § Area of applicability.

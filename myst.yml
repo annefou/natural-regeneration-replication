@@ -19,6 +19,7 @@ project:
     - file: notebooks/03c_robustness.ipynb
     - file: notebooks/02c_neotropics_sample.ipynb
     - file: notebooks/03d_transfer_test.ipynb
+    - file: notebooks/03e_area_of_applicability.ipynb
     - file: notebooks/04_figures.ipynb
     - file: nanopubs/README.md
 site:

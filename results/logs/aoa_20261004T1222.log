@@ -1,0 +1,33 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job      count
+-----  -------
+aoa          1
+total        1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 12:22:28 2026]
+localrule aoa:
+    input: notebooks/03e_area_of_applicability.py, data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv, data/clean/neotropics_samples.parquet, results/diag3_transfer_colombia.csv
+    output: results/aoa_summary.csv, results/aoa_di_accuracy.csv, results/aoa_healpix_d8.nc, figures/aoa_colombia.png
+    log: results/logs/03e_area_of_applicability.log
+    jobid: 0
+    reason: Missing output files: results/aoa_summary.csv, figures/aoa_colombia.png, results/aoa_di_accuracy.csv, results/aoa_healpix_d8.nc
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03e_area_of_applicability.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03e_area_of_applicability.ipynb
+[Sun Oct  4 12:25:53 2026]
+Finished jobid: 0 (Rule: aoa)
+1 of 1 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T122228.775065.snakemake.log

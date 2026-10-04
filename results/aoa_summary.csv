@@ -1,0 +1,373 @@
+model,cv_folds,metric,inside,outside,all,unit,note
+colombia,healpix_d6,threshold,,,0.19791835803599467,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+colombia,healpix_d6,train_di_median,,,0.07986219143858893,DI,
+colombia,healpix_d6,train_di_q3,,,0.11161520701602694,DI,
+colombia,healpix_d6,train_di_iqr,,,0.05753543401331181,DI,
+colombia,healpix_d6,train_di_max,,,3.2022384835317115,DI,
+colombia,healpix_d6,share_training_outside,,,0.030185719346186933,fraction,
+colombia,healpix_d6,mean_pairwise_distance,,,0.19426682815512913,scaled weighted units,
+colombia,healpix_d6,pred_domain_area_mha,18.284905657251883,0.5013884728627901,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+colombia,healpix_d6,pred_domain_area_share,0.9733109431061735,0.026689056893826543,1.0,fraction,
+colombia,healpix_d6,expected_area_uncal_mha,3.9282448136561356,0.06049854777058458,3.9887433614267205,Mha,sum p x area (paper)
+colombia,healpix_d6,expected_area_prior_shift_mha,0.1867332692971089,0.0015174220633312541,0.18825069136044015,Mha,prior-shift to Colombian prevalence 0.01644
+colombia,healpix_d6,area_p_gt05_uncal_mha,2.0113656000997353,0.014533561761197526,2.025899161860933,Mha,
+colombia,healpix_d6,mean_p_grid_area_weighted,0.2148353886692423,0.12066202365035346,0.2123219903723701,p,
+colombia,healpix_d6,authors_expected_area_mha,10.17540585950127,0.17510486817470475,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+colombia,healpix_d6,authors_area_pct_gt50_mha,10.961399286758837,0.12318845109621478,11.084587737855053,Mha,authors' map split by OUR model's AOA
+colombia,healpix_d6,validation_accuracy_2000,0.885911620402384,0.9367021276595745,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+colombia,healpix_d6,validation_accuracy_regrowth_2000,0.8540435851114041,0.5829787234042553,0.8530107980154998,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d6,validation_accuracy_nonregrowth_2000,0.9185281428547633,0.9872340425531915,0.9203605823794546,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d6,validation_balanced_accuracy_2000,0.8862858639830837,0.7851063829787234,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d6,validation_n,121476.0,1880.0,123356.0,points,
+colombia,healpix_d6,validation_share_regrowth,0.5058036155289933,0.125,0.5,fraction,
+colombia,healpix_d6,nonregrowth_n_2000,60033.0,1645.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+colombia,healpix_d6,nonregrowth_mean_p_model_2000,0.18905645228457682,0.09496413373860182,0.18654693731962774,p,2000 inputs
+colombia,healpix_d6,nonregrowth_share_gt05_model_2000,0.08147185714523679,0.01276595744680851,0.07963941762054541,fraction,2000 inputs
+colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2000,0.5242907962077354,0.3181433823529412,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2000,0.5354979444584277,0.18872549019607843,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+colombia,healpix_d6,nonregrowth_n_2018,59679.0,1999.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+colombia,healpix_d6,nonregrowth_mean_p_model_2018,0.16911342348229697,0.11907653826913456,0.1674917150361555,p,2018 inputs
+colombia,healpix_d6,nonregrowth_share_gt05_model_2018,0.059066003116674204,0.018509254627313655,0.057751548364084436,fraction,2018 inputs
+colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2018,0.52420654614203,0.3574018126888217,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2018,0.5352543002312588,0.2578046324269889,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+colombia,healpix_d7,threshold,,,0.19138961839481086,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+colombia,healpix_d7,train_di_median,,,0.07348857167974024,DI,
+colombia,healpix_d7,train_di_q3,,,0.10579486560438409,DI,
+colombia,healpix_d7,train_di_iqr,,,0.05706316852695119,DI,
+colombia,healpix_d7,train_di_max,,,3.2022384835317115,DI,
+colombia,healpix_d7,share_training_outside,,,0.03193158240979708,fraction,
+colombia,healpix_d7,mean_pairwise_distance,,,0.19426682815512913,scaled weighted units,
+colombia,healpix_d7,pred_domain_area_mha,18.194724509446907,0.5915696206677655,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+colombia,healpix_d7,pred_domain_area_share,0.9685105739018813,0.03148942609811862,1.0,fraction,
+colombia,healpix_d7,expected_area_uncal_mha,3.9167519490184897,0.07199141240823002,3.9887433614267205,Mha,sum p x area (paper)
+colombia,healpix_d7,expected_area_prior_shift_mha,0.18643928402565402,0.0018114073347860768,0.18825069136044015,Mha,prior-shift to Colombian prevalence 0.01644
+colombia,healpix_d7,area_p_gt05_uncal_mha,2.008179490796451,0.017719671064481527,2.025899161860933,Mha,
+colombia,healpix_d7,mean_p_grid_area_weighted,0.21526854924265923,0.1216955872868622,0.2123219903723701,p,
+colombia,healpix_d7,authors_expected_area_mha,10.140019288931532,0.21049143874444176,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+colombia,healpix_d7,authors_area_pct_gt50_mha,10.93348000529962,0.151107732555433,11.084587737855053,Mha,authors' map split by OUR model's AOA
+colombia,healpix_d7,validation_accuracy_2000,0.8857296181630547,0.9385925593904079,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+colombia,healpix_d7,validation_accuracy_regrowth_2000,0.8541999153177214,0.5845588235294118,0.8530107980154998,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d7,validation_accuracy_nonregrowth_2000,0.9181500025117634,0.9877488514548239,0.9203605823794546,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d7,validation_balanced_accuracy_2000,0.8861749589147424,0.7861538374921179,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs"
+colombia,healpix_d7,validation_n,121125.0,2231.0,123356.0,points,
+colombia,healpix_d7,validation_share_regrowth,0.5069638802889577,0.12191842223218288,0.5,fraction,
+colombia,healpix_d7,nonregrowth_n_2000,59719.0,1959.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+colombia,healpix_d7,nonregrowth_mean_p_model_2000,0.18953063514124485,0.09559060745278203,0.18654693731962774,p,2000 inputs
+colombia,healpix_d7,nonregrowth_share_gt05_model_2000,0.08184999748823657,0.01225114854517611,0.07963941762054541,fraction,2000 inputs
+colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2000,0.5252350668848366,0.3226413155190133,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2000,0.537170425600108,0.19373072970195274,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+colombia,healpix_d7,nonregrowth_n_2018,59360.0,2318.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+colombia,healpix_d7,nonregrowth_mean_p_model_2018,0.1694756064690027,0.11668766177739431,0.1674917150361555,p,2018 inputs
+colombia,healpix_d7,nonregrowth_share_gt05_model_2018,0.05931603773584906,0.017687661777394306,0.057751548364084436,fraction,2018 inputs
+colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2018,0.525143662067444,0.3564583333333333,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2018,0.5369210664765881,0.2534722222222222,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+colombia,random_5fold,threshold,,,0.17920060367192595,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+colombia,random_5fold,train_di_median,,,0.06421182242413984,DI,
+colombia,random_5fold,train_di_q3,,,0.09498713778648274,DI,
+colombia,random_5fold,train_di_iqr,,,0.056142310590295466,DI,
+colombia,random_5fold,train_di_max,,,2.6240907550541803,DI,
+colombia,random_5fold,share_training_outside,,,0.029730276807853853,fraction,
+colombia,random_5fold,mean_pairwise_distance,,,0.19426682815512913,scaled weighted units,
+colombia,random_5fold,pred_domain_area_mha,17.980525966000464,0.8057681641142062,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+colombia,random_5fold,pred_domain_area_share,0.9571087220005486,0.04289127799945117,1.0,fraction,
+colombia,random_5fold,expected_area_uncal_mha,3.8888579468865174,0.09988541454020243,3.9887433614267205,Mha,sum p x area (paper)
+colombia,random_5fold,expected_area_prior_shift_mha,0.18572576759265674,0.0025249237677833648,0.18825069136044015,Mha,prior-shift to Colombian prevalence 0.01644
+colombia,random_5fold,area_p_gt05_uncal_mha,2.0007994687642454,0.02509969309668739,2.025899161860933,Mha,
+colombia,random_5fold,mean_p_grid_area_weighted,0.2162816568458561,0.12396296973336998,0.2123219903723701,p,
+colombia,random_5fold,authors_expected_area_mha,10.051515916887096,0.2989948107888778,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+colombia,random_5fold,authors_area_pct_gt50_mha,10.859808995205423,0.22477874264962996,11.084587737855053,Mha,authors' map split by OUR model's AOA
+colombia,random_5fold,validation_accuracy_2000,0.8853597932404245,0.9394641085014885,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+colombia,random_5fold,validation_accuracy_regrowth_2000,0.8545771890904346,0.5962566844919787,0.8530107980154998,fraction,"Colombian validation points, 2000 inputs"
+colombia,random_5fold,validation_accuracy_nonregrowth_2000,0.9173287706042792,0.9879199697999245,0.9203605823794546,fraction,"Colombian validation points, 2000 inputs"
+colombia,random_5fold,validation_balanced_accuracy_2000,0.8859529798473569,0.7920883271459516,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs"
+colombia,random_5fold,validation_n,120333.0,3023.0,123356.0,points,
+colombia,random_5fold,validation_share_regrowth,0.5094529347726725,0.12371816076744956,0.5,fraction,
+colombia,random_5fold,nonregrowth_n_2000,59029.0,2649.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+colombia,random_5fold,nonregrowth_mean_p_model_2000,0.1904622473699368,0.09930011325028315,0.18654693731962774,p,2000 inputs
+colombia,random_5fold,nonregrowth_share_gt05_model_2000,0.08267122939572075,0.0120800302000755,0.07963941762054541,fraction,2000 inputs
+colombia,random_5fold,nonregrowth_mean_p_authors_aoa2000,0.5269463264783685,0.33734802431610944,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2000,0.5401655431350798,0.21656534954407294,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+colombia,random_5fold,nonregrowth_n_2018,58640.0,3038.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+colombia,random_5fold,nonregrowth_mean_p_model_2018,0.17027977489768076,0.1136761026991442,0.1674917150361555,p,2018 inputs
+colombia,random_5fold,nonregrowth_share_gt05_model_2018,0.05992496589358799,0.015799868334430547,0.057751548364084436,fraction,2018 inputs
+colombia,random_5fold,nonregrowth_mean_p_authors_aoa2018,0.5270528811462736,0.35970870572658065,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2018,0.540305123183177,0.2555445216815624,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+colombia,none,threshold,,,0.17196921442617896,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+colombia,none,train_di_median,,,0.06127935124237153,DI,
+colombia,none,train_di_q3,,,0.09075154255395905,DI,
+colombia,none,train_di_iqr,,,0.05414511458147994,DI,
+colombia,none,train_di_max,,,2.6240907550541803,DI,
+colombia,none,share_training_outside,,,0.02983148626081676,fraction,
+colombia,none,mean_pairwise_distance,,,0.19426682815512913,scaled weighted units,
+colombia,none,pred_domain_area_mha,17.817364964204106,0.9689291659105682,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+colombia,none,pred_domain_area_share,0.9484236135557272,0.05157638644427281,1.0,fraction,
+colombia,none,expected_area_uncal_mha,3.866976487962045,0.12176687346467452,3.9887433614267205,Mha,sum p x area (paper)
+colombia,none,expected_area_prior_shift_mha,0.185160583502013,0.003090107858427106,0.18825069136044015,Mha,prior-shift to Colombian prevalence 0.01644
+colombia,none,area_p_gt05_uncal_mha,1.9947610483248803,0.031138113536052465,2.025899161860933,Mha,
+colombia,none,mean_p_grid_area_weighted,0.21703414033056945,0.12567159473442205,0.2123219903723701,p,
+colombia,none,authors_expected_area_mha,9.98139788860694,0.36911283906903297,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+colombia,none,authors_area_pct_gt50_mha,10.798642646758179,0.285945091096873,11.084587737855053,Mha,authors' map split by OUR model's AOA
+colombia,none,validation_accuracy_2000,0.8851393680201137,0.9375859224635689,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+colombia,none,validation_accuracy_regrowth_2000,0.8549370108331563,0.6058700209643606,0.8530107980154998,fraction,"Colombian validation points, 2000 inputs"
+colombia,none,validation_accuracy_nonregrowth_2000,0.9167264773232168,0.9876582278481013,0.9203605823794546,fraction,"Colombian validation points, 2000 inputs"
+colombia,none,validation_balanced_accuracy_2000,0.8858317440781865,0.7967641244062309,0.8866856901974772,fraction,"Colombian validation points, 2000 inputs"
+colombia,none,validation_n,119719.0,3637.0,123356.0,points,
+colombia,none,validation_share_regrowth,0.5112054059923654,0.1311520483915315,0.5,fraction,
+colombia,none,nonregrowth_n_2000,58518.0,3160.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+colombia,none,nonregrowth_mean_p_model_2000,0.1910886564817663,0.10244177215189873,0.18654693731962774,p,2000 inputs
+colombia,none,nonregrowth_share_gt05_model_2000,0.08327352267678322,0.012341772151898734,0.07963941762054541,fraction,2000 inputs
+colombia,none,nonregrowth_mean_p_authors_aoa2000,0.5280411093322316,0.3476545570427024,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+colombia,none,nonregrowth_share_gt05_authors_aoa2000,0.5420647626917316,0.23358827278521352,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+colombia,none,nonregrowth_n_2018,58083.0,3595.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+colombia,none,nonregrowth_mean_p_model_2018,0.17091124769726082,0.11224367176634215,0.1674917150361555,p,2018 inputs
+colombia,none,nonregrowth_share_gt05_model_2018,0.060465196356937485,0.013908205841446454,0.057751548364084436,fraction,2018 inputs
+colombia,none,nonregrowth_mean_p_authors_aoa2018,0.5283294599188317,0.36478005043429534,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+colombia,none,nonregrowth_share_gt05_authors_aoa2018,0.5425439661452011,0.2630989072569347,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_excl_colombia,healpix_d6,threshold,,,0.16296054316246167,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_excl_colombia,healpix_d6,train_di_median,,,0.06192226149492386,DI,
+neotropics_excl_colombia,healpix_d6,train_di_q3,,,0.0896250418150275,DI,
+neotropics_excl_colombia,healpix_d6,train_di_iqr,,,0.048890334231622784,DI,
+neotropics_excl_colombia,healpix_d6,train_di_max,,,31.863476664294105,DI,
+neotropics_excl_colombia,healpix_d6,share_training_outside,,,0.036663124335812966,fraction,
+neotropics_excl_colombia,healpix_d6,mean_pairwise_distance,,,0.20063197793659107,scaled weighted units,
+neotropics_excl_colombia,healpix_d6,pred_domain_area_mha,12.822917625963342,5.9633765041513325,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_excl_colombia,healpix_d6,pred_domain_area_share,0.6825677026640417,0.31743229733595846,1.0,fraction,
+neotropics_excl_colombia,healpix_d6,expected_area_uncal_mha,3.2381858404038137,1.2104255328943656,4.44861137329818,Mha,sum p x area (paper)
+neotropics_excl_colombia,healpix_d6,expected_area_prior_shift_mha,0.08675513493971948,0.0291687834063022,0.11592391834602167,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_excl_colombia,healpix_d6,area_p_gt05_uncal_mha,0.7511970074264918,0.12500172502181214,0.876198732448304,Mha,
+neotropics_excl_colombia,healpix_d6,mean_p_grid_area_weighted,0.2525311270694948,0.20297654056418246,0.2368009008315801,p,
+neotropics_excl_colombia,healpix_d6,authors_expected_area_mha,7.564130495046705,2.78638023262927,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_excl_colombia,healpix_d6,authors_area_pct_gt50_mha,8.508037348679222,2.576550389175831,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_excl_colombia,healpix_d6,validation_accuracy_2000,0.7447291137021127,0.8306230529595016,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_excl_colombia,healpix_d6,validation_accuracy_regrowth_2000,0.5874200426439232,0.5399963722111373,0.5789422484516359,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d6,validation_accuracy_nonregrowth_2000,0.9409664072505172,0.9826800797190851,0.9552190408249295,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d6,validation_balanced_accuracy_2000,0.7641932249472202,0.7613382259651111,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d6,validation_n,91256.0,32100.0,123356.0,points,
+neotropics_excl_colombia,healpix_d6,validation_share_regrowth,0.5550539142631717,0.3434890965732087,0.5,fraction,
+neotropics_excl_colombia,healpix_d6,nonregrowth_n_2000,40604.0,21074.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_excl_colombia,healpix_d6,nonregrowth_mean_p_model_2000,0.24574465569894594,0.19565284236499952,0.22862939784039688,p,2000 inputs
+neotropics_excl_colombia,healpix_d6,nonregrowth_share_gt05_model_2000,0.05903359274948281,0.01731992028091487,0.04478095917507053,fraction,2000 inputs
+neotropics_excl_colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2000,0.5544806694311325,0.4502109382456811,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_excl_colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2000,0.5970501328433442,0.3901880309248831,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_excl_colombia,healpix_d6,nonregrowth_n_2018,39431.0,22247.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_excl_colombia,healpix_d6,nonregrowth_mean_p_model_2018,0.23211260176003654,0.19213862543264262,0.21769415350692306,p,2018 inputs
+neotropics_excl_colombia,healpix_d6,nonregrowth_share_gt05_model_2018,0.04367122314929878,0.021890591989931228,0.03581503939816466,fraction,2018 inputs
+neotropics_excl_colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2018,0.5564012070993811,0.4523353672316384,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_excl_colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2018,0.6001739041481254,0.39561581920903954,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_excl_colombia,healpix_d7,threshold,,,0.145368960966718,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_excl_colombia,healpix_d7,train_di_median,,,0.05262164553063407,DI,
+neotropics_excl_colombia,healpix_d7,train_di_q3,,,0.07828074573471347,DI,
+neotropics_excl_colombia,healpix_d7,train_di_iqr,,,0.04472547682133636,DI,
+neotropics_excl_colombia,healpix_d7,train_di_max,,,31.863476664294105,DI,
+neotropics_excl_colombia,healpix_d7,share_training_outside,,,0.03648600779312788,fraction,
+neotropics_excl_colombia,healpix_d7,mean_pairwise_distance,,,0.20063197793659107,scaled weighted units,
+neotropics_excl_colombia,healpix_d7,pred_domain_area_mha,10.429908894575876,8.356385235538797,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_excl_colombia,healpix_d7,pred_domain_area_share,0.5551871392163821,0.4448128607836179,1.0,fraction,
+neotropics_excl_colombia,healpix_d7,expected_area_uncal_mha,2.7209153086944458,1.7276960646037338,4.44861137329818,Mha,sum p x area (paper)
+neotropics_excl_colombia,healpix_d7,expected_area_prior_shift_mha,0.07430760135386653,0.04161631699215515,0.11592391834602167,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_excl_colombia,healpix_d7,area_p_gt05_uncal_mha,0.7123373992428484,0.1638613332054556,0.876198732448304,Mha,
+neotropics_excl_colombia,healpix_d7,mean_p_grid_area_weighted,0.2608762297156278,0.20675160561722675,0.2368009008315801,p,
+neotropics_excl_colombia,healpix_d7,authors_expected_area_mha,6.285862703082963,4.06464802459301,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_excl_colombia,healpix_d7,authors_area_pct_gt50_mha,7.1634346446880155,3.9211530931670366,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_excl_colombia,healpix_d7,validation_accuracy_2000,0.7424083904883688,0.8086644171111353,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_excl_colombia,healpix_d7,validation_accuracy_regrowth_2000,0.6096769923219486,0.49376299376299376,0.5789422484516359,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d7,validation_accuracy_nonregrowth_2000,0.9298376795339128,0.9827592035428147,0.9552190408249295,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d7,validation_balanced_accuracy_2000,0.7697573359279307,0.7382610986529042,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,healpix_d7,validation_n,77421.0,45935.0,123356.0,points,
+neotropics_excl_colombia,healpix_d7,validation_share_regrowth,0.5854225597706049,0.3560248176771525,0.5,fraction,
+neotropics_excl_colombia,healpix_d7,nonregrowth_n_2000,32097.0,29581.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_excl_colombia,healpix_d7,nonregrowth_mean_p_model_2000,0.25528927937190393,0.19970197085967345,0.22862939784039688,p,2000 inputs
+neotropics_excl_colombia,healpix_d7,nonregrowth_share_gt05_model_2000,0.07016232046608717,0.017240796457185355,0.04478095917507053,fraction,2000 inputs
+neotropics_excl_colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2000,0.5658991765667232,0.46783433642762423,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_excl_colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2000,0.6185178201018292,0.42643408480397155,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_excl_colombia,healpix_d7,nonregrowth_n_2018,30719.0,30959.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_excl_colombia,healpix_d7,nonregrowth_mean_p_model_2018,0.24063739054005662,0.19492877676927547,0.21769415350692306,p,2018 inputs
+neotropics_excl_colombia,healpix_d7,nonregrowth_share_gt05_model_2018,0.052150135095543476,0.019606576439807486,0.03581503939816466,fraction,2018 inputs
+neotropics_excl_colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2018,0.567411556022731,0.47071887993762995,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_excl_colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2018,0.620799526984857,0.4327572765072765,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_excl_colombia,random_5fold,threshold,,,0.13148834454913869,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_excl_colombia,random_5fold,train_di_median,,,0.04029129482438425,DI,
+neotropics_excl_colombia,random_5fold,train_di_q3,,,0.06478915592508189,DI,
+neotropics_excl_colombia,random_5fold,train_di_iqr,,,0.0444661257493712,DI,
+neotropics_excl_colombia,random_5fold,train_di_max,,,31.863476664294105,DI,
+neotropics_excl_colombia,random_5fold,share_training_outside,,,0.03684024087849805,fraction,
+neotropics_excl_colombia,random_5fold,mean_pairwise_distance,,,0.20063197793659107,scaled weighted units,
+neotropics_excl_colombia,random_5fold,pred_domain_area_mha,8.43616761261232,10.350126517502353,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_excl_colombia,random_5fold,pred_domain_area_share,0.4490597003423381,0.5509402996576619,1.0,fraction,
+neotropics_excl_colombia,random_5fold,expected_area_uncal_mha,2.2624176742029496,2.1861936990952295,4.44861137329818,Mha,sum p x area (paper)
+neotropics_excl_colombia,random_5fold,expected_area_prior_shift_mha,0.06301151495996282,0.05291240338605887,0.11592391834602167,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_excl_colombia,random_5fold,area_p_gt05_uncal_mha,0.6655913372248172,0.21060739522348682,0.876198732448304,Mha,
+neotropics_excl_colombia,random_5fold,mean_p_grid_area_weighted,0.26818074012903304,0.21122386237485263,0.2368009008315801,p,
+neotropics_excl_colombia,random_5fold,authors_expected_area_mha,5.163463017894206,5.187047709781767,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_excl_colombia,random_5fold,authors_area_pct_gt50_mha,5.939919725805932,5.14466801204912,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_excl_colombia,random_5fold,validation_accuracy_2000,0.7444041229568187,0.7928235131205428,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_excl_colombia,random_5fold,validation_accuracy_regrowth_2000,0.6362915613696051,0.470350910114468,0.5789422484516359,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,random_5fold,validation_accuracy_nonregrowth_2000,0.9174133692807867,0.9813748079877113,0.9552190408249295,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,random_5fold,validation_balanced_accuracy_2000,0.7768524653251958,0.7258628590510896,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,random_5fold,validation_n,65584.0,57772.0,123356.0,points,
+neotropics_excl_colombia,random_5fold,validation_share_regrowth,0.6154244937789705,0.36896766599736897,0.5,fraction,
+neotropics_excl_colombia,random_5fold,nonregrowth_n_2000,25222.0,36456.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_excl_colombia,random_5fold,nonregrowth_mean_p_model_2000,0.2632477202442312,0.2046787908711872,0.22862939784039688,p,2000 inputs
+neotropics_excl_colombia,random_5fold,nonregrowth_share_gt05_model_2000,0.08258663071921339,0.018625192012288787,0.04478095917507053,fraction,2000 inputs
+neotropics_excl_colombia,random_5fold,nonregrowth_mean_p_authors_aoa2000,0.5731360307359827,0.4813291942604857,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_excl_colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2000,0.6332893104414296,0.45245584988962473,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_excl_colombia,random_5fold,nonregrowth_n_2018,23859.0,37819.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_excl_colombia,random_5fold,nonregrowth_mean_p_model_2018,0.24680380569177252,0.1993296491181681,0.21769415350692306,p,2018 inputs
+neotropics_excl_colombia,random_5fold,nonregrowth_share_gt05_model_2018,0.06165388323064672,0.019514000899019012,0.03581503939816466,fraction,2018 inputs
+neotropics_excl_colombia,random_5fold,nonregrowth_mean_p_authors_aoa2018,0.5739840047393364,0.4841050671631866,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_excl_colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2018,0.6343940419769803,0.45827902646628543,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_excl_colombia,none,threshold,,,0.12487526357023812,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_excl_colombia,none,train_di_median,,,0.03764510896956203,DI,
+neotropics_excl_colombia,none,train_di_q3,,,0.06112203911772857,DI,
+neotropics_excl_colombia,none,train_di_iqr,,,0.04250214963500637,DI,
+neotropics_excl_colombia,none,train_di_max,,,31.863476664294105,DI,
+neotropics_excl_colombia,none,share_training_outside,,,0.035600425079702444,fraction,
+neotropics_excl_colombia,none,mean_pairwise_distance,,,0.20063197793659107,scaled weighted units,
+neotropics_excl_colombia,none,pred_domain_area_mha,7.520953480577875,11.265340649536798,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_excl_colombia,none,pred_domain_area_share,0.40034258105869264,0.5996574189413074,1.0,fraction,
+neotropics_excl_colombia,none,expected_area_uncal_mha,2.044711636655673,2.403899736642506,4.44861137329818,Mha,sum p x area (paper)
+neotropics_excl_colombia,none,expected_area_prior_shift_mha,0.0575500942680419,0.05837382407797978,0.11592391834602167,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_excl_colombia,none,area_p_gt05_uncal_mha,0.6377019775752533,0.2384967548730507,0.876198732448304,Mha,
+neotropics_excl_colombia,none,mean_p_grid_area_weighted,0.2718686722283206,0.21338899651839185,0.2368009008315801,p,
+neotropics_excl_colombia,none,authors_expected_area_mha,4.6391771578565075,5.711333569819466,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_excl_colombia,none,authors_area_pct_gt50_mha,5.361313159618441,5.7232745782366115,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_excl_colombia,none,validation_accuracy_2000,0.7446515410532605,0.788495364868077,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_excl_colombia,none,validation_accuracy_regrowth_2000,0.6489255765199161,0.4653882132834425,0.5789422484516359,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,none,validation_accuracy_nonregrowth_2000,0.9100086007876511,0.9804481269103493,0.9552190408249295,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,none,validation_balanced_accuracy_2000,0.7794670886537836,0.7229181700968959,0.7670806446382827,fraction,"Colombian validation points, 2000 inputs"
+neotropics_excl_colombia,none,validation_n,60251.0,63105.0,123356.0,points,
+neotropics_excl_colombia,none,validation_share_regrowth,0.6333504838093974,0.3726804532128991,0.5,fraction,
+neotropics_excl_colombia,none,nonregrowth_n_2000,22091.0,39587.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_excl_colombia,none,nonregrowth_mean_p_model_2000,0.26701788058485354,0.20720721448960516,0.22862939784039688,p,2000 inputs
+neotropics_excl_colombia,none,nonregrowth_share_gt05_model_2000,0.08999139921234892,0.019551873089650642,0.04478095917507053,fraction,2000 inputs
+neotropics_excl_colombia,none,nonregrowth_mean_p_authors_aoa2000,0.5765261714285715,0.4867048688757877,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_excl_colombia,none,nonregrowth_share_gt05_authors_aoa2000,0.6410057142857143,0.46246696483025007,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_excl_colombia,none,nonregrowth_n_2018,20801.0,40877.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_excl_colombia,none,nonregrowth_mean_p_model_2018,0.2499299072159992,0.20129040780879226,0.21769415350692306,p,2018 inputs
+neotropics_excl_colombia,none,nonregrowth_share_gt05_model_2018,0.06706408345752608,0.019913398732783718,0.03581503939816466,fraction,2018 inputs
+neotropics_excl_colombia,none,nonregrowth_mean_p_authors_aoa2018,0.5770804195804196,0.48925999753906735,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_excl_colombia,none,nonregrowth_share_gt05_authors_aoa2018,0.641462703962704,0.4678725236864772,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_incl_colombia,healpix_d6,threshold,,,0.18369069491680207,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_incl_colombia,healpix_d6,train_di_median,,,0.06915840728992126,DI,
+neotropics_incl_colombia,healpix_d6,train_di_q3,,,0.10114322894677943,DI,
+neotropics_incl_colombia,healpix_d6,train_di_iqr,,,0.05503164398001508,DI,
+neotropics_incl_colombia,healpix_d6,train_di_max,,,14.0643167002033,DI,
+neotropics_incl_colombia,healpix_d6,share_training_outside,,,0.05065533120793482,fraction,
+neotropics_incl_colombia,healpix_d6,mean_pairwise_distance,,,0.20525365976670223,scaled weighted units,
+neotropics_incl_colombia,healpix_d6,pred_domain_area_mha,16.288365497310547,2.4979286328041277,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_incl_colombia,healpix_d6,pred_domain_area_share,0.8670345191285005,0.1329654808714996,1.0,fraction,
+neotropics_incl_colombia,healpix_d6,expected_area_uncal_mha,4.047708008370013,0.5579194129788272,4.605627421348841,Mha,sum p x area (paper)
+neotropics_incl_colombia,healpix_d6,expected_area_prior_shift_mha,0.11421418841440888,0.013747302607200146,0.12796149102160903,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_incl_colombia,healpix_d6,area_p_gt05_uncal_mha,1.2877933662438412,0.05959899796183674,1.3473923642056782,Mha,
+neotropics_incl_colombia,healpix_d6,mean_p_grid_area_weighted,0.2485030194735224,0.2233528234761925,0.24515891156872502,p,
+neotropics_incl_colombia,healpix_d6,authors_expected_area_mha,9.283819019828922,1.0666917078470513,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_incl_colombia,healpix_d6,authors_area_pct_gt50_mha,10.214111137057813,0.8704766007972397,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_incl_colombia,healpix_d6,validation_accuracy_2000,0.7750004528247206,0.8561601484000618,0.7835127598171147,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_incl_colombia,healpix_d6,validation_accuracy_regrowth_2000,0.6475632315059731,0.5765319426336375,0.6431466649372548,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d6,validation_accuracy_nonregrowth_2000,0.915206847360913,0.9739646270460288,0.9238788546969746,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d6,validation_balanced_accuracy_2000,0.781385039433443,0.7752482848398332,0.7835127598171148,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d6,validation_n,110418.0,12938.0,123356.0,points,
+neotropics_incl_colombia,healpix_d6,validation_share_regrowth,0.5238548062815845,0.2964136651723605,0.5,fraction,
+neotropics_incl_colombia,healpix_d6,nonregrowth_n_2000,52575.0,9103.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_incl_colombia,healpix_d6,nonregrowth_mean_p_model_2000,0.24962917736566811,0.22149005822256398,0.24547615032912873,p,2000 inputs
+neotropics_incl_colombia,healpix_d6,nonregrowth_share_gt05_model_2000,0.08479315263908702,0.02603537295397122,0.07612114530302538,fraction,2000 inputs
+neotropics_incl_colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2000,0.5365898202445288,0.4161404090657822,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_incl_colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2000,0.5614963014066153,0.32294085129906025,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_incl_colombia,healpix_d6,nonregrowth_n_2018,51965.0,9713.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_incl_colombia,healpix_d6,nonregrowth_mean_p_model_2018,0.2338539786394689,0.22331905693400597,0.23219494795551088,p,2018 inputs
+neotropics_incl_colombia,healpix_d6,nonregrowth_share_gt05_model_2018,0.0651784855190994,0.03562236178317719,0.06052401180323616,fraction,2018 inputs
+neotropics_incl_colombia,healpix_d6,nonregrowth_mean_p_authors_aoa2018,0.5375121185093265,0.4187993369936807,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_incl_colombia,healpix_d6,nonregrowth_share_gt05_authors_aoa2018,0.5633264823360608,0.3281881280430954,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_incl_colombia,healpix_d7,threshold,,,0.16260963942865575,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_incl_colombia,healpix_d7,train_di_median,,,0.05824588523197198,DI,
+neotropics_incl_colombia,healpix_d7,train_di_q3,,,0.08729179292638517,DI,
+neotropics_incl_colombia,healpix_d7,train_di_iqr,,,0.05021189766818038,DI,
+neotropics_incl_colombia,healpix_d7,train_di_max,,,14.064298952088146,DI,
+neotropics_incl_colombia,healpix_d7,share_training_outside,,,0.03506907545164718,fraction,
+neotropics_incl_colombia,healpix_d7,mean_pairwise_distance,,,0.20525365976670223,scaled weighted units,
+neotropics_incl_colombia,healpix_d7,pred_domain_area_mha,15.073440379975418,3.7128537501392564,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_incl_colombia,healpix_d7,pred_domain_area_share,0.8023636953395985,0.19763630466040152,1.0,fraction,
+neotropics_incl_colombia,healpix_d7,expected_area_uncal_mha,3.772910354377095,0.832717066971746,4.605627421348841,Mha,sum p x area (paper)
+neotropics_incl_colombia,healpix_d7,expected_area_prior_shift_mha,0.1074053296145289,0.02055616140708014,0.12796149102160903,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_incl_colombia,healpix_d7,area_p_gt05_uncal_mha,1.260368109777951,0.08702425442772706,1.3473923642056782,Mha,
+neotropics_incl_colombia,healpix_d7,mean_p_grid_area_weighted,0.2503018726494109,0.22427952270959062,0.24515891156872502,p,
+neotropics_incl_colombia,healpix_d7,authors_expected_area_mha,8.694968705966993,1.6555420217089813,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_incl_colombia,healpix_d7,authors_area_pct_gt50_mha,9.662258126933295,1.4223296109217576,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_incl_colombia,healpix_d7,validation_accuracy_2000,0.7726642399029294,0.8412421850978784,0.7835127598171147,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_incl_colombia,healpix_d7,validation_accuracy_regrowth_2000,0.6525545867262377,0.5585089141004862,0.6431466649372548,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d7,validation_accuracy_nonregrowth_2000,0.9106012330864401,0.9719724220623501,0.9238788546969746,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d7,validation_balanced_accuracy_2000,0.7815779099063389,0.7652406680814181,0.7835127598171148,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,healpix_d7,validation_n,103842.0,19514.0,123356.0,points,
+neotropics_incl_colombia,healpix_d7,validation_share_regrowth,0.5345428631960093,0.31618325304909295,0.5,fraction,
+neotropics_incl_colombia,healpix_d7,nonregrowth_n_2000,48334.0,13344.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_incl_colombia,healpix_d7,nonregrowth_mean_p_model_2000,0.25180187859477804,0.22256339928057553,0.24547615032912873,p,2000 inputs
+neotropics_incl_colombia,healpix_d7,nonregrowth_share_gt05_model_2000,0.08939876691355982,0.02802757793764988,0.07612114530302538,fraction,2000 inputs
+neotropics_incl_colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2000,0.5432070554385672,0.43052472858866103,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_incl_colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2000,0.5747346913245627,0.3509499396863691,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_incl_colombia,healpix_d7,nonregrowth_n_2018,47571.0,14107.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_incl_colombia,healpix_d7,nonregrowth_mean_p_model_2018,0.23472935191608335,0.2236485432763876,0.23219494795551088,p,2018 inputs
+neotropics_incl_colombia,healpix_d7,nonregrowth_share_gt05_model_2018,0.06848710348741881,0.03367122705040051,0.06052401180323616,fraction,2018 inputs
+neotropics_incl_colombia,healpix_d7,nonregrowth_mean_p_authors_aoa2018,0.5442054867069167,0.43325488518043076,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_incl_colombia,healpix_d7,nonregrowth_share_gt05_authors_aoa2018,0.5774600148289376,0.353872486093282,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_incl_colombia,random_5fold,threshold,,,0.14828079216312426,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_incl_colombia,random_5fold,train_di_median,,,0.047213530347114584,DI,
+neotropics_incl_colombia,random_5fold,train_di_q3,,,0.07389395391294505,DI,
+neotropics_incl_colombia,random_5fold,train_di_iqr,,,0.04959122550011947,DI,
+neotropics_incl_colombia,random_5fold,train_di_max,,,14.064298952088146,DI,
+neotropics_incl_colombia,random_5fold,share_training_outside,,,0.03190628004655635,fraction,
+neotropics_incl_colombia,random_5fold,mean_pairwise_distance,,,0.20525365976670223,scaled weighted units,
+neotropics_incl_colombia,random_5fold,pred_domain_area_mha,13.960795765039794,4.8254983650748775,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_incl_colombia,random_5fold,pred_domain_area_share,0.7431372929832105,0.25686270701678954,1.0,fraction,
+neotropics_incl_colombia,random_5fold,expected_area_uncal_mha,3.5218159799445097,1.0838114414043312,4.605627421348841,Mha,sum p x area (paper)
+neotropics_incl_colombia,random_5fold,expected_area_prior_shift_mha,0.10113173508271865,0.026829755938890372,0.12796149102160903,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_incl_colombia,random_5fold,area_p_gt05_uncal_mha,1.230824546977117,0.1165678172285608,1.3473923642056782,Mha,
+neotropics_incl_colombia,random_5fold,mean_p_grid_area_weighted,0.2522647017560228,0.22460093433012976,0.24515891156872502,p,
+neotropics_incl_colombia,random_5fold,authors_expected_area_mha,8.138471182578622,2.212039545097352,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_incl_colombia,random_5fold,authors_area_pct_gt50_mha,9.121062510035944,1.9635252278191087,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_incl_colombia,random_5fold,validation_accuracy_2000,0.7692999856847789,0.8378981140934345,0.7835127598171147,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_incl_colombia,random_5fold,validation_accuracy_regrowth_2000,0.6558631555255457,0.562066491270031,0.6431466649372548,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,random_5fold,validation_accuracy_nonregrowth_2000,0.905265051031878,0.9720283786927192,0.9238788546969746,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,random_5fold,validation_balanced_accuracy_2000,0.7805641032787118,0.7670474349813752,0.7835127598171148,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,random_5fold,validation_n,97798.0,25558.0,123356.0,points,
+neotropics_incl_colombia,random_5fold,validation_share_regrowth,0.5451645227918771,0.32717740042256827,0.5,fraction,
+neotropics_incl_colombia,random_5fold,nonregrowth_n_2000,44482.0,17196.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_incl_colombia,random_5fold,nonregrowth_mean_p_model_2000,0.2543339777887685,0.2225630379157944,0.24547615032912873,p,2000 inputs
+neotropics_incl_colombia,random_5fold,nonregrowth_share_gt05_model_2000,0.09473494896812194,0.027971621307280762,0.07612114530302538,fraction,2000 inputs
+neotropics_incl_colombia,random_5fold,nonregrowth_mean_p_authors_aoa2000,0.5494993881158501,0.4395713700953161,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_incl_colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2000,0.587272809681367,0.3688088415882112,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_incl_colombia,random_5fold,nonregrowth_n_2018,43666.0,18012.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_incl_colombia,random_5fold,nonregrowth_mean_p_model_2018,0.23660339852516835,0.2215076615589607,0.23219494795551088,p,2018 inputs
+neotropics_incl_colombia,random_5fold,nonregrowth_share_gt05_model_2018,0.07277973709522283,0.030812791472351764,0.06052401180323616,fraction,2018 inputs
+neotropics_incl_colombia,random_5fold,nonregrowth_mean_p_authors_aoa2018,0.5508979478774728,0.4411297888975762,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_incl_colombia,random_5fold,nonregrowth_share_gt05_authors_aoa2018,0.5909835876364812,0.3696526304032168,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA
+neotropics_incl_colombia,none,threshold,,,0.14119227806197304,DI,"CAST: min(Q3 + 1.5 IQR, max) of the CV training DI"
+neotropics_incl_colombia,none,train_di_median,,,0.04418758198499989,DI,
+neotropics_incl_colombia,none,train_di_q3,,,0.06983524661634649,DI,
+neotropics_incl_colombia,none,train_di_iqr,,,0.04757135429708436,DI,
+neotropics_incl_colombia,none,train_di_max,,,14.064298952088146,DI,
+neotropics_incl_colombia,none,share_training_outside,,,0.03193158240979708,fraction,
+neotropics_incl_colombia,none,mean_pairwise_distance,,,0.20525365976670223,scaled weighted units,
+neotropics_incl_colombia,none,pred_domain_area_mha,13.308068402036948,5.478225728077725,18.786294130114673,Mha,exact WGS84 area of 1-in-100 grid points x 100; 0.0915 Mha without complete predictors excluded
+neotropics_incl_colombia,none,pred_domain_area_share,0.7083924221490785,0.29160757785092156,1.0,fraction,
+neotropics_incl_colombia,none,expected_area_uncal_mha,3.3755762817902144,1.2300511395586258,4.605627421348841,Mha,sum p x area (paper)
+neotropics_incl_colombia,none,expected_area_prior_shift_mha,0.09746141911852321,0.030500071903085804,0.12796149102160903,Mha,prior-shift to Colombian prevalence 0.01644
+neotropics_incl_colombia,none,area_p_gt05_uncal_mha,1.2117041721293667,0.13568819207631122,1.3473923642056782,Mha,
+neotropics_incl_colombia,none,mean_p_grid_area_weighted,0.2536488526970259,0.22453458484819372,0.24515891156872502,p,
+neotropics_incl_colombia,none,authors_expected_area_mha,7.805565490762262,2.544945236913713,10.350510727675973,Mha,authors' published map split by OUR model's AOA (not the authors' AOA); NoData = 0
+neotropics_incl_colombia,none,authors_area_pct_gt50_mha,8.78658171240256,2.298006025452491,11.084587737855053,Mha,authors' map split by OUR model's AOA
+neotropics_incl_colombia,none,validation_accuracy_2000,0.7675684837185652,0.8354976859846653,0.7835127598171147,fraction,"Colombian validation points, 2000 inputs; class mix differs inside/outside, see balanced accuracy"
+neotropics_incl_colombia,none,validation_accuracy_regrowth_2000,0.6584626017508831,0.5599582898852972,0.6431466649372548,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,none,validation_accuracy_nonregrowth_2000,0.9018764475114619,0.9719582730840736,0.9238788546969746,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,none,validation_balanced_accuracy_2000,0.7801695246311725,0.7659582814846854,0.7835127598171148,fraction,"Colombian validation points, 2000 inputs"
+neotropics_incl_colombia,none,validation_n,94402.0,28954.0,123356.0,points,
+neotropics_incl_colombia,none,validation_share_regrowth,0.5517679710175631,0.33121503073841263,0.5,fraction,
+neotropics_incl_colombia,none,nonregrowth_n_2000,42314.0,19364.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2000 inputs"
+neotropics_incl_colombia,none,nonregrowth_mean_p_model_2000,0.25586732523514677,0.22276946911795087,0.24547615032912873,p,2000 inputs
+neotropics_incl_colombia,none,nonregrowth_share_gt05_model_2000,0.09812355248853807,0.028041726915926463,0.07612114530302538,fraction,2000 inputs
+neotropics_incl_colombia,none,nonregrowth_mean_p_authors_aoa2000,0.5531179105900296,0.4440263718008618,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2000 inputs; not the authors' AOA"
+neotropics_incl_colombia,none,nonregrowth_share_gt05_authors_aoa2000,0.5942951100943666,0.3780304210143799,0.5262547568883009,fraction,authors' score split by OUR AOA from 2000 inputs; not the authors' AOA
+neotropics_incl_colombia,none,nonregrowth_n_2018,41422.0,20256.0,61678.0,points,"Colombian non-regrowth validation points, AOA from 2018 inputs"
+neotropics_incl_colombia,none,nonregrowth_mean_p_model_2018,0.2378270001448506,0.2206778238546603,0.23219494795551088,p,2018 inputs
+neotropics_incl_colombia,none,nonregrowth_share_gt05_model_2018,0.07537057602240356,0.030163902053712482,0.06052401180323616,fraction,2018 inputs
+neotropics_incl_colombia,none,nonregrowth_mean_p_authors_aoa2018,0.5547522270359734,0.4454480909587409,0.5187959560324693,p,"authors' score (pct/100, NoData excluded) split by OUR AOA from 2018 inputs; not the authors' AOA"
+neotropics_incl_colombia,none,nonregrowth_share_gt05_authors_aoa2018,0.5986467409823297,0.37858100392234745,0.5262547568883009,fraction,authors' score split by OUR AOA from 2018 inputs; not the authors' AOA

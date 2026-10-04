@@ -12,6 +12,8 @@
 #   01b -> 02 -> 02b -> 03 (step 2) -> 03c [a,b,c] -> 03c [d,e optional] -> 04.
 # Diagnostic 3 (transferability): 02c (Neotropical sample) -> 03d (transfer test).
 #   Run on its own with `snakemake diag3`.
+# Area of applicability (Meyer & Pebesma 2021, CAST port): 03e, after diagnostic 3.
+#   Run on its own with `snakemake aoa`.
 #
 # Every rule lists its notebook as an input, so editing a notebook re-runs its rule
 # (and, through the outputs, everything downstream) under `--rerun-triggers mtime`.
@@ -49,6 +51,13 @@ DIAG3_FINAL = [
     f"{FIGURES}/diag3_training_cells.png",
 ]
 
+AOA_FINAL = [
+    f"{RESULTS}/aoa_summary.csv",
+    f"{RESULTS}/aoa_di_accuracy.csv",
+    f"{RESULTS}/aoa_healpix_d8.nc",
+    f"{FIGURES}/aoa_colombia.png",
+]
+
 STAGE_B_FINAL = [
     f"{RESULTS}/step2_replication_colombia.csv",
     f"{RESULTS}/step3_robustness_colombia.csv",
@@ -61,6 +70,7 @@ if SMOKE:
         input:
             STAGE_B_FINAL,
             DIAG3_FINAL,
+            AOA_FINAL,
 else:
     rule all:
         input:
@@ -69,6 +79,7 @@ else:
             "results/step1_reproduction_cri.csv",
             STAGE_B_FINAL,
             DIAG3_FINAL,
+            AOA_FINAL,
 
 
 rule diag3:
@@ -299,3 +310,22 @@ rule transfer_test:
     priority: 1
     shell:
         nb("03d_transfer_test.py")
+
+
+# ---------- 03e: Area of applicability (CAST trainDI/aoa port) of the step-2 and diagnostic-3 models ----------
+rule aoa:
+    input:
+        f"{NOTEBOOKS}/03e_area_of_applicability.py",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+        f"{CLEAN}/tile_sums.csv",
+        f"{CLEAN}/neotropics_samples.parquet",
+        f"{RESULTS}/diag3_transfer_colombia.csv",  # runs after diagnostic 3
+    output:
+        AOA_FINAL,
+    log:
+        f"{LOGS}/03e_area_of_applicability.log",
+    threads: workflow.cores
+    priority: 1
+    shell:
+        nb("03e_area_of_applicability.py")
