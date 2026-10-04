@@ -106,6 +106,7 @@ Transfer: Neotropical sample, random CV 0.892; blocked ~100/200/400 km 0.834/0.8
 Independent labels (MapBiomas Colombia Collection 3): random 0.778, blocked ~100 km 0.750; forward 2012–2024: 0.717 (AUC 0.80). Adding land-use history 1985–1999: 0.834 (blocked 0.813).
 Area (every 30 m pixel of the prediction domain): authors' map 10.28 Mha; our model 3.93 Mha as probability × area, 0.18 Mha calibrated to the regrowth prevalence. Forward test: probability × area predicted 7.37 Mha of 2012–2024 regrowth against 1.00 Mha observed; calibrated with the 2000–2012 prevalence, 0.98 Mha.
 Authors' map: scores > 0.5 on 52.6 % of Colombian non-regrowth validation points (Fagan labels) and 52.0 % (MapBiomas labels); our model 5.8 %. The spatial pattern agrees (HEALPix depth 8, r = 0.86).
+Data and code: derived dataset doi:10.5281/zenodo.23138775 (HEALPix maps and sample tables); software doi:10.5281/zenodo.23139192.
 ```
 
 <!-- field: limitations -->
