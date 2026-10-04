@@ -45,6 +45,17 @@
 # product GlobFire is derived from. The source used is written to
 # `data/raw/burned_source.json`.
 #
+# **Run time: this step can take very long.** In the run rendered here
+# (2026-10-03) it took 2 h 27 min. The PANGAEA host answered "503 Service
+# Unavailable" so often that 161 of the 204 GlobFire monthly files needed retries
+# (433 "retry …" lines in the output below; the worst file needed 7 of its 8
+# attempts). All 204 months were finally downloaded from GlobFire, with no failed
+# month and no fallback (`burned_source.json`: `"source": "globfire"`). The retry
+# lines are therefore noise, not errors. Each retry waits 10, 20, … 70 s, and a
+# stalled connection can hold an attempt for up to 10 min, so on a bad day this
+# step can run for many hours, or end on the MCD64A1 fallback. Burned area is used
+# only by robustness check 3(c), where it was not selected into the final model.
+#
 # **Credentials.** SRTM (and the MCD64A1 fallback) need one: NASA Earthdata, read by `earthaccess` from
 # `~/.netrc` (`machine urs.earthdata.nasa.gov login … password …`). In CI, write
 # that file from a secret (e.g. `EARTHDATA_NETRC_BASE64`). Nothing else needs a login.
