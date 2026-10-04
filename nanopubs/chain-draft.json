@@ -1,0 +1,227 @@
+{
+  "schema_version": "1.0",
+  "kind": "forrt-chain-draft",
+  "chain_shape": "paper-rooted",
+  "source": {
+    "repository": "https://github.com/annefou/natural-regeneration-replication",
+    "commit": "480980270bd717cef7470d5cd11b567e52cbcb60",
+    "figure": "figures/main_result.png"
+  },
+  "steps": [
+    {
+      "step": "01_quote",
+      "template_key": "ANNOTATE_QUOTATION",
+      "template_uri": "https://w3id.org/np/RA24onqmqTMsraJ7ypYFOuckmNWpo4Zv5gsLqhXt7xYPU",
+      "prefill": {
+        "paper": "10.1038/s41586-024-08106-4",
+        "quotation": "The validation accuracy estimate of 87.9% was based on an independent set of 4.87 million random points (equally stratified with respect to the two levels of the dependent variable; further details are provided in Supplementary Information 1 and Extended Data Fig. 4).",
+        "comment": "This accuracy underpins the paper's maps and area estimates, and The Unjournal's evaluators (doi:10.21428/d28e8e57.5411b150) doubted it: predictors overlap the outcome period, and random validation may overstate performance. We test it in Colombia with independent code and open data: reproducing the published figures, then validating with spatial blocks, a model trained elsewhere, independent MapBiomas labels and a forward test (2000-2012 to 2012-2024)."
+      },
+      "provenance": {
+        "paper": "CITATION.cff",
+        "quotation": "nanopubs/drafts/01_quote.md",
+        "comment": "nanopubs/drafts/01_quote.md"
+      },
+      "published_uri": null
+    },
+    {
+      "step": "02_aida",
+      "template_key": "AIDA_SENTENCE",
+      "template_uri": "https://w3id.org/np/RALmXhDw3rHcMveTgbv8VtWxijUHwnSqhCmtJFIPKWVaA",
+      "prefill": {
+        "aida": "A random-forest model of natural forest regeneration in tropical and subtropical forest biomes, trained on natural regrowth that occurred between 2000 and 2016 and applied at 30 m resolution, classifies independent validation points, equally stratified between regenerated and not regenerated, with 87.9 % accuracy.",
+        "topic": [
+          {
+            "uri": "http://www.wikidata.org/entity/Q11442890",
+            "label": "natural regeneration"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q245652",
+            "label": "ensemble learning"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q1048194",
+            "label": "tropical forest"
+          }
+        ],
+        "st3": [
+          {
+            "dataset": "https://doi.org/10.5281/zenodo.7428804"
+          }
+        ]
+      },
+      "provenance": {
+        "aida": "nanopubs/drafts/02_aida.md",
+        "topic": "nanopubs/drafts/02_aida.md + Wikidata",
+        "st3": "nanopubs/drafts/02_aida.md"
+      },
+      "published_uri": null
+    },
+    {
+      "step": "03_claim",
+      "template_key": "FORRT_CLAIM",
+      "template_uri": "https://w3id.org/np/RAZWyM8D16ya3S1zhCvrG1f0iSpd9-8onVWp0FTvvX7LQ",
+      "prefill": {
+        "claim": "williams2024-natural-regeneration-rf-accuracy",
+        "label": "Natural-regeneration random forest (Williams et al. 2024): 87.9 % validation accuracy",
+        "forrtType": "https://w3id.org/sciencelive/o/terms/model_performance-FORRT-Claim",
+        "source": "https://doi.org/10.1038/s41586-024-08106-4"
+      },
+      "provenance": {
+        "claim": "nanopubs/drafts/03_claim.md",
+        "label": "nanopubs/drafts/03_claim.md",
+        "forrtType": "nanopubs/drafts/03_claim.md",
+        "source": "CITATION.cff"
+      },
+      "manual": [
+        "forrtType"
+      ],
+      "published_uri": null
+    },
+    {
+      "step": "04_study",
+      "template_key": "FORRT_REPLICATION",
+      "template_uri": "https://w3id.org/np/RAuLEjPp-4dTvPwMkfHggTto1CgjIftiGRAgHlyeEonjQ",
+      "prefill": {
+        "study": "williams2024-natural-regeneration-colombia",
+        "label": "Reproduction and independent replication in Colombia of the 87.9 % validation accuracy of the natural-regeneration random forest (Williams et al. 2024)",
+        "type": "https://w3id.org/sciencelive/o/terms/Reproduction-Replication-Study",
+        "scope": "The claim tested is the paper's reported validation accuracy (87.9 %) of its random-forest model of where natural regeneration occurs, and whether that accuracy describes the model where it is used: in places and periods not seen in training. The test is restricted to Colombia, one of the five countries holding 52 % of the estimated potential.\nIn scope: (1) whether the authors' published map reproduces Colombia's area figures in Supplementary Tables 3 and 4; (2) whether an independent implementation reaches the reported accuracy under the paper's validation design; (3) the accuracy under spatially blocked, cross-country and forward-in-time validation, with the paper's training labels and with independent labels; (4) the robustness checks suggested by The Unjournal's evaluators (doi:10.21428/d28e8e57.5411b150).\nOut of scope: the pantropical totals (215 Mha, 23.4 Gt C), the carbon estimates and the five-country share.",
+        "methodology": "Reproduction: the authors' 30 m continuous and binary maps (doi:10.5281/zenodo.7428804) were summed over Colombia (GADM 4.1) with exact WGS84 pixel areas, Mollweide areas and a nominal 0.09 ha per pixel, and compared with Supplementary Tables 3 and 4; Costa Rica was checked the same way.\nReplication: new Python code. A random forest (scikit-learn set to R randomForest defaults, 500 trees) with the paper's ten biophysical predictors rebuilt from open data: forest density in a 1 km disk and distance to forest from Hansen Global Forest Change v1.13 (tree cover at least 30 %), SoilGrids 2017 organic carbon density and pH (0-30 cm), WorldClim 2.1 bioclimatic principal components 1-4, ESA CCI land cover and RESOLVE 2017 biome; natural-regrowth labels from Fagan et al. (2022). Balanced training sample (39,522 points), independent balanced validation points, and prediction with 2018 forest and 2015 land cover on every 30 m pixel, aggregated conservatively to HEALPix on WGS84.\nValidation beyond the paper: random 5-fold cross-validation; spatially blocked 5-fold cross-validation with HEALPix cells of about 25 to 400 km (repeated with latitude/longitude squares); a model trained on a Neotropical sample excluding Colombia; independent labels from MapBiomas Colombia Collection 3, with a forward test (trained on 2000-2012 regrowth, tested on 2012-2024); area of applicability (Meyer and Pebesma 2021).\nRobustness checks: land cover from 1992 or 1999; variable selection with and without NPP, burned area and road density; gradient boosting; CHELSA climate; land-use history 1985-1999. Expected areas are also calibrated to the observed regrowth prevalence.\nCode: doi:10.5281/zenodo.23139192. Derived data: doi:10.5281/zenodo.23138775.",
+        "deviation": "The authors' code is not public, so details the paper leaves open were chosen by us (all listed in docs/deviations.md): tree-cover threshold 30 %; forest 2018 = tree cover 2000 minus loss 2001-2018 from Hansen v1.13 (the authors used v1.6); forest density in a 1 km-radius disk; distance to forest capped at 25 km; R randomForest defaults reproduced in scikit-learn; our own mapping of ESA CCI classes to 11 classes; the climate principal components re-derived, because their loadings are not published.\nThe study covers Colombia only, with sample sizes scaled to Colombia's share of the regrowth patches. Predictors used only in the paper's model comparison were partly unavailable (WDPA August 2020, distance to water); they are not in the final model.\nAdditions not in the paper: spatially blocked, cross-country and forward-in-time validation, independent MapBiomas labels, calibration to the regrowth prevalence, land-use history, and full-resolution HEALPix aggregation.",
+        "keywordSelection": [
+          {
+            "uri": "http://www.wikidata.org/entity/Q11442890",
+            "label": "natural regeneration"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q2140056",
+            "label": "secondary forest"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q245748",
+            "label": "random forest"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q199687",
+            "label": "remote sensing"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q3001793",
+            "label": "land cover"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q739",
+            "label": "Colombia"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q5629401",
+            "label": "HEALPix"
+          },
+          {
+            "uri": "http://www.wikidata.org/entity/Q115768950",
+            "label": "MapBiomas"
+          }
+        ],
+        "disciplineSelection": {
+          "uri": "http://www.wikidata.org/entity/Q2249329",
+          "label": "forest ecology"
+        }
+      },
+      "provenance": {
+        "study": "nanopubs/drafts/04_study.md",
+        "label": "nanopubs/drafts/04_study.md",
+        "type": "nanopubs/drafts/04_study.md",
+        "scope": "nanopubs/drafts/04_study.md",
+        "methodology": "nanopubs/drafts/04_study.md",
+        "deviation": "nanopubs/drafts/04_study.md",
+        "keywordSelection": "nanopubs/drafts/04_study.md + Wikidata",
+        "disciplineSelection": "nanopubs/drafts/04_study.md + Wikidata"
+      },
+      "manual": [
+        "type"
+      ],
+      "published_uri": null
+    },
+    {
+      "step": "05_outcome",
+      "template_key": "FORRT_REPLICATION_OUTCOME",
+      "template_uri": "https://w3id.org/np/RA2zljn0Nw9SadppOyxZoh-_Rxosslrq-vYG-p9SttnJE",
+      "prefill": {
+        "outcome": "williams2024-rf-accuracy-colombia-outcome",
+        "label": "Replication outcome: 87.9 % validation accuracy of the natural-regeneration random forest (Williams et al. 2024), tested in Colombia",
+        "repo": "https://doi.org/10.5281/zenodo.23139192",
+        "date": "2026-10-04",
+        "validationStatus": "https://w3id.org/sciencelive/o/terms/PartiallySupported",
+        "conclusion": "Partially supported (Colombia). Rebuilt independently with the paper's ten biophysical predictors and the Fagan et al. (2022) regrowth labels, the random forest reproduces the reported accuracy under the paper's own validation design: 0.887 on independent balanced random points (paper: 0.879). The accuracy does not carry over to the map's intended use, predicting regeneration in places and periods not seen in training. Spatially blocked cross-validation gives 0.854–0.869 within Colombia and 0.812–0.834 across the Neotropics; a model trained outside Colombia reaches 0.767 there; and a forward test with independent MapBiomas labels (trained on 2000–2012 regrowth, tested on 2012–2024) reaches 0.717 balanced accuracy. The 87.9 % is therefore a sound measure of agreement with the training labels under random validation, but it overstates out-of-sample predictive accuracy by up to 16 percentage points. The protocol follows the robustness checks suggested in The Unjournal's evaluation of the paper (doi:10.21428/d28e8e57.5411b150).",
+        "evidence": "All values Colombia; accuracy on balanced classes (0.5 = chance); areas with exact WGS84 pixel areas.\nReproduction (authors' Zenodo rasters, 10.5281/zenodo.7428804): Supp. Table 4 binary area 13.70 Mha is matched only by a nominal 0.09 ha pixel count (13.699 Mha; exact area 11.642 Mha), as in Costa Rica (1.219 vs 1.22 Mha; exact 1.026). Supp. Table 3 expected area 11.19 Mha is not reproduced (10.514 Mha exact; 10.584 Mha Mollweide).\nReplication, Fagan labels: validation accuracy 0.887, out-of-bag 0.884; random 5-fold CV 0.887; HEALPix-blocked CV (WGS84, ~100/50/25 km) 0.854/0.864/0.869.\nRobustness: land cover 1992 or 1999 instead of 2000: 0.887/0.887. Variable selection with or without NPP, burned area and road density: 0.897/0.893. Gradient boosting: 0.877.\nTransfer: Neotropical sample, random CV 0.892; blocked ~100/200/400 km 0.834/0.823/0.812. Trained without Colombia, tested on Colombia: 0.767.\nIndependent labels (MapBiomas Colombia Collection 3): random 0.778, blocked ~100 km 0.750; forward 2012–2024: 0.717 (AUC 0.80). Adding land-use history 1985–1999: 0.834 (blocked 0.813).\nArea (every 30 m pixel of the prediction domain): authors' map 10.28 Mha; our model 3.93 Mha as probability × area, 0.18 Mha calibrated to the regrowth prevalence. Forward test: probability × area predicted 7.37 Mha of 2012–2024 regrowth against 1.00 Mha observed; calibrated with the 2000–2012 prevalence, 0.98 Mha.\nAuthors' map: scores > 0.5 on 52.6 % of Colombian non-regrowth validation points (Fagan labels) and 52.0 % (MapBiomas labels); our model 5.8 %. The spatial pattern agrees (HEALPix depth 8, r = 0.86).",
+        "confidenceLevel": "https://w3id.org/sciencelive/o/terms/Moderate",
+        "limitations": "Colombia only: the pantropical figures (215 Mha, 23.4 Gt C) and the five-country share were not tested.\nIndependent implementation: the authors' code is not public, so details the paper leaves open were chosen by us (tree-cover threshold 30 %, random-forest settings set to R defaults, 1 km-radius forest density, newer data versions such as Hansen GFC v1.13 instead of v1.6); all are listed in docs/deviations.md. Why the authors' map scores about 2.6 times higher than any of our models remains unexplained.\nLabels: Fagan and MapBiomas regrowth disagree strongly (1.25 Mha vs 0.25 Mha of 2000–2012 regrowth; only 16 % of Fagan regrowth area is MapBiomas regrowth). Both are satellite classifications; no independent reference sample was available (MapBiomas' interpreted validation points are not public), so absolute regrowth areas and on-the-ground accuracy remain uncertain.\nPredictors only used in the paper's model comparison could not all be obtained (WDPA August 2020, distance to water); they are not in the final model. Our model's areas use every 30 m pixel; the 1-in-100 systematic sample used in step 2 over-estimated them by 0.7–1.5 % (cause not identified), which changes no conclusion. The calibrated areas assume the label prevalence equals the true prevalence."
+      },
+      "provenance": {
+        "outcome": "nanopubs/drafts/05_outcome.md",
+        "label": "nanopubs/drafts/05_outcome.md",
+        "repo": "CITATION.cff",
+        "date": "CITATION.cff",
+        "validationStatus": "nanopubs/drafts/05_outcome.md",
+        "conclusion": "nanopubs/drafts/05_outcome.md",
+        "evidence": "nanopubs/drafts/05_outcome.md",
+        "confidenceLevel": "nanopubs/drafts/05_outcome.md",
+        "limitations": "nanopubs/drafts/05_outcome.md"
+      },
+      "manual": [
+        "validationStatus",
+        "confidenceLevel"
+      ],
+      "published_uri": null
+    },
+    {
+      "step": "06_citation",
+      "template_key": "CITATION_CITO",
+      "template_uri": "https://w3id.org/np/RA43F9EoOuzF0xoNUnCMNyFsfIqlsuWDdPHCnN0wCdCAw",
+      "prefill": {
+        "st02": [
+          {
+            "cites": "http://purl.org/spar/cito/qualifies",
+            "cited": "https://doi.org/10.1038/s41586-024-08106-4"
+          },
+          {
+            "cites": "http://purl.org/spar/cito/usesMethodIn",
+            "cited": "https://doi.org/10.21428/d28e8e57.5411b150"
+          }
+        ]
+      },
+      "provenance": {
+        "st02": "cites = validation status (see 05_outcome); cited = CITATION.cff references[article]; further rows = nanopubs/drafts/06_citation.md"
+      },
+      "published_uri": null
+    }
+  ],
+  "carry_forward": [
+    {
+      "from": "01_quote",
+      "into": "02_aida",
+      "field": "project"
+    },
+    {
+      "from": "02_aida",
+      "into": "03_claim",
+      "field": "aida"
+    },
+    {
+      "from": "03_claim",
+      "into": "04_study",
+      "field": "claim"
+    },
+    {
+      "from": "04_study",
+      "into": "05_outcome",
+      "field": "study"
+    },
+    {
+      "from": "05_outcome",
+      "into": "06_citation",
+      "field": "work"
+    }
+  ]
+}

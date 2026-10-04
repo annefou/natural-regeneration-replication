@@ -58,10 +58,10 @@ phrase here. Leave empty for a single short quote.
 
 Why this quote matters and what the replication tests. Connect the paper's claim to the work this repo does. Don't repeat the quote.
 
-<!-- TODO (Anne): write your own interpretation here (max. 800 characters). Left blank on purpose by the paper-analyst agent. Alternative quotes (215 Mha abstract headline; 52 % five countries) are listed in 00_paper_summary.md. -->
+<!-- PROPOSED by Claude on 2026-10-04 for Anne to edit or replace (it is her comment; <= 500 characters, the live form limit). Alternative quotes are listed in 00_paper_summary.md. -->
 
 ```
-
+This accuracy underpins the paper's maps and area estimates, and The Unjournal's evaluators (doi:10.21428/d28e8e57.5411b150) doubted it: predictors overlap the outcome period, and random validation may overstate performance. We test it in Colombia with independent code and open data: reproducing the published figures, then validating with spatial blocks, a model trained elsewhere, independent MapBiomas labels and a forward test (2000-2012 to 2012-2024).
 ```
 
 ## Publication note
