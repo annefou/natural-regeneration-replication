@@ -1,0 +1,32 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job        count
+-------  -------
+figures        1
+total          1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 13:45:58 2026]
+localrule figures:
+    input: notebooks/04_figures.py, results/step1_reproduction_colombia.csv, results/step2_replication_colombia.csv, results/step3_robustness_colombia.csv, results/step3_spatial_cv.csv, results/diag3_transfer_colombia.csv, results/diag3_transfer_curve.csv, results/mapbiomas_e2_forward.csv, results/mapbiomas_e3_history.csv
+    output: figures/main_result.png, figures/step3_overview.png, results/summary.csv
+    log: results/logs/04_figures.log
+    jobid: 0
+    reason: Missing output files: figures/step3_overview.png
+    priority: 5
+    resources: tmpdir=/tmp
+[jupytext] Reading 04_figures.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 04_figures.ipynb (destination file replaced [use --update to preserve cell outputs and ids])
+[Sun Oct  4 13:46:03 2026]
+Finished jobid: 0 (Rule: figures)
+1 of 1 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T134558.632535.snakemake.log

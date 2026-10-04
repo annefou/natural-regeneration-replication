@@ -280,8 +280,13 @@ rule figures:
         f"{RESULTS}/step2_replication_colombia.csv",
         f"{RESULTS}/step3_robustness_colombia.csv",
         f"{RESULTS}/step3_spatial_cv.csv",
+        f"{RESULTS}/diag3_transfer_colombia.csv",
+        f"{RESULTS}/diag3_transfer_curve.csv",
+        f"{RESULTS}/mapbiomas_e2_forward.csv",
+        f"{RESULTS}/mapbiomas_e3_history.csv",
     output:
         f"{FIGURES}/main_result.png",
+        f"{FIGURES}/step3_overview.png",
         f"{RESULTS}/summary.csv",
     log:
         f"{LOGS}/04_figures.log",

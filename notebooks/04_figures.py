@@ -14,10 +14,13 @@
 # ---
 
 # %% [markdown]
-# # 04 — Main figure: paper vs reproduction vs replication vs robustness (Colombia)
+# # 04 — Figures (Colombia)
 #
-# Left: area with potential for natural regeneration (Mha, exact WGS84 areas).
-# Right: accuracy. All values are read from `results/*.csv`.
+# 1. `step3_overview.png`: every step-1/2/3 variant (area and accuracy).
+# 2. `main_result.png`: the headline comparison — how the 87.9 % accuracy claim
+#    holds under stricter validation, and what the area figures mean.
+#
+# All values are read from `results/*.csv`, except the paper's published numbers.
 
 # %%
 import os
@@ -107,10 +110,100 @@ for yy, a in zip(y2, accs.accuracy):
 ax2.set_xlabel("accuracy (balanced classes)")
 ax2.set_title("Model accuracy")
 fig.tight_layout()
-fig.savefig(FIGURES / "main_result.png", dpi=150, bbox_inches="tight")
+fig.savefig(FIGURES / "step3_overview.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # %%
 summary = pd.concat([areas.assign(table="area"), accs.assign(table="accuracy")], ignore_index=True)
 summary.to_csv(RESULTS / "summary.csv", index=False)
 print(summary.to_string(index=False, float_format=lambda v: f"{v:.4f}"))
+
+# %% [markdown]
+# ## Main figure
+#
+# A: accuracy of the claim under increasingly strict validation, by label source.
+# B: Colombia's area with potential, all values within our prediction domain except the
+#    paper's country total. C: forward test, predicted vs observed regrowth area.
+
+# %%
+GREY, BLUE, ORANGE, AQUA, INK, INK2 = "#52514e", "#2a78d6", "#eb6834", "#1baf7a", "#0b0b0b", "#52514e"
+d3 = pd.read_csv(RESULTS / "diag3_transfer_colombia.csv").set_index("model")
+tc = pd.read_csv(RESULTS / "diag3_transfer_curve.csv").set_index("scheme")
+e2 = pd.read_csv(RESULTS / "mapbiomas_e2_forward.csv")
+e3 = pd.read_csv(RESULTS / "mapbiomas_e3_history.csv")
+
+
+def e2v(scope: str, metric: str) -> float:
+    return float(e2[(e2.scope == scope) & (e2.metric == metric)].value.iloc[0])
+
+
+def e3v(metric: str) -> float:
+    return float(e3[e3.metric == metric].value.iloc[0])
+
+
+acc_main = [
+    ("Fagan labels (as in the paper)", None, None),
+    ("Paper: random validation points", 0.879, GREY),
+    ("Ours: random validation points", s2.loc["validation_accuracy", "value"], ORANGE),
+    ("Ours: blocked CV, ~100 km (Colombia)", cv.loc["healpix_d6", "mean_accuracy"], ORANGE),
+    ("Ours: blocked CV, ~100 km (Neotropics)", tc.loc["healpix_d6", "mean_accuracy"], ORANGE),
+    ("Ours: blocked CV, ~400 km (Neotropics)", tc.loc["healpix_d4", "mean_accuracy"], ORANGE),
+    ("Ours: trained elsewhere, applied to Colombia", d3.loc["neotropics_excl_colombia", "colombia_val_accuracy"], ORANGE),
+    ("MapBiomas labels (independent)", None, None),
+    ("Random validation, 2000–2012", e2v("period1_random_holdout", "balanced_accuracy"), AQUA),
+    ("Blocked CV, ~100 km, 2000–2012", e2v("period1_cv", "cv_healpix_d6_balanced_accuracy"), AQUA),
+    ("Forward: trained 2000–2012, tested 2012–2024", e2v("period2_forward_all", "balanced_accuracy"), AQUA),
+    ("+ land-use history 1985–1999, random", e3v("validation_balanced_accuracy"), AQUA),
+    ("+ land-use history 1985–1999, blocked ~100 km", e3v("cv_healpix_d6_balanced_accuracy"), AQUA),
+]
+area_main = [
+    ("Paper (Supp. Table 3, whole country)", 11.19, GREY),
+    ("Authors' map, exact pixel areas", s2.loc["authors_expected_in_pred_exact_mha", "value"], BLUE),
+    ("Our model, probability × area", s2.loc["expected_area_uncalibrated_mha", "value"], ORANGE),
+    ("Our model, calibrated to regrowth prevalence", s2.loc["expected_area_prior_shift_mha", "value"], ORANGE),
+]
+fw_main = [
+    ("Predicted, probability × area", e2v("period2_forward_all", "predicted_regrowth_area_uncalibrated_mha"), AQUA),
+    ("Predicted, calibrated (2000–2012 prevalence)", e2v("period2_forward_all", "predicted_regrowth_area_prior_shift_pi1_mha"), AQUA),
+    ("Observed (MapBiomas)", e2v("period2_forward_all", "observed_regrowth_area_mha"), GREY),
+]
+
+
+def hbars(ax: plt.Axes, rows: list, fmt: str, xmax: float, xmin: float = 0.0) -> None:
+    n = len(rows)
+    for i, (lab, val, col) in enumerate(rows):
+        yy = n - 1 - i
+        if val is None:
+            ax.text(xmin, yy, lab, fontsize=9, fontweight="bold", color=INK, va="center")
+            continue
+        ax.barh(yy, val - xmin, left=xmin, height=0.62, color=col, edgecolor="white", linewidth=2)
+        ax.text(val + (xmax - xmin) * 0.01, yy, format(val, fmt), va="center", fontsize=8, color=INK2)
+    ax.set_yticks(range(n), [("" if v is None else lab) for lab, v, _ in rows][::-1], fontsize=8.5)
+    ax.set_xlim(xmin, xmax)
+    ax.set_ylim(-0.6, n - 0.2)
+    ax.set_axisbelow(True)
+    ax.grid(axis="y", visible=False)
+    ax.tick_params(axis="y", length=0)
+    for sp in ("top", "right", "left"):
+        ax.spines[sp].set_visible(False)
+
+
+fig = plt.figure(figsize=(13, 7.2))
+gs = fig.add_gridspec(2, 2, width_ratios=[1.15, 1], height_ratios=[1.2, 1], wspace=0.75, hspace=0.55)
+axA, axB, axC = fig.add_subplot(gs[:, 0]), fig.add_subplot(gs[0, 1]), fig.add_subplot(gs[1, 1])
+hbars(axA, acc_main, ".3f", 1.0, 0.5)
+axA.axvline(0.879, color=GREY, ls="--", lw=1)
+axA.set_xlabel("accuracy (balanced classes; 0.5 = chance)")
+axA.set_title("A. The 87.9 % accuracy claim under stricter validation", loc="left", fontsize=10.5)
+hbars(axB, area_main, ".2f", 13.5)
+axB.set_xlabel("Mha (exact WGS84 pixel areas)")
+axB.set_title("B. Colombia: area with regeneration potential", loc="left", fontsize=10.5)
+hbars(axC, fw_main, ".2f", 8.5)
+axC.set_xlabel("Mha of regrowth, 2012–2024 (MapBiomas-labelled area)")
+axC.set_title("C. Forward test: predicted vs observed regrowth", loc="left", fontsize=10.5)
+handles = [plt.Rectangle((0, 0), 1, 1, color=c) for c in (GREY, BLUE, ORANGE, AQUA)]
+fig.legend(handles, ["Paper / observed", "Reproduction (authors' map)", "Replication, Fagan labels",
+                     "Replication, MapBiomas labels"], loc="lower center", ncol=4, frameon=False, fontsize=9,
+           bbox_to_anchor=(0.5, -0.02))
+fig.savefig(FIGURES / "main_result.png", dpi=150, bbox_inches="tight")
+plt.show()
