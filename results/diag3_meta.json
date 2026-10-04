@@ -1,0 +1,9 @@
+{
+  "n_train": {
+    "colombia": 39522,
+    "neotropics_excl_colombia": 39522,
+    "neotropics_incl_colombia": 39522
+  },
+  "n_neo_pool": 52012,
+  "n_trees": 500
+}

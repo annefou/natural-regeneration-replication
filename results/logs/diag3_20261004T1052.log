@@ -1,0 +1,67 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                  count
+-----------------  -------
+neotropics_sample        1
+transfer_test            1
+diag3                    1
+total                    3
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 10:52:34 2026]
+localrule neotropics_sample:
+    input: notebooks/02c_neotropics_sample.py, data/clean/clean_meta.json, data/raw/sources_predictors.json, data/raw/gadm/gadm41_COL.gpkg
+    output: data/clean/neotropics_samples.parquet, data/clean/neotropics_cells.parquet, data/clean/neotropics_meta.json, figures/diag3_training_cells.png
+    log: results/logs/02c_neotropics_sample.log
+    jobid: 6
+    reason: Missing output files: data/clean/neotropics_samples.parquet, figures/diag3_training_cells.png
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 02c_neotropics_sample.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 02c_neotropics_sample.ipynb
+[Sun Oct  4 11:10:57 2026]
+Finished jobid: 6 (Rule: neotropics_sample)
+1 of 3 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 11:10:57 2026]
+localrule transfer_test:
+    input: notebooks/03d_transfer_test.py, data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv, data/clean/neotropics_samples.parquet
+    output: results/diag3_transfer_colombia.csv, results/diag3_transfer_curve.csv, results/diag3_meta.json, figures/diag3_transfer.png
+    log: results/logs/03d_transfer_test.log
+    jobid: 1
+    reason: Missing output files: results/diag3_transfer_colombia.csv, results/diag3_transfer_curve.csv, figures/diag3_transfer.png; Input files updated by another job: data/clean/neotropics_samples.parquet
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03d_transfer_test.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03d_transfer_test.ipynb
+[Sun Oct  4 11:13:00 2026]
+Finished jobid: 1 (Rule: transfer_test)
+2 of 3 steps (67%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 11:13:00 2026]
+localrule diag3:
+    input: results/diag3_transfer_colombia.csv, results/diag3_transfer_curve.csv, figures/diag3_transfer.png, figures/diag3_training_cells.png
+    jobid: 0
+    reason: Input files updated by another job: results/diag3_transfer_colombia.csv, figures/diag3_training_cells.png, results/diag3_transfer_curve.csv, figures/diag3_transfer.png
+    resources: tmpdir=/tmp
+[Sun Oct  4 11:13:00 2026]
+Finished jobid: 0 (Rule: diag3)
+3 of 3 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T105234.740393.snakemake.log

@@ -1,0 +1,222 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                  count
+-----------------  -------
+neotropics_sample        1
+transfer_test            1
+diag3                    1
+total                    3
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 10:51:57 2026]
+localrule neotropics_sample:
+    input: notebooks/02c_neotropics_sample.py, data/clean/clean_meta.json, data/raw/sources_predictors.json, data/raw/gadm/gadm41_COL.gpkg
+    output: data/clean/neotropics_samples.parquet, data/clean/neotropics_cells.parquet, data/clean/neotropics_meta.json, figures/diag3_training_cells.png
+    log: results/logs/02c_neotropics_sample.log
+    jobid: 6
+    reason: Missing output files: figures/diag3_training_cells.png, data/clean/neotropics_samples.parquet
+    priority: 1
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 02c_neotropics_sample.py in format py
+[jupytext] Executing notebook with kernel python3
+Traceback (most recent call last):
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/bin/jupytext", line 10, in <module>
+    sys.exit(jupytext())
+             ^^^^^^^^^^
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/jupytext/cli.py", line 500, in jupytext
+    exit_code += jupytext_single_file(nb_file, args, log, notary=notary)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/jupytext/cli.py", line 748, in jupytext_single_file
+    exec_proc.preprocess(notebook, resources=resources)
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+FAGAN_URL = ("https://gfw2-data.s3.amazonaws.com/plantations/pantropical_tree_plantation_expansion/"
+             "pantropical_tree_plantation_expansion_2000_2012.gpkg")
+# "None": gain patches Fagan et al. left unclassified (e.g. missing Sentinel-1 data);
+# code 4 keeps them out of both classes (class 0 requires code 0).
+FAGAN_CODE = {"regrowth": 1, "plantation": 2, "open": 3, "None": 4}
+
+
+def cell_polygon(cell: int) -> shapely.Polygon:
+    lon, lat = vertices(np.array([cell], dtype="uint64"), CELL_DEPTH, ellipsoid="WGS84")
+    lon = (np.asarray(lon)[0] + 180) % 360 - 180
+    return shapely.Polygon(np.column_stack([lon, np.asarray(lat)[0]]))
+
+
+sel["bbox"] = [shapely.buffer(cell_polygon(c), 0.1).bounds for c in sel.index]
+fagan_out = RAW / "fagan" / ("fagan2022_neotropics_smoke.parquet" if SMOKE else "fagan2022_neotropics_cells.parquet")
+fagan_cells = fagan_out.with_suffix(".cells.json")
+if fagan_out.exists() and (not fagan_cells.exists() or json.load(open(fagan_cells)) != sorted(int(c) for c in sel.index)):
+    fagan_out.unlink()  # cached for another cell selection
+
+
+def fagan_cell(bbox: tuple[float, float, float, float]) -> list[tuple]:
+    """All Fagan features whose envelope intersects bbox, from every layer (own OGR connection per thread)."""
+    x0, y0, x1, y1 = bbox
+    ds = ogr.Open("/vsicurl/" + FAGAN_URL)
+    out = []
+    for i in range(ds.GetLayerCount()):
+        layer = ds.GetLayer(i)
+        lx0, lx1, ly0, ly1 = layer.GetExtent()
+        if lx1 < x0 or lx0 > x1 or ly1 < y0 or ly0 > y1:
+            continue
+        layer.SetSpatialFilterRect(x0, y0, x1, y1)
+        out += [(layer.GetName(), f.GetFID(), f.GetField("pred3class"), f.GetField("conf_rank"),
+                 bytes(f.GetGeometryRef().ExportToWkb())) for f in layer]
+    return out
+
+
+if not fagan_out.exists():
+    t0 = time.time()
+    with ThreadPoolExecutor(8) as ex:
+        parts = list(ex.map(fagan_cell, sel.bbox))
+    df = (pd.DataFrame([r for part in parts for r in part], columns=["layer", "fid", "pred3class", "conf_rank", "wkb"])
+          .drop_duplicates(["layer", "fid"]))
+    print(f"Fagan features read in {time.time() - t0:.0f} s")
+    fagan = gpd.GeoDataFrame(df.drop(columns="wkb"), geometry=shapely.from_wkb(df.wkb), crs="EPSG:4326")
+    fagan.to_parquet(fagan_out)
+    json.dump(sorted(int(c) for c in sel.index), open(fagan_cells, "w"))
+fagan = gpd.read_parquet(fagan_out)
+fagan["code"] = fagan.pred3class.map(FAGAN_CODE).astype("uint8")
+fagan_tree = shapely.STRtree(fagan.geometry.values)
+print(len(fagan), "Fagan polygons;", fagan.pred3class.value_counts().to_dict())
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mIntCastingNaNError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 48[39m
+[32m     44[39m     fagan = gpd.GeoDataFrame(df.drop(columns=[33m"wkb"[39m), geometry=shapely.from_wkb(df.wkb), crs=[33m"EPSG:4326"[39m)
+[32m     45[39m     fagan.to_parquet(fagan_out)
+[32m     46[39m     json.dump(sorted(int(c) [38;5;28;01mfor[39;00m c [38;5;28;01min[39;00m sel.index), open(fagan_cells, [33m"w"[39m))
+[32m     47[39m fagan = gpd.read_parquet(fagan_out)
+[32m---> [39m[32m48[39m fagan[[33m"code"[39m] = fagan.pred3class.map(FAGAN_CODE).astype([33m"uint8"[39m)
+[32m     49[39m fagan_tree = shapely.STRtree(fagan.geometry.values)
+[32m     50[39m print(len(fagan), [33m"Fagan polygons;"[39m, fagan.pred3class.value_counts().to_dict())
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/generic.py:6665[39m, in [36mNDFrame.astype[39m[34m(self, dtype, copy, errors)[39m
+[32m   6661[39m             ]
+[32m   6662[39m 
+[32m   6663[39m         [38;5;28;01melse[39;00m:
+[32m   6664[39m             [38;5;66;03m# else, only a single dtype is given[39;00m
+[32m-> [39m[32m6665[39m             new_data = self._mgr.astype(dtype=dtype, copy=copy, errors=errors)
+[32m   6666[39m             res = self._constructor_from_mgr(new_data, axes=new_data.axes)
+[32m   6667[39m             [38;5;28;01mreturn[39;00m res.__finalize__(self, method=[33m"astype"[39m)
+[32m   6668[39m 
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/internals/managers.py:449[39m, in [36mBaseBlockManager.astype[39m[34m(self, dtype, copy, errors)[39m
+[32m    446[39m [38;5;28;01melif[39;00m using_copy_on_write():
+[32m    447[39m     copy = [38;5;28;01mFalse[39;00m
+[32m--> [39m[32m449[39m [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mapply[39;49m[30;43m([39;49m
+[32m    450[39m [30;43m    [39;49m[30;43m"[39;49m[30;43mastype[39;49m[30;43m"[39;49m[30;43m,[39;49m
+[32m    451[39m [30;43m    [39;49m[30;43mdtype[39;49m[30;43m=[39;49m[30;43mdtype[39;49m[30;43m,[39;49m
+[32m    452[39m [30;43m    [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy[39;49m[30;43m,[39;49m
+[32m    453[39m [30;43m    [39;49m[30;43merrors[39;49m[30;43m=[39;49m[30;43merrors[39;49m[30;43m,[39;49m
+[32m    454[39m [30;43m    [39;49m[30;43musing_cow[39;49m[30;43m=[39;49m[30;43musing_copy_on_write[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    455[39m [30;43m[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/internals/managers.py:363[39m, in [36mBaseBlockManager.apply[39m[34m(self, f, align_keys, **kwargs)[39m
+[32m    361[39m         applied = b.apply(f, **kwargs)
+[32m    362[39m     [38;5;28;01melse[39;00m:
+[32m--> [39m[32m363[39m         applied = [30;43mgetattr[39;49m[30;43m([39;49m[30;43mb[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mf[39;49m[30;43m)[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    364[39m     result_blocks = extend_blocks(applied, result_blocks)
+[32m    366[39m out = [38;5;28mtype[39m([38;5;28mself[39m).from_blocks(result_blocks, [38;5;28mself[39m.axes)
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/internals/blocks.py:784[39m, in [36mBlock.astype[39m[34m(self, dtype, copy, errors, using_cow, squeeze)[39m
+[32m    781[39m         [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([33m"[39m[33mCan not squeeze with more than one column.[39m[33m"[39m)
+[32m    782[39m     values = values[[32m0[39m, :]  [38;5;66;03m# type: ignore[call-overload][39;00m
+[32m--> [39m[32m784[39m new_values = [30;43mastype_array_safe[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43merrors[39;49m[30;43m=[39;49m[30;43merrors[39;49m[30;43m)[39;49m
+[32m    786[39m new_values = maybe_coerce_values(new_values)
+[32m    788[39m refs = [38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/dtypes/astype.py:237[39m, in [36mastype_array_safe[39m[34m(values, dtype, copy, errors)[39m
+[32m    234[39m     dtype = dtype.numpy_dtype
+[32m    236[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m237[39m     new_values = [30;43mastype_array[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy[39;49m[30;43m)[39;49m
+[32m    238[39m [38;5;28;01mexcept[39;00m ([38;5;167;01mValueError[39;00m, [38;5;167;01mTypeError[39;00m):
+[32m    239[39m     [38;5;66;03m# e.g. _astype_nansafe can fail on object-dtype of strings[39;00m
+[32m    240[39m     [38;5;66;03m#  trying to convert to float[39;00m
+[32m    241[39m     [38;5;28;01mif[39;00m errors == [33m"[39m[33mignore[39m[33m"[39m:
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/dtypes/astype.py:182[39m, in [36mastype_array[39m[34m(values, dtype, copy)[39m
+[32m    179[39m     values = values.astype(dtype, copy=copy)
+[32m    181[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m182[39m     values = [30;43m_astype_nansafe[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy[39;49m[30;43m)[39;49m
+[32m    184[39m [38;5;66;03m# in pandas we don't store numpy str dtypes, so convert to object[39;00m
+[32m    185[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(dtype, np.dtype) [38;5;129;01mand[39;00m [38;5;28missubclass[39m(values.dtype.type, [38;5;28mstr[39m):
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/dtypes/astype.py:101[39m, in [36m_astype_nansafe[39m[34m(arr, dtype, copy, skipna)[39m
+[32m     96[39m     [38;5;28;01mreturn[39;00m lib.ensure_string_array(
+[32m     97[39m         arr, skipna=skipna, convert_na_value=[38;5;28;01mFalse[39;00m
+[32m     98[39m     ).reshape(shape)
+[32m    100[39m [38;5;28;01melif[39;00m np.issubdtype(arr.dtype, np.floating) [38;5;129;01mand[39;00m dtype.kind [38;5;129;01min[39;00m [33m"[39m[33miu[39m[33m"[39m:
+[32m--> [39m[32m101[39m     [38;5;28;01mreturn[39;00m [30;43m_astype_float_to_int_nansafe[39;49m[30;43m([39;49m[30;43marr[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdtype[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m)[39;49m
+[32m    103[39m [38;5;28;01melif[39;00m arr.dtype == [38;5;28mobject[39m:
+[32m    104[39m     [38;5;66;03m# if we have a datetime/timedelta array of objects[39;00m
+[32m    105[39m     [38;5;66;03m# then coerce to datetime64[ns] and use DatetimeArray.astype[39;00m
+[32m    107[39m     [38;5;28;01mif[39;00m lib.is_np_dtype(dtype, [33m"[39m[33mM[39m[33m"[39m):
+
+[36mFile [39m[32m/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.pixi/envs/default/lib/python3.12/site-packages/pandas/core/dtypes/astype.py:145[39m, in [36m_astype_float_to_int_nansafe[39m[34m(values, dtype, copy)[39m
+[32m    141[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m    142[39m [33;03mastype with a check preventing converting NaN to an meaningless integer value.[39;00m
+[32m    143[39m [33;03m"""[39;00m
+[32m    144[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m np.isfinite(values).all():
+[32m--> [39m[32m145[39m     [38;5;28;01mraise[39;00m IntCastingNaNError(
+[32m    146[39m         [33m"[39m[33mCannot convert non-finite values (NA or inf) to integer[39m[33m"[39m
+[32m    147[39m     )
+[32m    148[39m [38;5;28;01mif[39;00m dtype.kind == [33m"[39m[33mu[39m[33m"[39m:
+[32m    149[39m     [38;5;66;03m# GH#45151[39;00m
+[32m    150[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m (values >= [32m0[39m).all():
+
+[31mIntCastingNaNError[39m: Cannot convert non-finite values (NA or inf) to integer
+
+RuleException:
+CalledProcessError in file "/opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/Snakefile", line 281:
+Command 'set -euo pipefail;  cd notebooks &&  jupytext --to notebook --execute 02c_neotropics_sample.py --output 02c_neotropics_sample.ipynb 2>&1 | tee ../results/logs/02c_neotropics_sample.log' returned non-zero exit status 1.
+[Sun Oct  4 10:52:08 2026]
+Error in rule neotropics_sample:
+    message: None
+    jobid: 6
+    input: notebooks/02c_neotropics_sample.py, data/clean/clean_meta.json, data/raw/sources_predictors.json, data/raw/gadm/gadm41_COL.gpkg
+    output: data/clean/neotropics_samples.parquet, data/clean/neotropics_cells.parquet, data/clean/neotropics_meta.json, figures/diag3_training_cells.png
+    log: results/logs/02c_neotropics_sample.log (check log file(s) for error details)
+    shell:
+        cd notebooks &&  jupytext --to notebook --execute 02c_neotropics_sample.py --output 02c_neotropics_sample.ipynb 2>&1 | tee ../results/logs/02c_neotropics_sample.log
+        (command exited with non-zero exit code)
+Exiting because a job execution failed. Look below for error messages
+[Sun Oct  4 10:52:08 2026]
+Error in rule neotropics_sample:
+    message: None
+    jobid: 6
+    input: notebooks/02c_neotropics_sample.py, data/clean/clean_meta.json, data/raw/sources_predictors.json, data/raw/gadm/gadm41_COL.gpkg
+    output: data/clean/neotropics_samples.parquet, data/clean/neotropics_cells.parquet, data/clean/neotropics_meta.json, figures/diag3_training_cells.png
+    log: results/logs/02c_neotropics_sample.log (check log file(s) for error details)
+    shell:
+        cd notebooks &&  jupytext --to notebook --execute 02c_neotropics_sample.py --output 02c_neotropics_sample.ipynb 2>&1 | tee ../results/logs/02c_neotropics_sample.log
+        (command exited with non-zero exit code)
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T105157.283210.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.
