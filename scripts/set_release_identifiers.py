@@ -199,7 +199,9 @@ def update_citation_cff(path: Path, version_doi: str, concept_doi: str, swhid: s
     wanted = [
         ("doi", concept_doi, "Concept DOI (resolves to the latest version) — cite the project"),
         ("doi", version_doi, f"Version DOI for {tag} — pins this exact release; cite this from nanopubs"),
-        ("swh", swhid, f"Software Heritage ID of the {tag} source tree"),
+        # CFF 1.2.0 only accepts a bare SWHID (no qualifiers) as an identifier
+        # value; the qualified form, with its origin, goes in the description.
+        ("swh", swhid.split(";")[0], f"Software Heritage ID of the {tag} source tree ({swhid})"),
     ]
 
     existing = data.get("identifiers") or []
@@ -214,7 +216,7 @@ def update_citation_cff(path: Path, version_doi: str, concept_doi: str, swhid: s
     # literal "{{ZENODO_DOI}}" as a citable identifier. (lint.yml would catch it
     # on the commit-back, but producing it and then failing CI is worse than not
     # producing it.)
-    ours = {concept_doi, version_doi, swhid}
+    ours = {concept_doi, version_doi, swhid, swhid.split(";")[0]}
 
     def is_placeholder(entry) -> bool:
         return "{{" in str(entry.get("value", ""))
