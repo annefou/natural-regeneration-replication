@@ -53,6 +53,16 @@ abstract: >-
   independent MapBiomas labels (0.717). The protocol follows the robustness checks suggested in
   The Unjournal's evaluation of the paper.
 references:
+  - type: data
+    title: "Natural-regeneration potential in Colombia on HEALPix (WGS84): Williams et al. (2024) map, an independent replication model, and regrowth labels"
+    authors:
+      - family-names: "Fouilloux"
+        given-names: "Anne"
+        orcid: "https://orcid.org/0000-0002-1784-2920"
+    year: 2026
+    doi: "10.5281/zenodo.23138775"
+    license: CC-BY-NC-4.0
+    notes: "Derived dataset produced by this software: GRID4EARTH Zarr (HEALPix NESTED, WGS84) and Parquet tables."
 - type: article
   title: "Global potential for natural regeneration in deforested tropical regions"
   authors:

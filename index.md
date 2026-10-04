@@ -70,6 +70,12 @@ CHELSA 2.1, RESOLVE Ecoregions 2017, GADM 4.1, GlobFire, MOD17A3 and GRIP4. Sour
 checksums are recorded by the download notebooks; access notes are in
 [`docs/data-access-probe.md`](docs/data-access-probe.md).
 
+## Derived dataset
+
+The aggregated maps (HEALPix NESTED on WGS84, depths 15 to 8, GRID4EARTH Zarr) and the sample tables with every
+predictor, label and prediction are archived on Zenodo:
+[doi:10.5281/zenodo.23138775](https://doi.org/10.5281/zenodo.23138775) (CC BY-NC 4.0).
+
 ## Running it
 
 The full pipeline downloads tens of GB, needs a NASA Earthdata login (`~/.netrc`) and takes several

@@ -39,6 +39,10 @@ Details: [`index.md`](index.md) (book front page), the Outcome draft
 [`nanopubs/drafts/05_outcome.md`](nanopubs/drafts/05_outcome.md), and all implementation choices in
 [`docs/deviations.md`](docs/deviations.md).
 
+## Derived dataset
+
+HEALPix (WGS84) maps and sample tables: [doi:10.5281/zenodo.23138775](https://doi.org/10.5281/zenodo.23138775) (CC BY-NC 4.0).
+
 ## Running the pipeline
 
 ```bash
