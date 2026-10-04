@@ -3,7 +3,7 @@
  "@type": "SoftwareSourceCode",
  "name": "natural-regeneration-replication",
  "description": "Independent replication, in Colombia, of the 87.9 % validation-accuracy claim of the natural-regeneration random forest of Williams et al. (2024, Nature). Verdict: partially supported — reproduces under random validation (0.887) but lower under spatially blocked validation, transfer to a new country and a forward-in-time test.",
- "version": "1.0.0",
+ "version": "1.1.0",
  "dateCreated": "2026-10-03",
  "dateModified": "2026-10-04",
  "license": "https://spdx.org/licenses/MIT",

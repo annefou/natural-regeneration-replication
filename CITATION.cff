@@ -9,7 +9,7 @@ authors:
   affiliation: "LifeWatch ERIC"
 repository-code: "https://github.com/annefou/natural-regeneration-replication"
 license: MIT
-version: "1.0.0"
+version: "1.1.0"
 date-released: "2026-10-04"
 # Identifiers below are recorded AUTOMATICALLY on each release by
 # .github/workflows/release-identifiers.yml — don't fill them in by hand.
@@ -51,7 +51,10 @@ abstract: >-
   validation (0.887) but is lower under spatially blocked validation (0.812-0.869), for a model
   trained outside Colombia (0.767), and when predicting 2012-2024 regrowth from 2000-2012 with
   independent MapBiomas labels (0.717). The protocol follows the robustness checks suggested in
-  The Unjournal's evaluation of the paper.
+  The Unjournal's evaluation of the paper. Version 1.1.0 adds the prediction of every 30 m pixel of
+  Colombia, aggregated conservatively to HEALPix (WGS84) and archived as a GRID4EARTH Zarr dataset
+  (doi:10.5281/zenodo.23138775), and shows that the blocked accuracies do not depend on the blocking
+  grid (HEALPix on WGS84 or sphere, latitude/longitude squares).
 references:
 - type: data
   title: "Natural-regeneration potential in Colombia on HEALPix (WGS84): Williams et al. (2024) map, an independent replication model, and regrowth labels"
