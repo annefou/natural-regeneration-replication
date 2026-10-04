@@ -49,7 +49,11 @@ If the Outcome cites methods papers, related replications, or upstream tools, ad
 
 One line per further citation, in this exact form (each becomes a pre-filled row):
 
-- _Type: ___ → URL: ___
+- Type: usesMethodIn → URL: https://doi.org/10.21428/d28e8e57.5411b150
+
+  (The Unjournal evaluation summary of the paper: its evaluators' suggested robustness checks — predictors from
+  before the outcome period, forward prediction, label omission, other algorithms — shaped steps 3, diagnostics
+  and the MapBiomas experiments. Agreed with Anne 2026-10-04.)
 
 ## Publication note
 
