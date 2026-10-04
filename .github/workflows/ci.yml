@@ -96,9 +96,13 @@ jobs:
       #     path: data/raw
       #     key: input-data-v1
 
-      - name: Run pipeline
+      # The full pipeline needs tens of GB of input data, Earthdata credentials and
+      # hours on 12 cores: it runs locally (results/logs/RUN_STATUS.md), not on a
+      # GitHub runner. CI checks that the workflow is consistent from a fresh
+      # checkout: every rule, input and output resolves (dry run).
+      - name: Check pipeline (Snakemake dry run)
         if: steps.guard.outputs.ready == 'true'
-        run: pixi run snakemake --cores 1
+        run: pixi run snakemake -n --cores 12 --quiet rules
 
       - name: Upload results
         if: always() && steps.guard.outputs.ready == 'true'

@@ -51,22 +51,21 @@ jobs:
           cache: true
           environments: docs
 
-      - name: Convert .py notebooks to .ipynb
+      # This replication's pipeline needs tens of GB of input data, Earthdata
+      # credentials and hours on 12 cores, so CI cannot re-execute it. The book
+      # renders the notebooks executed by the full local run (Snakemake writes
+      # notebooks/*.ipynb; they are committed). This step fails if a notebook in
+      # the myst.yml TOC is missing or has no outputs.
+      - name: Check executed notebooks (notebooks/*.ipynb in the TOC)
         if: steps.guard.outputs.ready == 'true'
         run: |
-          for nb in notebooks/*.py; do
-            pixi run jupytext --to notebook "$nb"
+          fail=0
+          for nb in $(grep -oE 'notebooks/[^ ]+\.ipynb' myst.yml); do
+            if [ ! -f "$nb" ]; then echo "::error::$nb is in myst.yml but not committed"; fail=1; continue; fi
+            n=$(python3 -c "import json,sys;print(sum(len(c.get('outputs',[])) for c in json.load(open(sys.argv[1]))['cells'] if c['cell_type']=='code'))" "$nb")
+            if [ "$n" -eq 0 ]; then echo "::error::$nb has no outputs (not executed)"; fail=1; else echo "$nb: $n outputs"; fi
           done
-
-      # Glob, not a hard-coded list — new notebooks are picked up automatically.
-      - name: Execute notebooks
-        if: steps.guard.outputs.ready == 'true'
-        run: |
-          for nb in notebooks/*.ipynb; do
-            echo "::group::Executing $nb"
-            pixi run jupyter execute --inplace "$nb"
-            echo "::endgroup::"
-          done
+          exit $fail
 
       - name: Build MyST site
         if: steps.guard.outputs.ready == 'true'

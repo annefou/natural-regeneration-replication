@@ -1,5 +1,9 @@
 # Generated notebooks (kept as jupytext .py source-of-truth)
-notebooks/*.ipynb
+# Executed notebooks from the full local run ARE committed (the book renders them;
+# CI cannot re-execute the pipeline). Smoke-test copies are not.
+notebooks/*_smoke.ipynb
+notebooks/*_dev.ipynb
+notebooks/*_smoke_*.ipynb
 notebooks/.ipynb_checkpoints/
 
 # MyST / Jupyter Book build output

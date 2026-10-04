@@ -94,13 +94,14 @@ jobs:
             bad "jupyter-book.yml does not set BASE_URL. MyST ignores base_url in myst.yml, so without the env var every link on the deployed site breaks — docs/cicd-conventions.md § BASE_URL."
           fi
 
-          # docs/cicd-conventions.md:106,245 — executing a hardcoded list means a
-          # newly added notebook is silently never run.
-          if grep -q "notebooks/\*.ipynb" .github/workflows/jupyter-book.yml; then
-            note "jupyter-book.yml executes notebooks via glob"
-          else
-            bad "jupyter-book.yml does not execute notebooks/*.ipynb via a glob. A hardcoded list silently skips newly added notebooks — docs/cicd-conventions.md § Notebook execution."
-          fi
+          # This replication renders notebooks executed by the full local run
+          # (jupyter-book.yml does not re-execute them; see the comment there).
+          # Every notebook in the TOC must therefore be committed.
+          missing=0
+          for nb in $(grep -oE 'notebooks/[^ ]+\.ipynb' myst.yml); do
+            [ -f "$nb" ] || { bad "$nb is in the myst.yml TOC but not committed (run the pipeline and commit the executed notebook)."; missing=1; }
+          done
+          [ $missing -eq 0 ] && note "every TOC notebook is committed"
 
           echo "--- placeholder tokens ---"
 
