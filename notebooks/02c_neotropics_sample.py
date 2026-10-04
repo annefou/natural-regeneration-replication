@@ -298,6 +298,8 @@ print(sel.groupby(["subregion", "biome"]).size().to_string())
 # %%
 FAGAN_URL = ("https://gfw2-data.s3.amazonaws.com/plantations/pantropical_tree_plantation_expansion/"
              "pantropical_tree_plantation_expansion_2000_2012.gpkg")
+# Null pred3class: gain patches Fagan et al. left unclassified (e.g. missing Sentinel-1
+# data); code 4 keeps them out of both classes (class 0 requires code 0).
 FAGAN_CODE = {"regrowth": 1, "plantation": 2, "open": 3}
 
 
@@ -341,7 +343,7 @@ if not fagan_out.exists():
     fagan.to_parquet(fagan_out)
     json.dump(sorted(int(c) for c in sel.index), open(fagan_cells, "w"))
 fagan = gpd.read_parquet(fagan_out)
-fagan["code"] = fagan.pred3class.map(FAGAN_CODE).astype("uint8")
+fagan["code"] = fagan.pred3class.map(FAGAN_CODE).fillna(4).astype("uint8")
 fagan_tree = shapely.STRtree(fagan.geometry.values)
 print(len(fagan), "Fagan polygons;", fagan.pred3class.value_counts().to_dict())
 
