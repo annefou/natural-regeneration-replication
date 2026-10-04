@@ -8,6 +8,10 @@ WORKDIR /app
 
 # Install the pinned environment first (separate from source copy so the lock
 # layer is cached across source-only edits).
+# git is needed by pixi to fetch the GitHub-pinned PyPI dependency
+# (healpix-connector @ v0.1.0); the pixi base image (Debian) does not ship it.
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+
 COPY pixi.toml pixi.lock /app/
 RUN pixi install --locked
 
