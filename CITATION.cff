@@ -3,10 +3,10 @@ title: "natural-regeneration-replication: testing the 87.9 % accuracy claim of W
 message: "If you use this software, please cite it as below."
 type: software
 authors:
-  - family-names: "Fouilloux"
-    given-names: "Anne"
-    orcid: "https://orcid.org/0000-0002-1784-2920"
-    affiliation: "LifeWatch ERIC"
+- family-names: "Fouilloux"
+  given-names: "Anne"
+  orcid: "https://orcid.org/0000-0002-1784-2920"
+  affiliation: "LifeWatch ERIC"
 repository-code: "https://github.com/annefou/natural-regeneration-replication"
 license: MIT
 version: "1.0.0"
@@ -32,18 +32,18 @@ date-released: "2026-10-04"
   #   - type: doi   value: <version DOI>  "Version DOI for vX.Y.Z — pins this exact release; cite this from nanopubs"
   #   - type: swh   value: swh:1:rev:<commit>;origin=<repo>  "Software Heritage ID of the vX.Y.Z source tree"
 keywords:
-  - replication
-  - reproducibility
-  - FORRT
-  - nanopublication
-  - Science-Live
-  - natural regeneration
-  - tropical forest restoration
-  - random forest
-  - remote sensing
-  - spatial cross-validation
-  - HEALPix
-  - Colombia
+- replication
+- reproducibility
+- FORRT
+- nanopublication
+- Science-Live
+- natural regeneration
+- tropical forest restoration
+- random forest
+- remote sensing
+- spatial cross-validation
+- HEALPix
+- Colombia
 abstract: >-
   Independent replication of the claim that the 30 m random-forest model of natural forest
   regeneration of Williams et al. (2024, Nature) has 87.9 % validation accuracy, tested in Colombia
@@ -53,75 +53,86 @@ abstract: >-
   independent MapBiomas labels (0.717). The protocol follows the robustness checks suggested in
   The Unjournal's evaluation of the paper.
 references:
-  - type: article
-    title: "Global potential for natural regeneration in deforested tropical regions"
-    authors:
-      - family-names: "Williams"
-        given-names: "Brooke A."
-      - name: "et al."
-    journal: "Nature"
-    year: 2024
-    doi: "10.1038/s41586-024-08106-4"
-  - type: article
-    title: "Author Correction: Global potential for natural regeneration in deforested tropical regions"
-    authors:
-      - family-names: "Williams"
-        given-names: "Brooke A."
-      - name: "et al."
-    journal: "Nature"
-    year: 2024
-    doi: "10.1038/s41586-024-08481-y"
-  - type: generic
-    title: "Evaluation Summary and Metrics: \"Global potential for natural regeneration in deforested tropical regions\""
-    authors:
-      - name: "The Unjournal"
-    year: 2025
-    doi: "10.21428/d28e8e57.5411b150"
-    notes: "Public evaluation (Crossref type peer-review) whose suggested robustness checks shaped this replication."
-  - type: data
-    title: "The potential for natural forest regeneration in tropical regions"
-    authors:
-      - family-names: "Williams"
-        given-names: "Brooke"
-      - name: "et al."
-    year: 2023
-    doi: "10.5281/zenodo.7428804"
-    license: CC-BY-4.0
-  - type: article
-    title: "The expansion of tree plantations across tropical biomes"
-    authors:
-      - family-names: "Fagan"
-        given-names: "Matthew E."
-      - name: "et al."
-    journal: "Nature Sustainability"
-    year: 2022
-    doi: "10.1038/s41893-022-00904-w"
-  - type: article
-    title: "High-Resolution Global Maps of 21st-Century Forest Cover Change"
-    authors:
-      - family-names: "Hansen"
-        given-names: "M. C."
-      - name: "et al."
-    journal: "Science"
-    year: 2013
-    doi: "10.1126/science.1244693"
-  - type: article
-    title: "Reconstructing Three Decades of Land Use and Land Cover Changes in Brazilian Biomes with Landsat Archive and Earth Engine"
-    authors:
-      - family-names: "Souza"
-        given-names: "Carlos M."
-      - name: "et al."
-    journal: "Remote Sensing"
-    year: 2020
-    doi: "10.3390/rs12172735"
-    notes: "MapBiomas method; data used: MapBiomas Colombia Collection 3 (CC BY 4.0), https://colombia.mapbiomas.org"
-  - type: article
-    title: "Predicting into unknown space? Estimating the area of applicability of spatial prediction models"
-    authors:
-      - family-names: "Meyer"
-        given-names: "Hanna"
-      - family-names: "Pebesma"
-        given-names: "Edzer"
-    journal: "Methods in Ecology and Evolution"
-    year: 2021
-    doi: "10.1111/2041-210x.13650"
+- type: article
+  title: "Global potential for natural regeneration in deforested tropical regions"
+  authors:
+  - family-names: "Williams"
+    given-names: "Brooke A."
+  - name: "et al."
+  journal: "Nature"
+  year: 2024
+  doi: "10.1038/s41586-024-08106-4"
+- type: article
+  title: "Author Correction: Global potential for natural regeneration in deforested tropical regions"
+  authors:
+  - family-names: "Williams"
+    given-names: "Brooke A."
+  - name: "et al."
+  journal: "Nature"
+  year: 2024
+  doi: "10.1038/s41586-024-08481-y"
+- type: generic
+  title: "Evaluation Summary and Metrics: \"Global potential for natural regeneration in deforested tropical regions\""
+  authors:
+  - name: "The Unjournal"
+  year: 2025
+  doi: "10.21428/d28e8e57.5411b150"
+  notes: "Public evaluation (Crossref type peer-review) whose suggested robustness checks shaped this replication."
+- type: data
+  title: "The potential for natural forest regeneration in tropical regions"
+  authors:
+  - family-names: "Williams"
+    given-names: "Brooke"
+  - name: "et al."
+  year: 2023
+  doi: "10.5281/zenodo.7428804"
+  license: CC-BY-4.0
+- type: article
+  title: "The expansion of tree plantations across tropical biomes"
+  authors:
+  - family-names: "Fagan"
+    given-names: "Matthew E."
+  - name: "et al."
+  journal: "Nature Sustainability"
+  year: 2022
+  doi: "10.1038/s41893-022-00904-w"
+- type: article
+  title: "High-Resolution Global Maps of 21st-Century Forest Cover Change"
+  authors:
+  - family-names: "Hansen"
+    given-names: "M. C."
+  - name: "et al."
+  journal: "Science"
+  year: 2013
+  doi: "10.1126/science.1244693"
+- type: article
+  title: "Reconstructing Three Decades of Land Use and Land Cover Changes in Brazilian Biomes with Landsat Archive and Earth Engine"
+  authors:
+  - family-names: "Souza"
+    given-names: "Carlos M."
+  - name: "et al."
+  journal: "Remote Sensing"
+  year: 2020
+  doi: "10.3390/rs12172735"
+  notes: "MapBiomas method; data used: MapBiomas Colombia Collection 3 (CC BY 4.0), https://colombia.mapbiomas.org"
+- type: article
+  title: "Predicting into unknown space? Estimating the area of applicability of spatial prediction models"
+  authors:
+  - family-names: "Meyer"
+    given-names: "Hanna"
+  - family-names: "Pebesma"
+    given-names: "Edzer"
+  journal: "Methods in Ecology and Evolution"
+  year: 2021
+  doi: "10.1111/2041-210x.13650"
+doi: 10.5281/zenodo.23137988
+identifiers:
+- type: doi
+  value: 10.5281/zenodo.23137988
+  description: Concept DOI (resolves to the latest version) — cite the project
+- type: doi
+  value: 10.5281/zenodo.23137989
+  description: Version DOI for v1.0.0 — pins this exact release; cite this from nanopubs
+- type: swh
+  value: swh:1:rev:3027173cbc87c3aee209a5f678c5303c94aae8f3;origin=https://github.com/annefou/natural-regeneration-replication
+  description: Software Heritage ID of the v1.0.0 source tree

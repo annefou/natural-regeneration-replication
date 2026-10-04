@@ -4,7 +4,7 @@
 [![Jupyter Book](https://github.com/annefou/natural-regeneration-replication/actions/workflows/jupyter-book.yml/badge.svg)](https://annefou.github.io/natural-regeneration-replication/)
 [![Docker](https://github.com/annefou/natural-regeneration-replication/actions/workflows/docker.yml/badge.svg)](https://github.com/annefou/natural-regeneration-replication/pkgs/container/natural-regeneration-replication)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![DOI](https://zenodo.org/badge/DOI/{{ZENODO_DOI}}.svg)]({{ZENODO_DOI}})
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23137988.svg)](https://doi.org/10.5281/zenodo.23137988)
 [![FAIR4RS](https://img.shields.io/badge/FAIR4RS-conformant-brightgreen)](docs/fair4rs-checklist.md)
 [![FORRT](https://img.shields.io/badge/FORRT-replication-blue)](https://forrt.org/)
 [![Science Live](https://img.shields.io/badge/Science%20Live-nanopub%20chain-purple)](nanopubs/PUBLISHED.md)
@@ -76,7 +76,7 @@ Snakemake dry run, and the Jupyter Book renders the notebooks executed in the fu
 
 ## Citation
 
-- This replication: [`CITATION.cff`](CITATION.cff), DOI [{{ZENODO_DOI}}]({{ZENODO_DOI}})
+- This replication: [`CITATION.cff`](CITATION.cff), DOI [10.5281/zenodo.23137988](https://doi.org/10.5281/zenodo.23137988)
 - The original paper: [10.1038/s41586-024-08106-4](https://doi.org/10.1038/s41586-024-08106-4)
 - The Unjournal evaluation: [10.21428/d28e8e57.5411b150](https://doi.org/10.21428/d28e8e57.5411b150)
 
