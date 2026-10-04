@@ -85,6 +85,12 @@ FULLRES_FINAL = [
     f"{RESULTS}/fullres_summary.csv",
 ]
 
+ARCHIVE_DIR = "archive_smoke" if SMOKE else "archive"
+ARCHIVE_FINAL = [
+    f"{ARCHIVE_DIR}/checksums.csv",
+    f"{RESULTS}/archive_manifest.json",
+]
+
 if SMOKE:
     rule all:
         input:
@@ -93,6 +99,7 @@ if SMOKE:
             AOA_FINAL,
             MAPBIOMAS_FINAL,
             FULLRES_FINAL,
+            ARCHIVE_FINAL,
 else:
     rule all:
         input:
@@ -104,11 +111,13 @@ else:
             AOA_FINAL,
             MAPBIOMAS_FINAL,
             FULLRES_FINAL,
+            ARCHIVE_FINAL,
 
 
 rule archive:
     input:
         FULLRES_FINAL,
+        ARCHIVE_FINAL,
 
 
 rule diag3:
@@ -438,3 +447,19 @@ rule full_prediction:
     threads: workflow.cores
     shell:
         nb("05a_full_prediction.py")
+
+
+# ---------- 05b: dataset archive (GRID4EARTH Zarr + Parquet tables) for Zenodo ----------
+rule archive_dataset:
+    input:
+        f"{NOTEBOOKS}/05b_archive_dataset.py",
+        f"{DERIVED}/fullres_healpix_d15.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+        f"{CLEAN}/mapbiomas_grid.parquet",
+        f"{RESULTS}/aoa_healpix_d8.nc",
+    output:
+        ARCHIVE_FINAL,
+    log:
+        f"{LOGS}/05b_archive_dataset.log",
+    shell:
+        nb("05b_archive_dataset.py")

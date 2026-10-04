@@ -68,3 +68,7 @@ docker-image.tar.gz
 
 # Local scratch — a Claude Code session-resume helper, never part of a study.
 claude-resume.txt
+
+# Dataset archive for Zenodo (built by 05b; uploaded, not committed)
+archive/
+archive_smoke/
