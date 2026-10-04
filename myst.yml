@@ -29,7 +29,7 @@ project:
     - file: notebooks/04_figures.ipynb
     - file: notebooks/05a_full_prediction.ipynb
     - file: notebooks/05b_archive_dataset.ipynb
-    - file: nanopubs/README.md
+    - file: nanopubs/PUBLISHED.md
 site:
   title: "natural-regeneration-replication"
 # IMPORTANT: do NOT set base_url here — MyST silently ignores the key.

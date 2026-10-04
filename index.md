@@ -97,5 +97,6 @@ The pages of this book are the notebooks as executed in the full run.
 - The original paper: [10.1038/s41586-024-08106-4](https://doi.org/10.1038/s41586-024-08106-4).
 - The Unjournal evaluation: [10.21428/d28e8e57.5411b150](https://doi.org/10.21428/d28e8e57.5411b150).
 
-The FORRT nanopublication chain (claim, study design, outcome) will be listed in
-[`nanopubs/PUBLISHED.md`](nanopubs/PUBLISHED.md) once published.
+The FORRT nanopublication chain (quote, claim, study design, outcome, citation) is published on Science Live
+and listed in [`nanopubs/PUBLISHED.md`](nanopubs/PUBLISHED.md); the outcome is
+[RAZF-V9BsAmgy5a0KezH74Fd78oZy2CS6PLsizcXMTNWg](https://w3id.org/sciencelive/np/RAZF-V9BsAmgy5a0KezH74Fd78oZy2CS6PLsizcXMTNWg).
