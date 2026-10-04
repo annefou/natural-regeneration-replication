@@ -268,8 +268,10 @@ def sha256(p: Path) -> str:
 # uncompressed zip (chunks are already compressed), readable with zarr.storage.ZipStore.
 with zipfile.ZipFile(OUT / f"{ZARR.name}.zip", "w", compression=zipfile.ZIP_STORED, allowZip64=True) as zf:
     for f in sorted(ZARR.rglob("*")):
-        if f.is_file():
-            zf.write(f, f.relative_to(ZARR))
+        if f.is_file():  # fixed timestamp: identical bytes on every rebuild
+            zi = zipfile.ZipInfo(str(f.relative_to(ZARR)), date_time=(1980, 1, 1, 0, 0, 0))
+            zi.compress_type = zipfile.ZIP_STORED
+            zf.writestr(zi, f.read_bytes())
 shutil.copy("../docs/archive_README.md", OUT / "README.md")  # dataset description (versioned in docs/)
 shutil.copy("../docs/archive_zenodo.json", OUT / "zenodo_metadata.json")  # deposit metadata for the upload
 

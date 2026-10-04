@@ -7,5 +7,5 @@
     "mapbiomas_labels_grid.parquet": "MapBiomas Colombia C3 regrowth labels (all windows), 2012 predictors and land-use history at the grid points"
   },
   "zarr": "natural_regeneration_colombia_healpix.zarr",
-  "bytes": 925947439
+  "bytes": 925947524
 }

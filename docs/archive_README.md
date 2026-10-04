@@ -12,7 +12,7 @@ evaluation of the paper ([doi:10.21428/d28e8e57.5411b150](https://doi.org/10.214
 | Path | What |
 |---|---|
 | `natural_regeneration_colombia_healpix.zarr.zip` | Zarr v3, GRID4EARTH layout, HEALPix NESTED on WGS84 (one uncompressed zip; open it directly or unzip to a `.zarr` folder) |
-| `tables/` | Parquet tables: sample points and prediction grid with every predictor, label and prediction |
+| `tables/*.parquet` | Parquet tables: sample points and prediction grid with every predictor, label and prediction (on Zenodo, which has no folders, these five files appear at the top level) |
 | `sources.json` | Input datasets (DOIs or URLs, versions, checksums) as recorded by the download notebooks |
 | `checksums.csv` | SHA-256 of every file in this record |
 
