@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "natural-regeneration-replication"
+title: "natural-regeneration-replication: testing the 87.9 % accuracy claim of Williams et al. (2024) in Colombia"
 message: "If you use this software, please cite it as below."
 type: software
 authors:
@@ -9,8 +9,8 @@ authors:
     affiliation: "LifeWatch ERIC"
 repository-code: "https://github.com/annefou/natural-regeneration-replication"
 license: MIT
-version: "0.1.0"
-date-released: "2026-10-03"
+version: "1.0.0"
+date-released: "2026-10-04"
 # Identifiers below are recorded AUTOMATICALLY on each release by
 # .github/workflows/release-identifiers.yml — don't fill them in by hand.
 #
@@ -23,12 +23,12 @@ date-released: "2026-10-03"
 # named was gone and "edit by hand" was the only path left. Two repos built from
 # this template then recorded the version DOI two different ways — one a
 # structured identifier, one a prose comment. Hence the automation.)
-doi: "{{ZENODO_DOI}}"
-identifiers:
-  - type: doi
-    value: "{{ZENODO_DOI}}"
-    description: "Concept DOI (resolves to the latest version) — cite the project"
-  # On release, the workflow adds:
+#
+# No DOI placeholder here: Zenodo reads this file when the release is created, and
+# a literal "{{ZENODO_DOI}}" fails the CFF schema. The workflow writes `doi:` and
+# the `identifiers:` list after Zenodo has minted them.
+#
+# On release, the workflow adds:
   #   - type: doi   value: <version DOI>  "Version DOI for vX.Y.Z — pins this exact release; cite this from nanopubs"
   #   - type: swh   value: swh:1:rev:<commit>;origin=<repo>  "Software Heritage ID of the vX.Y.Z source tree"
 keywords:
@@ -37,11 +37,91 @@ keywords:
   - FORRT
   - nanopublication
   - Science-Live
+  - natural regeneration
+  - tropical forest restoration
+  - random forest
+  - remote sensing
+  - spatial cross-validation
+  - HEALPix
+  - Colombia
+abstract: >-
+  Independent replication of the claim that the 30 m random-forest model of natural forest
+  regeneration of Williams et al. (2024, Nature) has 87.9 % validation accuracy, tested in Colombia
+  with open data and new code. Verdict: partially supported. The accuracy reproduces under random
+  validation (0.887) but is lower under spatially blocked validation (0.812-0.869), for a model
+  trained outside Colombia (0.767), and when predicting 2012-2024 regrowth from 2000-2012 with
+  independent MapBiomas labels (0.717). The protocol follows the robustness checks suggested in
+  The Unjournal's evaluation of the paper.
 references:
   - type: article
     title: "Global potential for natural regeneration in deforested tropical regions"
     authors:
       - family-names: "Williams"
         given-names: "Brooke A."
-    year: "2024"
+      - name: "et al."
+    journal: "Nature"
+    year: 2024
     doi: "10.1038/s41586-024-08106-4"
+  - type: article
+    title: "Author Correction: Global potential for natural regeneration in deforested tropical regions"
+    authors:
+      - family-names: "Williams"
+        given-names: "Brooke A."
+      - name: "et al."
+    journal: "Nature"
+    year: 2024
+    doi: "10.1038/s41586-024-08481-y"
+  - type: generic
+    title: "Evaluation Summary and Metrics: \"Global potential for natural regeneration in deforested tropical regions\""
+    authors:
+      - name: "The Unjournal"
+    year: 2025
+    doi: "10.21428/d28e8e57.5411b150"
+    notes: "Public evaluation (Crossref type peer-review) whose suggested robustness checks shaped this replication."
+  - type: data
+    title: "The potential for natural forest regeneration in tropical regions"
+    authors:
+      - family-names: "Williams"
+        given-names: "Brooke"
+      - name: "et al."
+    year: 2023
+    doi: "10.5281/zenodo.7428804"
+    license: CC-BY-4.0
+  - type: article
+    title: "The expansion of tree plantations across tropical biomes"
+    authors:
+      - family-names: "Fagan"
+        given-names: "Matthew E."
+      - name: "et al."
+    journal: "Nature Sustainability"
+    year: 2022
+    doi: "10.1038/s41893-022-00904-w"
+  - type: article
+    title: "High-Resolution Global Maps of 21st-Century Forest Cover Change"
+    authors:
+      - family-names: "Hansen"
+        given-names: "M. C."
+      - name: "et al."
+    journal: "Science"
+    year: 2013
+    doi: "10.1126/science.1244693"
+  - type: article
+    title: "Reconstructing Three Decades of Land Use and Land Cover Changes in Brazilian Biomes with Landsat Archive and Earth Engine"
+    authors:
+      - family-names: "Souza"
+        given-names: "Carlos M."
+      - name: "et al."
+    journal: "Remote Sensing"
+    year: 2020
+    doi: "10.3390/rs12172735"
+    notes: "MapBiomas method; data used: MapBiomas Colombia Collection 3 (CC BY 4.0), https://colombia.mapbiomas.org"
+  - type: article
+    title: "Predicting into unknown space? Estimating the area of applicability of spatial prediction models"
+    authors:
+      - family-names: "Meyer"
+        given-names: "Hanna"
+      - family-names: "Pebesma"
+        given-names: "Edzer"
+    journal: "Methods in Ecology and Evolution"
+    year: 2021
+    doi: "10.1111/2041-210x.13650"

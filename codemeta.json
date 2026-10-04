@@ -1,49 +1,92 @@
 {
-  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
-  "@type": "SoftwareSourceCode",
-  "name": "natural-regeneration-replication",
-  "description": "Independent replication of Williams et al. (2024, Nature): global potential for natural regeneration in deforested tropical regions, tested on Colombia",
-  "version": "0.1.0",
-  "dateCreated": "2026-10-03",
-  "dateModified": "2026-10-03",
-  "license": "https://spdx.org/licenses/MIT",
-  "codeRepository": "https://github.com/annefou/natural-regeneration-replication",
-  "identifier": "{{ZENODO_DOI}}",
-  "@id": "{{ZENODO_DOI}}",
-  "programmingLanguage": {
-    "@type": "ComputerLanguage",
-    "name": "Python",
-    "version": "3.12"
-  },
-  "operatingSystem": ["Linux", "macOS"],
-  "author": [
-    {
-      "@type": "Person",
-      "givenName": "Anne",
-      "familyName": "Fouilloux",
-      "@id": "https://orcid.org/0000-0002-1784-2920",
-      "affiliation": {
-        "@type": "Organization",
-        "name": "LifeWatch ERIC"
-      }
-    }
-  ],
-  "keywords": [
-    "replication",
-    "reproducibility",
-    "FORRT",
-    "nanopublication",
-    "Science-Live"
-  ],
-  "referencePublication": {
-    "@type": "ScholarlyArticle",
-    "name": "Global potential for natural regeneration in deforested tropical regions",
-    "datePublished": "2024",
-    "@id": "https://doi.org/10.1038/s41586-024-08106-4"
-  },
-  "isPartOf": {
+ "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+ "@type": "SoftwareSourceCode",
+ "name": "natural-regeneration-replication",
+ "description": "Independent replication, in Colombia, of the 87.9 % validation-accuracy claim of the natural-regeneration random forest of Williams et al. (2024, Nature). Verdict: partially supported — reproduces under random validation (0.887) but lower under spatially blocked validation, transfer to a new country and a forward-in-time test.",
+ "version": "1.0.0",
+ "dateCreated": "2026-10-03",
+ "dateModified": "2026-10-04",
+ "license": "https://spdx.org/licenses/MIT",
+ "codeRepository": "https://github.com/annefou/natural-regeneration-replication",
+ "identifier": "{{ZENODO_DOI}}",
+ "@id": "{{ZENODO_DOI}}",
+ "programmingLanguage": {
+  "@type": "ComputerLanguage",
+  "name": "Python",
+  "version": "3.12"
+ },
+ "operatingSystem": [
+  "Linux",
+  "macOS"
+ ],
+ "author": [
+  {
+   "@type": "Person",
+   "givenName": "Anne",
+   "familyName": "Fouilloux",
+   "@id": "https://orcid.org/0000-0002-1784-2920",
+   "affiliation": {
     "@type": "Organization",
-    "name": "Science Live",
-    "url": "https://platform.sciencelive4all.org"
+    "name": "LifeWatch ERIC"
+   }
   }
+ ],
+ "keywords": [
+  "replication",
+  "reproducibility",
+  "FORRT",
+  "nanopublication",
+  "Science-Live",
+  "natural regeneration",
+  "tropical forest restoration",
+  "random forest",
+  "remote sensing",
+  "spatial cross-validation",
+  "HEALPix",
+  "Colombia"
+ ],
+ "referencePublication": {
+  "@type": "ScholarlyArticle",
+  "name": "Global potential for natural regeneration in deforested tropical regions",
+  "datePublished": "2024",
+  "@id": "https://doi.org/10.1038/s41586-024-08106-4"
+ },
+ "isPartOf": {
+  "@type": "Organization",
+  "name": "Science Live",
+  "url": "https://platform.sciencelive4all.org"
+ },
+ "softwareRequirements": [
+  "python 3.12",
+  "snakemake",
+  "numpy",
+  "pandas",
+  "xarray",
+  "scipy",
+  "scikit-learn",
+  "rasterio",
+  "gdal",
+  "geopandas",
+  "shapely",
+  "pyproj",
+  "healpix-geo",
+  "netcdf4",
+  "pyarrow",
+  "matplotlib",
+  "earthaccess",
+  "requests",
+  "jupytext",
+  "nbclient"
+ ],
+ "citation": [
+  "https://doi.org/10.1038/s41586-024-08106-4",
+  "https://doi.org/10.1038/s41586-024-08481-y",
+  "https://doi.org/10.21428/d28e8e57.5411b150",
+  "https://doi.org/10.5281/zenodo.7428804",
+  "https://doi.org/10.1038/s41893-022-00904-w",
+  "https://doi.org/10.1126/science.1244693",
+  "https://doi.org/10.3390/rs12172735",
+  "https://doi.org/10.1111/2041-210x.13650"
+ ],
+ "buildInstructions": "https://github.com/annefou/natural-regeneration-replication#running-the-pipeline"
 }
