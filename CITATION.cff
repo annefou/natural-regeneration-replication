@@ -59,9 +59,9 @@ references:
 - type: data
   title: "Natural-regeneration potential in Colombia on HEALPix (WGS84): Williams et al. (2024) map, an independent replication model, and regrowth labels"
   authors:
-    - family-names: "Fouilloux"
-      given-names: "Anne"
-      orcid: "https://orcid.org/0000-0002-1784-2920"
+  - family-names: "Fouilloux"
+    given-names: "Anne"
+    orcid: "https://orcid.org/0000-0002-1784-2920"
   year: 2026
   doi: "10.5281/zenodo.23138775"
   license: CC-BY-NC-4.0
@@ -143,6 +143,12 @@ identifiers:
 - type: doi
   value: 10.5281/zenodo.23137988
   description: Concept DOI (resolves to the latest version) — cite the project
+- type: doi
+  value: 10.5281/zenodo.23139080
+  description: Version DOI for v1.1.0 — pins this exact release; cite this from nanopubs
+- type: swh
+  value: swh:1:rev:e9a86c3452651005345f37166a54f68b52b68f95
+  description: Software Heritage ID of the v1.1.0 source tree (swh:1:rev:e9a86c3452651005345f37166a54f68b52b68f95;origin=https://github.com/annefou/natural-regeneration-replication)
 - type: doi
   value: 10.5281/zenodo.23137989
   description: Version DOI for v1.0.0 — pins this exact release; cite this from nanopubs

@@ -89,10 +89,10 @@
         }
       ],
       "identifier": [
-        "https://doi.org/10.5281/zenodo.23137989",
-        "swh:1:rev:3027173cbc87c3aee209a5f678c5303c94aae8f3;origin=https://github.com/annefou/natural-regeneration-replication"
+        "https://doi.org/10.5281/zenodo.23139080",
+        "swh:1:rev:e9a86c3452651005345f37166a54f68b52b68f95;origin=https://github.com/annefou/natural-regeneration-replication"
       ],
-      "version": "1.0.0"
+      "version": "1.1.0"
     },
     {
       "@id": "https://orcid.org/0000-0002-1784-2920",
