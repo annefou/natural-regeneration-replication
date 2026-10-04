@@ -100,6 +100,7 @@ if SMOKE:
             MAPBIOMAS_FINAL,
             FULLRES_FINAL,
             ARCHIVE_FINAL,
+            f"{RESULTS}/step3_blocking_sensitivity.csv",
 else:
     rule all:
         input:
@@ -112,6 +113,7 @@ else:
             MAPBIOMAS_FINAL,
             FULLRES_FINAL,
             ARCHIVE_FINAL,
+            f"{RESULTS}/step3_blocking_sensitivity.csv",
 
 
 rule archive:
@@ -466,3 +468,18 @@ rule archive_dataset:
         f"{LOGS}/05b_archive_dataset.log",
     shell:
         nb("05b_archive_dataset.py")
+
+
+# ---------- 03g: blocked CV sensitivity to the blocking grid (HEALPix WGS84 / sphere / lat-lon squares) ----------
+rule blocking_sensitivity:
+    input:
+        f"{NOTEBOOKS}/03g_blocking_sensitivity.py",
+        f"{CLEAN}/samples.parquet",
+        f"{RESULTS}/step3_spatial_cv.csv",  # runs after step 3(b), whose numbers it must reproduce
+    output:
+        f"{RESULTS}/step3_blocking_sensitivity.csv",
+    log:
+        f"{LOGS}/03g_blocking_sensitivity.log",
+    threads: workflow.cores
+    shell:
+        nb("03g_blocking_sensitivity.py")

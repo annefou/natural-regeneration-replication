@@ -1,0 +1,31 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                     count
+--------------------  -------
+blocking_sensitivity        1
+total                       1
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 15:13:25 2026]
+localrule blocking_sensitivity:
+    input: notebooks/03g_blocking_sensitivity.py, data/clean/samples.parquet, results/step3_spatial_cv.csv
+    output: results/step3_blocking_sensitivity.csv
+    log: results/logs/03g_blocking_sensitivity.log
+    jobid: 0
+    reason: Missing output files: results/step3_blocking_sensitivity.csv
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03g_blocking_sensitivity.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 03g_blocking_sensitivity.ipynb
+[Sun Oct  4 15:18:11 2026]
+Finished jobid: 0 (Rule: blocking_sensitivity)
+1 of 1 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-04T151325.849062.snakemake.log

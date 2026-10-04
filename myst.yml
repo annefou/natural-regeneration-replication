@@ -19,6 +19,7 @@ project:
     - file: notebooks/03_analysis.ipynb
     - file: notebooks/03c_robustness_abc.ipynb
     - file: notebooks/03c_robustness_de.ipynb
+    - file: notebooks/03g_blocking_sensitivity.ipynb
     - file: notebooks/02c_neotropics_sample.ipynb
     - file: notebooks/03d_transfer_test.ipynb
     - file: notebooks/03e_area_of_applicability.ipynb
