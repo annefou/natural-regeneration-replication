@@ -1,34 +1,34 @@
 metric,value,se,mollweide_sphere,nominal_009ha,paper_value,note
-oob_accuracy,0.8840139669045088,,,,0.878,
-validation_accuracy,0.8881367748629981,,,,0.879,n=123356 balanced; paper Neotropics OA 0.865
-validation_users_accuracy_regrowth,0.9140420968885661,,,,0.92,paper SI A1.2 global
-validation_producers_accuracy_regrowth,0.8568533350627452,,,,0.852,paper SI A1.2 global (count based)
+oob_accuracy,0.8844441070796012,,,,0.878,
+validation_accuracy,0.8866856901974772,,,,0.879,n=123356 balanced; paper Neotropics OA 0.865
+validation_users_accuracy_regrowth,0.9146095542729991,,,,0.92,paper SI A1.2 global
+validation_producers_accuracy_regrowth,0.8530107980154998,,,,0.852,paper SI A1.2 global (count based)
 prevalence_pi,0.016444001176786186,,,,,"Fagan regrowth area / sampling-domain area, exact 30 m"
-brier_uncalibrated,0.07094480889532374,,,,,"evaluation half of validation, weighted to prevalence"
-brier_prior_shift,0.008054053765594637,,,,,"evaluation half of validation, weighted to prevalence"
-brier_isotonic,0.007995522581507935,,,,,"evaluation half of validation, weighted to prevalence"
-expected_area_uncalibrated_mha,4.004726616759315,0.0024490062878462933,4.03104133016779,4.714014348,11.19,"sum p x area, as in the paper"
-expected_area_prior_shift_mha,0.19007252611452313,0.00046614956551424693,0.19133068827749924,0.2233411533579957,,calibrated to prevalence
-expected_area_isotonic_mha,0.20690540252424353,0.0005362185162106478,0.20827628708624055,0.24306469843262063,,cross-check
-area_p_gt_0.5_uncalibrated_mha,2.051987738534663,0.003717265063227546,2.065482931624982,2.414943,13.7,
-area_p_gt_0.5_prior_shift_mha,0.032902496137432,0.0005000262085091934,0.03312378763220401,0.038511,,
-area_p_gt_0.5_isotonic_mha,0.032902496137432,0.0005000262085091934,0.03312378763220401,0.038511,,
-prediction_domain_area_mha,18.654116087567772,,18.776772895040583,21.95426178,93.78,exact 30 m count
+brier_uncalibrated,0.0708721991620386,,,,,"evaluation half of validation, weighted to prevalence"
+brier_prior_shift,0.008147165560779194,,,,,"evaluation half of validation, weighted to prevalence"
+brier_isotonic,0.00806318948344988,,,,,"evaluation half of validation, weighted to prevalence"
+expected_area_uncalibrated_mha,3.9887433614267205,0.002455606531971036,4.014950902008708,4.695294582,11.19,"sum p x area, as in the paper"
+expected_area_prior_shift_mha,0.18825069136044015,0.00044997825279620543,0.189495810657146,0.22124310619117288,,calibrated to prevalence
+expected_area_isotonic_mha,0.20970542323014021,0.0005418241095967121,0.21109355929126047,0.24641047094128232,,cross-check
+area_p_gt_0.5_uncalibrated_mha,2.025899161860933,0.003698993168770308,2.039216062655747,2.384532,13.7,
+area_p_gt_0.5_prior_shift_mha,0.028589679207927095,0.0004661697132758679,0.02878198862951863,0.033462,,
+area_p_gt_0.5_isotonic_mha,0.06970223025380907,0.0007269939821735443,0.07017057309044133,0.081603,,
+prediction_domain_area_mha,18.884651358818203,,19.008822434457674,22.22565309,93.78,exact 30 m count
 study_domain_area_mha,93.24094711391339,,93.86062051936942,109.45308312,93.78,Colombia x biomes 1-3
 authors_expected_in_domain_exact_mha,10.507028659320657,,10.576135182817806,12.3650418447,11.19,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_expected_in_pred_exact_mha,10.280877089142784,,10.348491455482108,12.0991028787,11.19,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_binary_in_domain_exact_mha,11.051482082187054,,11.12416426813905,13.00601646,13.7,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_binary_in_pred_exact_mha,11.051482082187054,,11.12416426813905,13.00601646,13.7,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_binary_valid_in_domain_exact_mha,93.24094711391339,,93.86062051936942,109.45308312,93.78,"authors' map, exact 30 m sums within our study / prediction domain"
-authors_binary_valid_in_pred_exact_mha,18.654116087567772,,18.776772895040583,21.95426178,93.78,"authors' map, exact 30 m sums within our study / prediction domain"
+authors_binary_valid_in_pred_exact_mha,18.884651358818203,,19.008822434457674,22.22565309,93.78,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_continuous_valid_in_domain_exact_mha,18.78107756659786,,18.904569371115265,22.10367348,93.78,"authors' map, exact 30 m sums within our study / prediction domain"
 authors_continuous_valid_in_pred_exact_mha,18.40025877456824,,18.52124147984786,21.65570361,93.78,"authors' map, exact 30 m sums within our study / prediction domain"
-pixel_pearson_p_vs_authors_pct,0.6853545157793092,,,,,n=2405222
-pixel_spearman_p_vs_authors_pct,0.7528363784507209,,,,,
-pixel_binary_agreement_vs_authors_bin,0.4948221727794108,,,,,n=2426597
-pixel_kappa_vs_authors_bin,0.13028813792068583,,,,,
-pixel_kappa_vs_authors_pct_gt50,0.13943311442808914,,,,,
-share_pred_domain_authors_pct_nodata,0.008808632006056218,,,,,
-healpix_d8_pearson_expected_fraction,0.8705696938142651,,,,,1451 cells
-healpix_d8_pearson_binary_fraction,0.5568661651615736,,,,,
-healpix_d8_pearson_expected_area_vs_stageA_product,0.8771822848518679,,,,,"stage A = all 30 m pixels, whole country"
+pixel_pearson_p_vs_authors_pct,0.6782314470002485,,,,,n=2405222
+pixel_spearman_p_vs_authors_pct,0.7540590672119033,,,,,
+pixel_binary_agreement_vs_authors_bin,0.48876593846218974,,,,,n=2456636
+pixel_kappa_vs_authors_bin,0.11187371070507335,,,,,
+pixel_kappa_vs_authors_pct_gt50,0.12968841291982025,,,,,
+share_pred_domain_authors_pct_nodata,0.02092861946173548,,,,,
+healpix_d8_pearson_expected_fraction,0.8569353494343783,,,,,1451 cells
+healpix_d8_pearson_binary_fraction,0.5378454349610725,,,,,
+healpix_d8_pearson_expected_area_vs_stageA_product,0.8645465067350357,,,,,"stage A = all 30 m pixels, whole country"

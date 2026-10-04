@@ -1,4 +1,4 @@
 [jupytext] Reading 03_analysis.py in format py
 [jupytext] Executing notebook with kernel python3
 [jupytext] Warning: Notebook is not trusted
-[jupytext] Writing 03_analysis.ipynb
+[jupytext] Writing 03_analysis.ipynb (destination file replaced [use --update to preserve cell outputs and ids])

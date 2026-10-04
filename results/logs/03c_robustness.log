@@ -1,4 +1,4 @@
 [jupytext] Reading 03c_robustness.py in format py
 [jupytext] Executing notebook with kernel python3
 [jupytext] Warning: Notebook is not trusted
-[jupytext] Writing 03c_robustness_abc.ipynb
+[jupytext] Writing 03c_robustness_abc.ipynb (destination file replaced [use --update to preserve cell outputs and ids])

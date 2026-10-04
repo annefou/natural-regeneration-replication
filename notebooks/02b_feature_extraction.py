@@ -21,7 +21,8 @@
 # intersects Colombia ∩ study biomes:
 #
 # 1. **Forest** = Hansen tree cover 2000 ≥ `TREE_THRESHOLD` (%). Forest 2018 =
-#    (forest 2000 OR gain 2000–2012) AND NOT loss 2001–2018.
+#    forest 2000 AND NOT loss 2001–2018 (the usual GFW convention; gain is not
+#    added, as GFW advises against combining gain and loss).
 # 2. **Focal predictors** (2000 for training, 2018 for prediction): forest density =
 #    forest fraction in a 1 km-radius disk; distance to forest (m, Euclidean on
 #    the ellipsoid-scaled grid, truncated at 25 km).
@@ -271,7 +272,7 @@ def process_tile(tile: tuple[int, int]) -> dict:
             arrs[layer] = src.read(1, window=Window(w.col_off, w.row_off, size, size), boundless=True, fill_value=0)
     forest00 = arrs["treecover2000"] >= TREE_THRESHOLD
     lost = (arrs["lossyear"] >= 1) & (arrs["lossyear"] <= 18)
-    forest18 = (forest00 | (arrs["gain"] == 1)) & ~lost
+    forest18 = forest00 & ~lost
     my, mx = metres_per_degree(lat0 + 0.5)
     dy, dx = RES * my, RES * mx
     kern = disk_kernel(DENSITY_RADIUS_M, dy, dx)
