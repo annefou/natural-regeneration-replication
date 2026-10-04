@@ -1,0 +1,37 @@
+label,expected,gt50,kind,table,accuracy
+Paper (Supp. Tables 3 / 4),11.19,13.7,paper,area,
+"Step 1: authors' map, exact area",10.5143,11.6418,repro,area,
+"Step 1: authors' map, count x 0.09 ha",12.3736,13.6986,repro,area,
+"Step 2: RF, uncalibrated",4.004726616759315,2.051987738534663,repl,area,
+"Step 2: RF, calibrated (prior shift)",0.1900725261145231,0.032902496137432,repl,area,
+"3a: LC 1992, uncal.",3.987976771409095,2.0398607239428346,robust,area,
+"3a: LC 1992, calibrated",0.1881964185012846,0.0308885717568356,robust,area,
+"3a: LC 1999, uncal.",3.9931361863014,2.051320606021372,robust,area,
+"3a: LC 1999, calibrated",0.189711780752134,0.0323637516441259,robust,area,
+"3d: gradient boosting, uncal.",3.954621966314682,2.2303665543426345,robust,area,
+"3d: gradient boosting, calibrated",0.1904289225008072,0.001920765763307,robust,area,
+"3c: selected, no NPP/fire/roads, uncal.",3.924470790147196,1.8759091705553608,robust,area,
+"3c: selected, no NPP/fire/roads, calibrated",0.1594799785044036,0.012679406279992,robust,area,
+"3e: CHELSA climate (sensitivity), uncal.",3.9550776059994432,2.0357251722186622,robust,area,
+"3e: CHELSA climate (sensitivity), calibrated",0.1826951786911647,0.0272361569864797,robust,area,
+Paper: validation,,,paper,accuracy,0.879
+Paper: OOB,,,paper,accuracy,0.878
+Paper: Neotropics OA (SI A1.3),,,paper,accuracy,0.865
+Step 2: OOB,,,repl,accuracy,0.8840139669045088
+Step 2: validation (random points),,,repl,accuracy,0.8881367748629981
+"3b: 5-fold CV, random",,,robust,accuracy,0.887011448874852
+"3b: 5-fold CV, healpix_d6",,,robust,accuracy,0.8552182924422599
+"3b: 5-fold CV, healpix_d7",,,robust,accuracy,0.8646269245953416
+"3b: 5-fold CV, healpix_d8",,,robust,accuracy,0.8671140939597315
+"3e (CHELSA, sensitivity): CV random",,,robust,accuracy,0.890322075290744
+"3e (CHELSA, sensitivity): CV healpix_d6",,,robust,accuracy,0.8437769139229456
+"3e (CHELSA, sensitivity): CV healpix_d7",,,robust,accuracy,0.8538795296543029
+"3e (CHELSA, sensitivity): CV healpix_d8",,,robust,accuracy,0.8628200903847649
+3: a_landcover_1992,,,robust,accuracy,0.8877071240961121
+3: a_landcover_1999,,,robust,accuracy,0.8879665358798924
+3: c_selected_with_during_vars,,,robust,accuracy,0.8957561577955417
+3: c_selected_without_during_vars,,,robust,accuracy,0.8938357274879212
+3: c_all_candidates,,,robust,accuracy,0.8959836225385065
+3: c_all_candidates_without_during_vars,,,robust,accuracy,0.8938195142514349
+3: d_hist_gradient_boosting,,,robust,accuracy,0.8757741820422192
+3: e_chelsa_bioclim_SENSITIVITY,,,robust,accuracy,0.8902612787923693

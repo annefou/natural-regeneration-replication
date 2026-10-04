@@ -1,0 +1,164 @@
+Assuming unrestricted shared filesystem usage.
+host: ccaf
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 12
+Rules claiming more threads will be scaled down.
+Job stats:
+job                         count
+------------------------  -------
+data_download_predictors        1
+data_clean                      1
+feature_extraction              1
+analysis                        1
+robustness                      1
+figures                         1
+optional_variants               1
+all                             1
+total                           8
+
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 20:53:52 2026]
+localrule data_download_predictors:
+    input: data/raw/gadm/gadm41_COL.gpkg
+    output: data/raw/sources_predictors.json, data/raw/burned_source.json
+    log: results/logs/01b_data_download_predictors.log
+    jobid: 7
+    reason: Missing output files: data/raw/sources_predictors.json, data/raw/burned_source.json
+    resources: tmpdir=/tmp
+[jupytext] Reading 01b_data_download_predictors.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 01b_data_download_predictors.ipynb
+[Sat Oct  3 23:20:37 2026]
+Finished jobid: 7 (Rule: data_download_predictors)
+1 of 8 steps (12%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 23:20:37 2026]
+localrule data_clean:
+    input: data/raw/sources_predictors.json, data/raw/burned_source.json
+    output: data/clean/bioclim_pca.nc, data/clean/chelsa_pca.nc, data/clean/soil_0_30cm.nc, data/clean/landcover.nc, data/clean/npp.nc, data/clean/roads.nc, data/clean/burned.nc, data/clean/biomes_colombia.parquet, data/clean/clean_meta.json
+    log: results/logs/02_data_clean.log
+    jobid: 6
+    reason: Missing output files: data/clean/clean_meta.json; Input files updated by another job: data/raw/sources_predictors.json, data/raw/burned_source.json
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 02_data_clean.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 02_data_clean.ipynb
+[Sat Oct  3 23:29:19 2026]
+Finished jobid: 6 (Rule: data_clean)
+2 of 8 steps (25%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 23:29:19 2026]
+localrule feature_extraction:
+    input: data/clean/clean_meta.json, data/raw/sources.json
+    output: data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv, data/clean/features_meta.json
+    log: results/logs/02b_feature_extraction.log
+    jobid: 5
+    reason: Missing output files: data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv; Input files updated by another job: data/clean/clean_meta.json
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 02b_feature_extraction.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 02b_feature_extraction.ipynb
+[Sat Oct  3 23:51:06 2026]
+Finished jobid: 5 (Rule: feature_extraction)
+3 of 8 steps (38%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 23:51:06 2026]
+localrule analysis:
+    input: data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv, results/step1_authors_map_healpix_d8.nc
+    output: results/step2_replication_colombia.csv, results/step2_reliability.csv, results/step2_healpix_d8.nc, data/derived/step2_meta.json, data/derived/step2_predictions_grid.parquet
+    log: results/logs/03_analysis.log
+    jobid: 4
+    reason: Missing output files: data/derived/step2_meta.json, results/step2_replication_colombia.csv; Input files updated by another job: data/clean/samples.parquet, data/clean/pred_grid.parquet, data/clean/tile_sums.csv
+    priority: 100
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03_analysis.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03_analysis.ipynb
+[Sat Oct  3 23:51:33 2026]
+Finished jobid: 4 (Rule: analysis)
+4 of 8 steps (50%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 23:51:33 2026]
+localrule robustness:
+    input: data/clean/samples.parquet, data/derived/step2_meta.json
+    output: results/step3_robustness_colombia.csv, results/step3_spatial_cv.csv, results/step3_accuracy_by_distance.csv, results/step3_variable_selection_curves.csv
+    log: results/logs/03c_robustness.log
+    jobid: 8
+    reason: Missing output files: results/step3_robustness_colombia.csv, results/step3_spatial_cv.csv; Input files updated by another job: data/derived/step2_meta.json, data/clean/samples.parquet
+    priority: 50
+    threads: 12
+    resources: tmpdir=/tmp
+[jupytext] Reading 03c_robustness.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 03c_robustness_abc.ipynb
+[Sat Oct  3 23:58:52 2026]
+Finished jobid: 8 (Rule: robustness)
+5 of 8 steps (62%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sat Oct  3 23:58:52 2026]
+localrule optional_variants:
+    input: data/clean/samples.parquet, data/derived/step2_meta.json, results/step3_robustness_colombia.csv
+    output: results/step3_optional_variants_colombia.csv, results/step3_spatial_cv_chelsa.csv
+    log: results/logs/03c_optional_variants.log
+    jobid: 9
+    reason: Missing output files: results/step3_optional_variants_colombia.csv; Input files updated by another job: data/derived/step2_meta.json, results/step3_robustness_colombia.csv, data/clean/samples.parquet
+    priority: 10
+    threads: 12
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[jupytext] Reading 03c_robustness.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Writing 03c_robustness_de.ipynb
+[Sun Oct  4 00:00:46 2026]
+Finished jobid: 9 (Rule: optional_variants)
+6 of 8 steps (75%) done
+Execute 1 jobs...
+
+[Sun Oct  4 00:00:46 2026]
+localrule figures:
+    input: results/step1_reproduction_colombia.csv, results/step2_replication_colombia.csv, results/step3_robustness_colombia.csv, results/step3_spatial_cv.csv
+    output: figures/main_result.png, results/summary.csv
+    log: results/logs/04_figures.log
+    jobid: 10
+    reason: Missing output files: figures/main_result.png; Input files updated by another job: results/step2_replication_colombia.csv, results/step3_robustness_colombia.csv, results/step3_spatial_cv.csv
+    priority: 5
+    resources: tmpdir=/tmp
+[jupytext] Reading 04_figures.py in format py
+[jupytext] Executing notebook with kernel python3
+[jupytext] Warning: Notebook is not trusted
+[jupytext] Writing 04_figures.ipynb
+[Sun Oct  4 00:00:50 2026]
+Finished jobid: 10 (Rule: figures)
+7 of 8 steps (88%) done
+Select jobs to execute...
+Execute 1 jobs...
+
+[Sun Oct  4 00:00:50 2026]
+localrule all:
+    input: results/step1_reproduction_colombia.csv, results/step1_authors_map_healpix_d8.nc, results/step1_reproduction_cri.csv, results/step2_replication_colombia.csv, results/step3_robustness_colombia.csv, results/step3_optional_variants_colombia.csv, figures/main_result.png
+    jobid: 0
+    reason: Input files updated by another job: results/step2_replication_colombia.csv, results/step3_optional_variants_colombia.csv, figures/main_result.png, results/step3_robustness_colombia.csv
+    resources: tmpdir=/tmp
+[Sun Oct  4 00:00:50 2026]
+Finished jobid: 0 (Rule: all)
+8 of 8 steps (100%) done
+Complete log(s): /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication/.snakemake/log/2026-10-03T205352.009678.snakemake.log
