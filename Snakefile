@@ -79,6 +79,12 @@ STAGE_B_FINAL = [
     f"{FIGURES}/main_result.png",
 ]
 
+FULLRES_FINAL = [
+    f"{DERIVED}/fullres_healpix_d15.parquet",
+    f"{DERIVED}/fullres_healpix_d15.json",
+    f"{RESULTS}/fullres_summary.csv",
+]
+
 if SMOKE:
     rule all:
         input:
@@ -86,6 +92,7 @@ if SMOKE:
             DIAG3_FINAL,
             AOA_FINAL,
             MAPBIOMAS_FINAL,
+            FULLRES_FINAL,
 else:
     rule all:
         input:
@@ -96,6 +103,12 @@ else:
             DIAG3_FINAL,
             AOA_FINAL,
             MAPBIOMAS_FINAL,
+            FULLRES_FINAL,
+
+
+rule archive:
+    input:
+        FULLRES_FINAL,
 
 
 rule diag3:
@@ -408,3 +421,20 @@ rule mapbiomas_experiments:
     priority: 1
     shell:
         nb("03f_mapbiomas_experiments.py")
+
+
+# ---------- 05a: full-resolution prediction, conservative HEALPix depth-15 sums ----------
+rule full_prediction:
+    input:
+        f"{NOTEBOOKS}/05a_full_prediction.py",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/tile_sums.csv",
+        f"{DERIVED}/step2_predictions_grid.parquet",
+        f"{RESULTS}/step2_replication_colombia.csv",
+    output:
+        FULLRES_FINAL,
+    log:
+        f"{LOGS}/05a_full_prediction.log",
+    threads: workflow.cores
+    shell:
+        nb("05a_full_prediction.py")

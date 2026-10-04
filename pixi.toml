@@ -69,6 +69,16 @@ earthaccess = "*"          # NASA Earthdata search + download (netrc auth)
 # polytope-client = "*"      # Destination Earth Climate DT
 # earthkit-data = "*"
 
+# --- HEALPix archive (05a/05b): conservative aggregation + GRID4EARTH Zarr ---
+# CPU build from conda-forge, so the PyPI `torch` requirement of healpix-resample
+# does not pull the multi-GB CUDA wheel.
+pytorch-cpu = "*"
+zarr = ">=3"
+
+[pypi-dependencies]
+healpix-resample = "==2026.7.0"
+healpix-connector = { git = "https://github.com/annefou/healpix-connector", tag = "v0.1.0" }
+
 [feature.docs.dependencies]
 mystmd = "*"
 
