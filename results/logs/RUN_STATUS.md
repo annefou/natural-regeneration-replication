@@ -145,3 +145,20 @@ deleted once `neotropics_samples.parquet` exists; they only speed up reruns.
   per-class and balanced accuracy. Both runs completed. The refitted models reproduce the 03/03d validation accuracies
   (0.8867 / 0.7671 / 0.7835).
 - Method choices: `docs/deviations.md` § Area of applicability.
+
+---
+
+# MapBiomas labels — `01c` → `02d` → `03f` (experiments E1–E4)
+
+- **Rules:** `mapbiomas_download` (01c), `mapbiomas_labels` (02d), `mapbiomas_experiments` (03f). Target: `mapbiomas` (also part of `all`).
+- **Outputs:**
+  - `data/raw/mapbiomas_c3/colombia_coverage_{1985..2024}.tif` (~4.5 GB, md5-checked), `data/raw/mapbiomas_docs/`, `data/raw/esacci_lc/esacci_lc_2010_colombia.tif`, `data/raw/sources_mapbiomas.json`
+  - `data/clean/mapbiomas_{grid,samples,codes}.parquet`, `mapbiomas_meta.json`
+  - `results/mapbiomas_e1_labels.csv`, `mapbiomas_e1_model.csv`, `mapbiomas_e2_forward.csv`, `mapbiomas_e2_reliability.csv`, `mapbiomas_e3_history.csv`, `mapbiomas_e4_cross.csv`, `mapbiomas_meta.json`
+  - `figures/mapbiomas_labels.png`, `figures/mapbiomas_forward_test.png`
+- **Smoke test:** all three notebooks passed on 2026-10-04 (`SMOKE=1`, run directly with jupytext; 02d reads the smoke window remotely). The 2000 forest density and distance recomputed in 02d match 02b exactly; ESA 2000 land cover matches at 100 % of points.
+- **Full run:** started 2026-10-04 12:58 UTC,
+  `setsid nohup pixi run snakemake mapbiomas --cores 12 --keep-going --rerun-incomplete --rerun-triggers mtime > results/logs/mapbiomas_20261004T1258.log 2>&1 < /dev/null &`.
+  The dry run showed only the three new rules (plus the `mapbiomas`/`all` targets). Expected time ~45–75 min: download ~5–10 min; 02d ~15–25 min (40 full-raster point reads, trajectories for 12.4 M points, 2010 focal predictors for ~130 1° tiles); 03f ~20–40 min.
+- **Disk:** 01c stops if a download would leave < 10 GB free (22 GB free before the download).
+- **Resume:** downloads are idempotent (md5); rerun the same command after `pixi run snakemake --unlock` if needed.

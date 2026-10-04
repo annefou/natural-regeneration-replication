@@ -14,6 +14,8 @@
 #   Run on its own with `snakemake diag3`.
 # Area of applicability (Meyer & Pebesma 2021, CAST port): 03e, after diagnostic 3.
 #   Run on its own with `snakemake aoa`.
+# MapBiomas labels (independent regrowth labels, experiments E1-E4): 01c -> 02d -> 03f.
+#   Run on its own with `snakemake mapbiomas`.
 #
 # Every rule lists its notebook as an input, so editing a notebook re-runs its rule
 # (and, through the outputs, everything downstream) under `--rerun-triggers mtime`.
@@ -58,6 +60,18 @@ AOA_FINAL = [
     f"{FIGURES}/aoa_colombia.png",
 ]
 
+MAPBIOMAS_FINAL = [
+    f"{RESULTS}/mapbiomas_e1_labels.csv",
+    f"{RESULTS}/mapbiomas_e1_model.csv",
+    f"{RESULTS}/mapbiomas_e1_persistence.csv",
+    f"{RESULTS}/mapbiomas_e2_forward.csv",
+    f"{RESULTS}/mapbiomas_e2_reliability.csv",
+    f"{RESULTS}/mapbiomas_e3_history.csv",
+    f"{RESULTS}/mapbiomas_e4_cross.csv",
+    f"{FIGURES}/mapbiomas_labels.png",
+    f"{FIGURES}/mapbiomas_forward_test.png",
+]
+
 STAGE_B_FINAL = [
     f"{RESULTS}/step2_replication_colombia.csv",
     f"{RESULTS}/step3_robustness_colombia.csv",
@@ -71,6 +85,7 @@ if SMOKE:
             STAGE_B_FINAL,
             DIAG3_FINAL,
             AOA_FINAL,
+            MAPBIOMAS_FINAL,
 else:
     rule all:
         input:
@@ -80,11 +95,17 @@ else:
             STAGE_B_FINAL,
             DIAG3_FINAL,
             AOA_FINAL,
+            MAPBIOMAS_FINAL,
 
 
 rule diag3:
     input:
         DIAG3_FINAL,
+
+
+rule mapbiomas:
+    input:
+        MAPBIOMAS_FINAL,
 
 
 # ---------- 01: Step-1 data (authors' tiles + GADM) ----------
@@ -329,3 +350,56 @@ rule aoa:
     priority: 1
     shell:
         nb("03e_area_of_applicability.py")
+
+
+# ---------- MapBiomas Colombia C3 labels: download (01c), labels + 2012 predictors (02d), experiments (03f) ----------
+# 01c downloads the 40 annual rasters (~4.5 GB; stops below 10 GB free disk); in smoke mode 02d reads the
+# smoke window remotely instead.
+rule mapbiomas_download:
+    input:
+        f"{NOTEBOOKS}/01c_mapbiomas_download.py",
+        f"{RAW}/gadm/gadm41_COL.gpkg",
+    output:
+        f"{RAW}/sources_mapbiomas{SFX}.json",
+    log:
+        f"{LOGS}/01c_mapbiomas_download.log",
+    shell:
+        nb("01c_mapbiomas_download.py")
+
+
+rule mapbiomas_labels:
+    input:
+        f"{NOTEBOOKS}/02d_mapbiomas_labels.py",
+        f"{RAW}/sources_mapbiomas{SFX}.json",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+    output:
+        f"{CLEAN}/mapbiomas_grid.parquet",
+        f"{CLEAN}/mapbiomas_samples.parquet",
+        f"{CLEAN}/mapbiomas_codes.parquet",
+        f"{CLEAN}/mapbiomas_meta.json",
+    log:
+        f"{LOGS}/02d_mapbiomas_labels.log",
+    threads: workflow.cores
+    priority: 1
+    shell:
+        nb("02d_mapbiomas_labels.py")
+
+
+rule mapbiomas_experiments:
+    input:
+        f"{NOTEBOOKS}/03f_mapbiomas_experiments.py",
+        f"{CLEAN}/mapbiomas_grid.parquet",
+        f"{CLEAN}/mapbiomas_samples.parquet",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+        f"{CLEAN}/tile_sums.csv",
+    output:
+        MAPBIOMAS_FINAL,
+        f"{RESULTS}/mapbiomas_meta.json",
+    log:
+        f"{LOGS}/03f_mapbiomas_experiments.log",
+    threads: workflow.cores
+    priority: 1
+    shell:
+        nb("03f_mapbiomas_experiments.py")
