@@ -10,6 +10,11 @@
 # Step 1: reproduction from the authors' published map (01, 03a).
 # Steps 2-3: independent random-forest replication and robustness checks
 #   01b -> 02 -> 02b -> 03 (step 2) -> 03c [a,b,c] -> 03c [d,e optional] -> 04.
+# Diagnostic 3 (transferability): 02c (Neotropical sample) -> 03d (transfer test).
+#   Run on its own with `snakemake diag3`.
+#
+# Every rule lists its notebook as an input, so editing a notebook re-runs its rule
+# (and, through the outputs, everything downstream) under `--rerun-triggers mtime`.
 #
 # Smoke mode writes to data/clean_smoke, data/derived_smoke, results/smoke and
 # figures/smoke, and shares the download cache in data/raw.
@@ -37,6 +42,13 @@ def nb(name, extra_env=""):
             f"2>&1 | tee ../{{log}}")
 
 
+DIAG3_FINAL = [
+    f"{RESULTS}/diag3_transfer_colombia.csv",
+    f"{RESULTS}/diag3_transfer_curve.csv",
+    f"{FIGURES}/diag3_transfer.png",
+    f"{FIGURES}/diag3_training_cells.png",
+]
+
 STAGE_B_FINAL = [
     f"{RESULTS}/step2_replication_colombia.csv",
     f"{RESULTS}/step3_robustness_colombia.csv",
@@ -48,6 +60,7 @@ if SMOKE:
     rule all:
         input:
             STAGE_B_FINAL,
+            DIAG3_FINAL,
 else:
     rule all:
         input:
@@ -55,10 +68,18 @@ else:
             "results/step1_authors_map_healpix_d8.nc",
             "results/step1_reproduction_cri.csv",
             STAGE_B_FINAL,
+            DIAG3_FINAL,
+
+
+rule diag3:
+    input:
+        DIAG3_FINAL,
 
 
 # ---------- 01: Step-1 data (authors' tiles + GADM) ----------
 rule data_download:
+    input:
+        f"{NOTEBOOKS}/01_data_download.py",
     output:
         f"{RAW}/sources.json",
         f"{RAW}/gadm/gadm41_COL.gpkg",
@@ -72,6 +93,7 @@ rule data_download:
 # ---------- 03a: Step 1 reproduction (Colombia, Costa Rica) ----------
 rule reproduction_area:
     input:
+        f"{NOTEBOOKS}/03a_reproduction_area.py",
         f"{RAW}/sources.json",
         f"{RAW}/gadm/gadm41_COL.gpkg",
     output:
@@ -88,6 +110,7 @@ rule reproduction_area:
 
 rule reproduction_area_cri:
     input:
+        f"{NOTEBOOKS}/03a_reproduction_area.py",
         f"{RAW}/sources.json",
         f"{RAW}/gadm/gadm41_CRI.gpkg",
     output:
@@ -106,6 +129,7 @@ rule reproduction_area_cri:
 # ---------- 01b: Labels + predictors (SRTM / MCD64A1 fallback need Earthdata ~/.netrc) ----------
 rule data_download_predictors:
     input:
+        f"{NOTEBOOKS}/01b_data_download_predictors.py",
         f"{RAW}/gadm/gadm41_COL.gpkg",
     output:
         f"{RAW}/sources_predictors{SFX}.json",
@@ -119,6 +143,7 @@ rule data_download_predictors:
 # ---------- 02: Predictor layers on native grids (incl. WorldClim + CHELSA PCA) ----------
 rule data_clean:
     input:
+        f"{NOTEBOOKS}/02_data_clean.py",
         f"{RAW}/sources_predictors{SFX}.json",
         f"{RAW}/burned_source{SFX}.json",
     output:
@@ -141,6 +166,7 @@ rule data_clean:
 # ---------- 02b: 30 m masks, sampling, feature extraction ----------
 rule feature_extraction:
     input:
+        f"{NOTEBOOKS}/02b_feature_extraction.py",
         f"{CLEAN}/clean_meta.json",
         f"{RAW}/sources.json",
     output:
@@ -158,6 +184,7 @@ rule feature_extraction:
 # ---------- 03: Step 2 replication (incl. calibration extension) ----------
 rule analysis:
     input:
+        f"{NOTEBOOKS}/03_analysis.py",
         f"{CLEAN}/samples.parquet",
         f"{CLEAN}/pred_grid.parquet",
         f"{CLEAN}/tile_sums.csv",
@@ -179,6 +206,7 @@ rule analysis:
 # ---------- 03c: Step 3 robustness (a) land cover, (b) spatial CV, (c) variable selection ----------
 rule robustness:
     input:
+        f"{NOTEBOOKS}/03c_robustness.py",
         f"{CLEAN}/samples.parquet",
         f"{DERIVED}/step2_meta.json",
     output:
@@ -197,6 +225,7 @@ rule robustness:
 # ---------- 03c (optional): (d) gradient boosting, (e) CHELSA climate sensitivity ----------
 rule optional_variants:
     input:
+        f"{NOTEBOOKS}/03c_robustness.py",
         f"{CLEAN}/samples.parquet",
         f"{DERIVED}/step2_meta.json",
         f"{RESULTS}/step3_robustness_colombia.csv",  # forces (a)-(c) to finish first
@@ -214,6 +243,7 @@ rule optional_variants:
 # ---------- 04: Main figure ----------
 rule figures:
     input:
+        f"{NOTEBOOKS}/04_figures.py",
         "results/step1_reproduction_colombia.csv",
         f"{RESULTS}/step2_replication_colombia.csv",
         f"{RESULTS}/step3_robustness_colombia.csv",
@@ -226,3 +256,46 @@ rule figures:
     priority: 5  # after the optional variants when both are ready (the figure includes them if present)
     shell:
         nb("04_figures.py")
+
+
+# ---------- Diagnostic 3: Neotropical training sample (02c) and transfer test (03d) ----------
+# 02c downloads Hansen tree-cover tiles one group at a time and deletes them (keeps >= 10 GB
+# free); SoilGrids / ESA CCI / Fagan are read remotely at the points. Uses the full-run PCA
+# loadings and LC classes of data/clean (also in smoke mode).
+rule neotropics_sample:
+    input:
+        f"{NOTEBOOKS}/02c_neotropics_sample.py",
+        "data/clean/clean_meta.json",
+        "data/raw/sources_predictors.json",
+        f"{RAW}/gadm/gadm41_COL.gpkg",
+    output:
+        f"{CLEAN}/neotropics_samples.parquet",
+        f"{CLEAN}/neotropics_cells.parquet",
+        f"{CLEAN}/neotropics_meta.json",
+        f"{FIGURES}/diag3_training_cells.png",
+    log:
+        f"{LOGS}/02c_neotropics_sample.log",
+    threads: workflow.cores
+    priority: 1
+    shell:
+        nb("02c_neotropics_sample.py")
+
+
+rule transfer_test:
+    input:
+        f"{NOTEBOOKS}/03d_transfer_test.py",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+        f"{CLEAN}/tile_sums.csv",
+        f"{CLEAN}/neotropics_samples.parquet",
+    output:
+        f"{RESULTS}/diag3_transfer_colombia.csv",
+        f"{RESULTS}/diag3_transfer_curve.csv",
+        f"{RESULTS}/diag3_meta.json",
+        f"{FIGURES}/diag3_transfer.png",
+    log:
+        f"{LOGS}/03d_transfer_test.log",
+    threads: workflow.cores
+    priority: 1
+    shell:
+        nb("03d_transfer_test.py")

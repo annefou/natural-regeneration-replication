@@ -74,3 +74,55 @@ setsid nohup pixi run snakemake --cores 12 --keep-going --rerun-incomplete --rer
 
 Downloads and expensive intermediates are cached, so a rerun resumes from
 whatever is missing.
+
+---
+
+# Diagnostic 3 — transferability run (Neotropical training sample)
+
+- **Rules:** `neotropics_sample` (`notebooks/02c_neotropics_sample.py`) → `transfer_test`
+  (`notebooks/03d_transfer_test.py`); target `diag3` (also part of `all`).
+- **Command:** `setsid nohup pixi run snakemake diag3 --cores 12 --keep-going --rerun-incomplete --rerun-triggers mtime > results/logs/diag3_<UTC>.log 2>&1 < /dev/null &`
+- **Log:** newest `results/logs/diag3_*.log` (Snakemake); notebook logs
+  `results/logs/02c_neotropics_sample.log`, `results/logs/03d_transfer_test.log`
+  (written when each notebook finishes).
+- **Outputs:** `data/clean/neotropics_{samples,cells,cells_all,soil_points}.parquet`,
+  `data/clean/neotropics_meta.json`, `results/diag3_transfer_colombia.csv` (Test 1),
+  `results/diag3_transfer_curve.csv` (Test 2), `results/diag3_meta.json`,
+  `figures/diag3_transfer.png`, `figures/diag3_training_cells.png`.
+- **Expected time:** 02c ~1–1.5 h (Fagan reads ~10–20 min; ~280 1° tiles with
+  Hansen tree-cover downloads ~30–45 min; SoilGrids remote point reads ~20–30 min);
+  03d ~20–40 min (3 + 20 forest fits, 3 predictions on the Colombian grid).
+- **Every rule now lists its notebook as an input.** Editing a notebook re-runs its
+  rule and everything downstream (mtime trigger).
+
+## Check progress
+
+```bash
+LOG=$(ls -t results/logs/diag3_*.log | head -1); tail -n 30 $LOG
+grep -E "Finished jobid|Error in rule" $LOG
+ls data/clean/neotropics_tiles | wc -l                 # 1° tiles done (of ~280; cache, resumable)
+ls -la data/raw/hansen_tmp_neotropics 2>/dev/null       # Hansen tiles currently on disk (deleted after use)
+ls -la data/clean/neotropics_soil_points.parquet        # soil reads done
+pgrep -af "snakemake diag3"                             # still running?
+df -h /opt/vth                                          # 02c refuses downloads below 10 GB free
+```
+
+## Resume after a failure
+
+02c caches the Fagan polygons (`data/raw/fagan/fagan2022_neotropics_cells.parquet`),
+every 1° tile (`data/clean/neotropics_tiles/*.parquet`) and the soil point values,
+so a rerun continues where it stopped:
+
+```bash
+cd /opt/vth/OpenAIRE_Alien_AI_Hackathon/natural-regeneration-replication
+grep -n "Error in rule" -A15 $(ls -t results/logs/diag3_*.log | head -1)
+tail -n 60 results/logs/02c_neotropics_sample.log      # or 03d_transfer_test.log
+pixi run snakemake --unlock                              # only if a stale lock remains
+setsid nohup pixi run snakemake diag3 --cores 12 --keep-going --rerun-incomplete --rerun-triggers mtime \
+  > results/logs/diag3_$(date -u +%Y%m%dT%H%M).log 2>&1 < /dev/null &
+```
+
+If 02c is OOM-killed in the tile stage, rerun with `N_WORKERS=6` in front of
+`pixi run`. Leftover temporary Hansen tiles in `data/raw/hansen_tmp_neotropics/`
+are safe to delete. The tile cache and `neotropics_soil_points.parquet` can be
+deleted once `neotropics_samples.parquet` exists; they only speed up reruns.
