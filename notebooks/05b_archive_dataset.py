@@ -43,6 +43,7 @@ import hashlib
 import json
 import os
 import shutil
+import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -263,10 +264,16 @@ def sha256(p: Path) -> str:
     return h.hexdigest()
 
 
+# Zenodo allows 100 files per record; the store has one file per chunk. Ship it as one
+# uncompressed zip (chunks are already compressed), readable with zarr.storage.ZipStore.
+with zipfile.ZipFile(OUT / f"{ZARR.name}.zip", "w", compression=zipfile.ZIP_STORED, allowZip64=True) as zf:
+    for f in sorted(ZARR.rglob("*")):
+        if f.is_file():
+            zf.write(f, f.relative_to(ZARR))
 shutil.copy("../docs/archive_README.md", OUT / "README.md")  # dataset description (versioned in docs/)
 shutil.copy("../docs/archive_zenodo.json", OUT / "zenodo_metadata.json")  # deposit metadata for the upload
 
-files = [p for p in sorted(OUT.rglob("*")) if p.is_file()]
+files = [p for p in sorted(OUT.rglob("*")) if p.is_file() and ZARR.name + "/" not in str(p.relative_to(OUT)) + "/"]  # upload set: the zip, not the directory
 pd.DataFrame({"path": [str(p.relative_to(OUT)) for p in files], "bytes": [p.stat().st_size for p in files],
               "sha256": [sha256(p) for p in files]}).to_csv(OUT / "checksums.csv", index=False)
 total = sum(p.stat().st_size for p in files)

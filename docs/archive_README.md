@@ -11,10 +11,10 @@ evaluation of the paper ([doi:10.21428/d28e8e57.5411b150](https://doi.org/10.214
 
 | Path | What |
 |---|---|
-| `natural_regeneration_colombia_healpix.zarr/` | Zarr v3, GRID4EARTH layout, HEALPix NESTED on WGS84 |
+| `natural_regeneration_colombia_healpix.zarr.zip` | Zarr v3, GRID4EARTH layout, HEALPix NESTED on WGS84 (one uncompressed zip; open it directly or unzip to a `.zarr` folder) |
 | `tables/` | Parquet tables: sample points and prediction grid with every predictor, label and prediction |
 | `sources.json` | Input datasets (DOIs or URLs, versions, checksums) as recorded by the download notebooks |
-| `checksums.csv` | SHA-256 of every file |
+| `checksums.csv` | SHA-256 of every file in this record |
 
 ### Zarr: three layer families
 
@@ -35,8 +35,9 @@ Totals over Colombia (Mha): prediction domain 18.79; our expected area 3.93 (unc
 ### Reading it
 
 ```python
-import xarray as xr, xdggs
-dt = xr.open_datatree("natural_regeneration_colombia_healpix.zarr", engine="zarr", consolidated=True)
+import xarray as xr, xdggs, zarr
+store = zarr.storage.ZipStore("natural_regeneration_colombia_healpix.zarr.zip", mode="r")
+dt = xr.open_datatree(store, engine="zarr", consolidated=True)
 ds = dt["measurements/full_resolution/12"].ds.drop_vars("crs").dggs.decode()
 print(ds.dggs.grid_info)          # HEALPix level 12, nested, WGS84
 share = ds.expected_area_uncalibrated / ds.prediction_domain_area
