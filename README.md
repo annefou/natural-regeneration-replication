@@ -31,7 +31,12 @@ robustness checks suggested by The Unjournal's evaluators
   regrowth from 2000–2012 (independent MapBiomas labels).
 - Summing probability × area overstated realised future regrowth about seven times; prevalence
   calibration fixed it. Supplementary Table 4 areas match a nominal 0.09 ha pixel count.
-- Land-use history from 1985–1999 improves the model (0.778 → 0.834).
+- The 50/50 training ratio, not the landscape, sets the uncalibrated area (3.99 Mha at 50 %, 0.24 Mha
+  at the real 1.6 %). Drawing non-regrowth near regrowth ("paired" sampling) helps a little locally
+  but not in the forward test.
+- Using 1992 or 1999 land cover instead of 2000 changes nothing (0.887): no leakage from the
+  predictor years. Adding land-use history from 1985–1999 as extra predictors improves the model
+  (0.778 → 0.834).
 
 ![Main result](figures/main_result.png)
 

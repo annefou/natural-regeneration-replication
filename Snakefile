@@ -17,6 +17,9 @@
 # MapBiomas labels (independent regrowth labels, experiments E1-E4): 01c -> 02d -> 03f.
 #   Run on its own with `snakemake mapbiomas`.
 #
+# Sampling design (Cloud 2026: training prevalence, paired non-regrowth, forward test): 03h,
+#   after 03f. Run on its own with `snakemake sampling`.
+#
 # Every rule lists its notebook as an input, so editing a notebook re-runs its rule
 # (and, through the outputs, everything downstream) under `--rerun-triggers mtime`.
 #
@@ -91,6 +94,12 @@ ARCHIVE_FINAL = [
     f"{RESULTS}/archive_manifest.json",
 ]
 
+SAMPLING_FINAL = [
+    f"{RESULTS}/step3_sampling_design.csv",
+    f"{RESULTS}/step3_sampling_importance.csv",
+    f"{FIGURES}/sampling_design.png",
+]
+
 if SMOKE:
     rule all:
         input:
@@ -101,6 +110,7 @@ if SMOKE:
             FULLRES_FINAL,
             ARCHIVE_FINAL,
             f"{RESULTS}/step3_blocking_sensitivity.csv",
+            SAMPLING_FINAL,
 else:
     rule all:
         input:
@@ -114,6 +124,7 @@ else:
             FULLRES_FINAL,
             ARCHIVE_FINAL,
             f"{RESULTS}/step3_blocking_sensitivity.csv",
+            SAMPLING_FINAL,
 
 
 rule archive:
@@ -130,6 +141,11 @@ rule diag3:
 rule mapbiomas:
     input:
         MAPBIOMAS_FINAL,
+
+
+rule sampling:
+    input:
+        SAMPLING_FINAL,
 
 
 # ---------- 01: Step-1 data (authors' tiles + GADM) ----------
@@ -483,3 +499,21 @@ rule blocking_sensitivity:
     threads: workflow.cores
     shell:
         nb("03g_blocking_sensitivity.py")
+
+
+# ---------- 03h: training-sample design (prevalence sweep, paired non-regrowth, forward test) ----------
+rule sampling_design:
+    input:
+        f"{NOTEBOOKS}/03h_sampling_design.py",
+        f"{CLEAN}/samples.parquet",
+        f"{CLEAN}/pred_grid.parquet",
+        f"{CLEAN}/mapbiomas_grid.parquet",
+        f"{CLEAN}/tile_sums.csv",
+        f"{RESULTS}/mapbiomas_e2_forward.csv",  # runs after 03f, whose E2 numbers it must reproduce
+    output:
+        SAMPLING_FINAL,
+    log:
+        f"{LOGS}/03h_sampling_design.log",
+    threads: workflow.cores
+    shell:
+        nb("03h_sampling_design.py")

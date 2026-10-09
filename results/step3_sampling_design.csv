@@ -1,0 +1,126 @@
+part,design,metric,value,n,note
+A_prevalence,regrowth_share_0.5000,accuracy,0.8866856901974772,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,balanced_accuracy,0.8866856901974772,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,sensitivity,0.8530107980154998,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,specificity,0.9203605823794546,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,auc,0.951267040904623,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,n,123356.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,n_regrowth,61678.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.5000,training_regrowth_share,0.5,39522,
+A_prevalence,regrowth_share_0.5000,expected_area_uncalibrated_mha,3.9887433614267205,2456636,"sum p x area, as in the paper"
+A_prevalence,regrowth_share_0.5000,expected_area_prior_shift_mha,0.18825069136044015,2456636,Saerens prior shift from the training share to pi
+A_prevalence,regrowth_share_0.5000,area_p_gt05_mha,2.025899161860933,2456636,
+A_prevalence,regrowth_share_0.2000,accuracy,0.8514137942216026,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,balanced_accuracy,0.8514137942216025,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,sensitivity,0.7206459353416129,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,specificity,0.9821816531015921,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,auc,0.9443018050162166,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,n,123356.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,n_regrowth,61678.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.2000,training_regrowth_share,0.2,39523,
+A_prevalence,regrowth_share_0.2000,expected_area_uncalibrated_mha,1.7701817496583092,2456636,"sum p x area, as in the paper"
+A_prevalence,regrowth_share_0.2000,expected_area_prior_shift_mha,0.20222639477176477,2456636,Saerens prior shift from the training share to pi
+A_prevalence,regrowth_share_0.2000,area_p_gt05_mha,0.5431813180278231,2456636,
+A_prevalence,regrowth_share_0.0500,accuracy,0.7871364181717955,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,balanced_accuracy,0.7871364181717955,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,sensitivity,0.5775316968773306,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,specificity,0.9967411394662603,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,auc,0.9306319619753922,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,n,123356.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,n_regrowth,61678.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0500,training_regrowth_share,0.05,39523,
+A_prevalence,regrowth_share_0.0500,expected_area_uncalibrated_mha,0.5930017649693212,2456636,"sum p x area, as in the paper"
+A_prevalence,regrowth_share_0.0500,expected_area_prior_shift_mha,0.22363463677652864,2456636,Saerens prior shift from the training share to pi
+A_prevalence,regrowth_share_0.0500,area_p_gt05_mha,0.09133160189095252,2456636,
+A_prevalence,regrowth_share_0.0164,accuracy,0.737442848341386,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,balanced_accuracy,0.737442848341386,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,sensitivity,0.4752261746489834,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,specificity,0.9996595220337884,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,auc,0.9160866537151232,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,n,123356.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,n_regrowth,61678.0,123356,"step-2 validation set (balanced, random)"
+A_prevalence,regrowth_share_0.0164,training_regrowth_share,0.016444001176786186,39523,
+A_prevalence,regrowth_share_0.0164,expected_area_uncalibrated_mha,0.23975940068650325,2456636,"sum p x area, as in the paper"
+A_prevalence,regrowth_share_0.0164,expected_area_prior_shift_mha,0.23975940068650325,2456636,Saerens prior shift from the training share to pi
+A_prevalence,regrowth_share_0.0164,area_p_gt05_mha,0.0053892834311029415,2456636,
+B_paired,data,pool_nonregrowth_share_within_3km,0.3535596789051191,75990,
+B_paired,data,pool_nonregrowth_median_km_to_regrowth,4.316926903125779,75990,
+B_paired,data,pool_regrowth_median_km_to_regrowth_grid,0.339076577810018,75990,regrowth sample points to the nearest regrowth grid point (lattice resolution check)
+B_paired,data,validation_nonregrowth_share_within_3km,0.3550698790492558,61678,
+B_paired,data,validation_nonregrowth_median_km_to_regrowth,4.292252007336206,61678,
+B_paired,data,validation_regrowth_median_km_to_regrowth_grid,0.34822161694910314,61678,regrowth sample points to the nearest regrowth grid point (lattice resolution check)
+B_paired,global,random_validation_accuracy,0.8866856901974772,123356,step-2 validation set
+B_paired,global,random_validation_balanced_accuracy,0.8866856901974772,123356,step-2 validation set
+B_paired,global,random_validation_sensitivity,0.8530107980154998,123356,step-2 validation set
+B_paired,global,random_validation_specificity,0.9203605823794546,123356,step-2 validation set
+B_paired,global,random_validation_auc,0.951267040904623,123356,step-2 validation set
+B_paired,global,random_validation_n,123356.0,123356,step-2 validation set
+B_paired,global,random_validation_n_regrowth,61678.0,123356,step-2 validation set
+B_paired,global,local_validation_accuracy,0.8500562348943502,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_balanced_accuracy,0.8473729789164257,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_sensitivity,0.8530107980154998,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_specificity,0.8417351598173516,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_auc,0.9244982932422193,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_n,83578.0,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,local_validation_n_regrowth,61678.0,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,global,training_nonregrowth_median_km,4.307367807657205,19761,
+B_paired,paired,random_validation_accuracy,0.8790573624306884,123356,step-2 validation set
+B_paired,paired,random_validation_balanced_accuracy,0.8790573624306883,123356,step-2 validation set
+B_paired,paired,random_validation_sensitivity,0.8186063101916404,123356,step-2 validation set
+B_paired,paired,random_validation_specificity,0.9395084146697363,123356,step-2 validation set
+B_paired,paired,random_validation_auc,0.9434128798505828,123356,step-2 validation set
+B_paired,paired,random_validation_n,123356.0,123356,step-2 validation set
+B_paired,paired,random_validation_n_regrowth,61678.0,123356,step-2 validation set
+B_paired,paired,local_validation_accuracy,0.8410466869271818,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_balanced_accuracy,0.861426442767053,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_sensitivity,0.8186063101916404,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_specificity,0.9042465753424658,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_auc,0.9297846911807841,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_n,83578.0,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,local_validation_n_regrowth,61678.0,83578,validation regrowth + equal non-regrowth within 3 km of regrowth
+B_paired,paired,training_nonregrowth_median_km,1.9540387643462394,19762,
+B_paired,global,importance_share_climate,0.14736369196438787,20000,"permutation importance (AUC drop, negatives clipped to 0)"
+B_paired,paired,importance_share_climate,0.12829172274936257,20000,"permutation importance (AUC drop, negatives clipped to 0)"
+B_paired,global,expected_area_uncalibrated_mha,3.9887433614267205,2456636,
+B_paired,global,expected_area_prior_shift_mha,0.18825069136044015,2456636,Saerens prior shift; mis-specified for the paired design
+B_paired,global,expected_area_isotonic_mha,0.20779335077391162,2456636,"isotonic calibration on the random validation set, weighted to pi"
+B_paired,global,area_p_gt05_uncalibrated_mha,2.025899161860933,2456636,
+B_paired,paired,expected_area_uncalibrated_mha,4.066440835145583,2456636,
+B_paired,paired,expected_area_prior_shift_mha,0.15467143842185394,2456636,Saerens prior shift; mis-specified for the paired design
+B_paired,paired,expected_area_isotonic_mha,0.2075017347745391,2456636,"isotonic calibration on the random validation set, weighted to pi"
+B_paired,paired,area_p_gt05_uncalibrated_mha,1.6587654759956176,2456636,
+B_paired,global_vs_paired,top5pct_overlap,0.740759736876384,122832,share of the global design's top-5 % grid points also in the paired design's top 5 %
+B_paired,global_vs_paired,spearman_p,0.8854735560699964,2456636,
+B_paired,global,top5pct_share_biome_1,0.8040494333724111,122832,
+B_paired,global,top5pct_share_biome_2,0.1959505666275889,122832,
+B_paired,paired,top5pct_share_biome_1,0.8829458121662107,122832,
+B_paired,paired,top5pct_share_biome_2,0.11705418783378924,122832,
+C_forward,data,pool_nonregrowth_share_within_3km,0.8244209763349412,1594883,
+C_forward,global,forward_accuracy,0.7384717319372036,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_balanced_accuracy,0.7171428294299435,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_sensitivity,0.6939471896302969,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_specificity,0.74033846922959,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_auc,0.7994815531528682,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_n,3255476.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_n_regrowth,130997.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_precision_top1pct,0.30733550408551946,32554,share of the top-ranked points that regrew in 2012-2024
+C_forward,global,forward_precision_top5pct,0.18970590945672808,162773,share of the top-ranked points that regrew in 2012-2024
+C_forward,global,forward_precision_top10pct,0.14957594448727835,325547,share of the top-ranked points that regrew in 2012-2024
+C_forward,global,predicted_regrowth_area_uncalibrated_mha,7.367136438015068,3255476,
+C_forward,global,predicted_regrowth_area_prior_shift_pi1_mha,0.9781824127436352,3255476,
+C_forward,global,predicted_regrowth_area_isotonic_period1_mha,0.9872713127567019,3255476,
+C_forward,paired,forward_accuracy,0.7467390329401906,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_balanced_accuracy,0.7099087542958744,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_sensitivity,0.6698550348481263,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_specificity,0.7499624737436226,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_auc,0.7942043531670903,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_n,3255476.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_n_regrowth,130997.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,paired,forward_precision_top1pct,0.3167045524359526,32554,share of the top-ranked points that regrew in 2012-2024
+C_forward,paired,forward_precision_top5pct,0.18837276452482907,162773,share of the top-ranked points that regrew in 2012-2024
+C_forward,paired,forward_precision_top10pct,0.1484117500698824,325547,share of the top-ranked points that regrew in 2012-2024
+C_forward,paired,predicted_regrowth_area_uncalibrated_mha,7.300759758145035,3255476,
+C_forward,paired,predicted_regrowth_area_prior_shift_pi1_mha,0.929213634004828,3255476,
+C_forward,paired,predicted_regrowth_area_isotonic_period1_mha,0.9846940978212883,3255476,
+C_forward,observed,observed_regrowth_area_mha,1.0025874755897537,3255476,
+C_forward,observed,prevalence_2012_2024,0.040262361902450736,3255476,precision of a random ranking
