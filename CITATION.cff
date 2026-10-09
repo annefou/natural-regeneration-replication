@@ -149,6 +149,12 @@ identifiers:
   value: 10.5281/zenodo.23137988
   description: Concept DOI (resolves to the latest version) — cite the project
 - type: doi
+  value: 10.5281/zenodo.23256507
+  description: Version DOI for v1.2.0 — pins this exact release; cite this from nanopubs
+- type: swh
+  value: swh:1:rev:11301c00c06056688a3ad989184ae3612b9c5160
+  description: Software Heritage ID of the v1.2.0 source tree (swh:1:rev:11301c00c06056688a3ad989184ae3612b9c5160;origin=https://github.com/annefou/natural-regeneration-replication)
+- type: doi
   value: 10.5281/zenodo.23139192
   description: Version DOI for v1.1.1 — pins this exact release; cite this from nanopubs
 - type: swh
