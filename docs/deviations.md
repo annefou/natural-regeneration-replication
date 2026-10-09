@@ -145,8 +145,8 @@ This is a diagnostic extension, not part of the paper's method (`01c`, `02d`, `0
 
 ## Sampling design (03h), added 2026-10-09 (extension)
 
-Prompted by Cloud (2026, draft matters arising on Williams et al., Brazil; code at
-github.com/CannonCloud/tropical-regeneration-reanalysis). Not part of the paper's method. The step-2
+Prompted by C. Cloud's reanalysis of Williams et al. in Brazil (2026, Matters Arising manuscript and
+code: https://github.com/CannonCloud/tropical-regeneration-reanalysis). Not part of the paper's method. The step-2
 model, predictors, validation set and prediction grid are unchanged; only the training sample differs.
 
 | # | Topic | Choice | Why |

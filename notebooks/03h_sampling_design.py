@@ -17,8 +17,9 @@
 # # 03h — Does the training-sample design drive the results?
 #
 # The paper trains its random forest on equal numbers of regrowth and non-regrowth
-# points, with non-regrowth drawn at random over the whole domain. Cloud (2026,
-# draft matters arising on Williams et al., Brazil) argues that both choices shape
+# points, with non-regrowth drawn at random over the whole domain. C. Cloud's
+# reanalysis of the paper in Brazil (2026, Matters Arising manuscript and code:
+# https://github.com/CannonCloud/tropical-regeneration-reanalysis) argues that both choices shape
 # the output: the 50/50 ratio inflates areas, and random non-regrowth lets the model
 # separate the classes by broad climate rather than by local site conditions. This
 # notebook repeats his two tests in Colombia, with the step-2 specification

@@ -9,8 +9,8 @@ authors:
   affiliation: "LifeWatch ERIC"
 repository-code: "https://github.com/annefou/natural-regeneration-replication"
 license: MIT
-version: "1.1.1"
-date-released: "2026-10-04"
+version: "1.2.0"
+date-released: "2026-10-09"
 # Identifiers below are recorded AUTOMATICALLY on each release by
 # .github/workflows/release-identifiers.yml — don't fill them in by hand.
 #
@@ -56,6 +56,10 @@ abstract: >-
   (doi:10.5281/zenodo.23138775), and shows that the blocked accuracies do not depend on the blocking
   grid (HEALPix on WGS84 or sphere, latitude/longitude squares). Version 1.1.1 fixes the Docker
   image build (git added for a GitHub-pinned dependency); the source is otherwise identical to 1.1.0.
+  Version 1.2.0 adds a training-sample design analysis prompted by C. Cloud's reanalysis of the paper:
+  the 50/50 training ratio, not the landscape, sets the uncalibrated area (3.99 Mha at 50 %, 0.24 Mha
+  at the real 1.6 % regrowth share, with ranking skill unchanged), while drawing non-regrowth near
+  regrowth improves local discrimination slightly but not the forward test.
 references:
 - type: data
   title: "Natural-regeneration potential in Colombia on HEALPix (WGS84): Williams et al. (2024) map, an independent replication model, and regrowth labels"

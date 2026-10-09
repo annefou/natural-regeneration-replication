@@ -45,7 +45,8 @@ WGS84 pixel areas.
 - **The training ratio sets the area, not the ranking.** Retraining with 50 %, 20 %, 5 % and 1.6 %
   (the real share) of regrowth points shrinks the uncalibrated area from 3.99 to 0.24 Mha, while the
   ranking skill (AUC 0.92–0.95) barely moves; after the prior-shift correction all four agree
-  (0.19–0.24 Mha). This confirms, in Colombia, the point made by Cloud (2026, draft) for Brazil.
+  (0.19–0.24 Mha). This confirms, in Colombia, the point made by C. Cloud for Brazil
+  ([reanalysis](https://github.com/CannonCloud/tropical-regeneration-reanalysis)).
 - **Drawing non-regrowth near regrowth ("paired" sampling) helps a little locally, not for the
   future.** It raises correct rejection of non-regrowth within 3 km of regrowth from 0.842 to 0.904,
   costs a little on random points (0.887 → 0.879), and leaves calibrated areas unchanged. It does not
@@ -76,7 +77,7 @@ paper leaves open is listed in [`docs/deviations.md`](docs/deviations.md).
 | Diagnostics | Training on the Neotropics, transfer to Colombia, transferability curve with HEALPix blocks | `02c`, `03d` |
 | Area of Applicability | Are low-accuracy predictions extrapolations (Meyer & Pebesma 2021)? | `03e` |
 | Independent labels | MapBiomas Colombia: label comparison, forward test, land-use history, cross-scoring | `01c`, `02d`, `03f` |
-| Sampling design | Training regrowth share (50 % to 1.6 %); non-regrowth drawn near regrowth ("paired", Cloud 2026) vs at random; forward test | `03h` |
+| Sampling design | Training regrowth share (50 % to 1.6 %); non-regrowth drawn near regrowth ("paired", as in Cloud's reanalysis) vs at random; forward test | `03h` |
 
 ## Data
 

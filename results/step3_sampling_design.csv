@@ -100,7 +100,7 @@ C_forward,global,forward_accuracy,0.7384717319372036,3255476,"all MapBiomas-labe
 C_forward,global,forward_balanced_accuracy,0.7171428294299435,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
 C_forward,global,forward_sensitivity,0.6939471896302969,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
 C_forward,global,forward_specificity,0.74033846922959,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
-C_forward,global,forward_auc,0.7994815531528682,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
+C_forward,global,forward_auc,0.7994815531528681,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
 C_forward,global,forward_n,3255476.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
 C_forward,global,forward_n_regrowth,130997.0,3255476,"all MapBiomas-labelled 2012-2024 grid points, 2012 inputs"
 C_forward,global,forward_precision_top1pct,0.30733550408551946,32554,share of the top-ranked points that regrew in 2012-2024
